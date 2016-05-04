@@ -1,60 +1,214 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on https://github.com/jonrohan -->
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0024)http://www.vogholic.com/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
-  <link rel="stylesheet" href="stylesheets/github-dark.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
 
-  <title>东方一曦</title>
-  <meta name="description" content="come on!">
-
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-
+<title>深圳市华世联网络科技有限公司</title>
+<meta name="keywords" content="深圳市华世联网络科技有限公司">
+<meta name="description" content="深圳市华世联网络科技有限公司">
+<link rel="stylesheet" href="./深圳市华世联网络科技有限公司_files/style.css" type="text/css">
+<script type="text/javascript" src="./深圳市华世联网络科技有限公司_files/jquery.min.js"></script>
 </head>
 
 <body>
-
-  <div class="wrapper">
-    <header>
-      <h1 class="title">东方一曦</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">come on!</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/dongfangyixi" class="code">View 东方一曦 on GitHub</a>
+<div id="top">
+	<div class="header">
+    	<div class="logo"><img src="./深圳市华世联网络科技有限公司_files/logo.png"></div>
+        <div class="lang"><a href="http://www.vogholic.com/index.asp">中文</a>|<a href="http://www.vogholic.com/en/index.asp">English</a></div>
+        <div id="nav">
+        	<ul>
+            	<li><a href="http://www.vogholic.com/index.asp">首页</a></li>
+                <li><a href="http://www.vogholic.com/about.asp">关于我们</a></li>
+                <li><a href="http://www.vogholic.com/products.asp">产品中心</a></li>
+                <li><a href="http://www.vogholic.com/jszc.asp">技术支持</a></li>
+                <li><a href="http://www.vogholic.com/contact.asp">联系我们</a></li>
+            </ul>
         </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-          <p>Welcome</p>
-        </article>
-      </div>
     </div>
-    <footer>
-      <div class="owner">
+</div>
+<!--头部信息-->
 
-      <p><a href="https://github.com/dongfangyixi" class="avatar"><img src="https://avatars1.githubusercontent.com/u/6477100?v=3&amp;s=60" width="48" height="48"></a>View <a href="https://github.com/dongfangyixi">dongfangyixi</a> on <a href="https://www.github.com">GitHub</a></p>
 
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/"> jon </a></small>
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/dongfangyixi/dongfangyixi.github.io/tarball/master" class="tar">tar</a><a href="https://github.com/dongfangyixi/dongfangyixi.github.io/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
+<script type="text/javascript">
+function banner(){	
+	var bn_id = 0;
+	var bn_id2= 1;
+	var speed33=5000;
+	var qhjg = 1;
+    var MyMar33;
+	$("#banner .d1").hide();
+	$("#banner .d1").eq(0).fadeIn("slow");
+	if($("#banner .d1").length>1)
+	{
+		$("#banner_id li").eq(0).addClass("nuw");
+		function Marquee33(){
+			bn_id2 = bn_id+1;
+			if(bn_id2>$("#banner .d1").length-1)
+			{
+				bn_id2 = 0;
+			}
+			$("#banner .d1").eq(bn_id).css("z-index","2");
+			$("#banner .d1").eq(bn_id2).css("z-index","1");
+			$("#banner .d1").eq(bn_id2).show();
+			$("#banner .d1").eq(bn_id).fadeOut("slow");
+			$("#banner_id li").removeClass("nuw");
+			$("#banner_id li").eq(bn_id2).addClass("nuw");
+			bn_id=bn_id2;
+		};
+	
+		MyMar33=setInterval(Marquee33,speed33);
+		
+		$("#banner_id li").click(function(){
+			var bn_id3 = $("#banner_id li").index(this);
+			if(bn_id3!=bn_id&&qhjg==1)
+			{
+				qhjg = 0;
+				$("#banner .d1").eq(bn_id).css("z-index","2");
+				$("#banner .d1").eq(bn_id3).css("z-index","1");
+				$("#banner .d1").eq(bn_id3).show();
+				$("#banner .d1").eq(bn_id).fadeOut("slow",function(){qhjg = 1;});
+				$("#banner_id li").removeClass("nuw");
+				$("#banner_id li").eq(bn_id3).addClass("nuw");
+				bn_id=bn_id3;
+			}
+		})
+		$("#banner_id").hover(
+			function(){
+				clearInterval(MyMar33);
+			}
+			,
+			function(){
+				MyMar33=setInterval(Marquee33,speed33);
+			}
+		)	
+	}
+	else
+	{
+		$("#banner_id").hide();
+	}
+}
+</script>
+<style type="text/css">
+/* banner */
+.banner{height:430px;overflow:hidden; position:relative; top:-20px;}
+.banner .d1{width:100%;height:430px;display:block;position:absolute;left:0px;top:0px;}
+.banner .d2{width:100%;height:30px;clear:both;position:absolute;z-index:100;left:0px;top:410px;}
+.banner .d2 ul{float:left;position:absolute;left:95%;top:0;margin:0 0 0 -96px;display:inline;}
+.banner .d2 li{width:10px;height:10px;overflow:hidden;cursor:pointer;background:url(images/img1.png) no-repeat center;float:left;margin:0 3px 0 0;display:inline;}
+.banner .d2 li.nuw{background:url(images/img1_1.png) no-repeat center;}
+</style>
 
-  
-</body>
-</html>
+<!--banner-->
+<div id="banner">
+<div class="banner" id="banner">
+    
+	<a href="" class="d1" style="display: none; z-index: 2; background: url(http://www.vogholic.com/Uploadfiles/20151141631760382.jpg) 50% 50% no-repeat;"></a>
+    
+	<a href="" class="d1" style="display: block; z-index: 1; background: url(http://www.vogholic.com/Uploadfiles/20151141633253670.jpg) 50% 50% no-repeat;"></a>
+    
+	<div class="d2" id="banner_id">
+		<ul>
+            
+			<li class=""></li>
+            
+			<li class="nuw"></li>
+            
+
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">banner()</script>
+   
+   
+</div>
+<!--banner-->
+<!--图片切换-->
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+	 $(".m_pt a").mousemove(function(){
+	   var index=$(".m_pt a").index(this);	 
+	   $(".m_pt a").removeClass("on");
+	   $(".m_pt a").eq(index).addClass("on");
+	   $(".show_box").hide();
+	   $(".show_box").eq(index).show();	 
+	 })   
+  })
+</script>
+
+
+
+<div id="content" style="background:#f0f1f2 url(../images/contentbg1.jpg) repeat-x; margin-top:-20px;">
+	<div class="main">
+   	  <div class="m_p">
+       	<div class="m_pt">
+        <h3>最新产品</h3>
+        
+        <a href="javascript:void(0)" class="on"></a>
+        
+       </div>
+          
+          <ul class="show_box">
+              
+          </ul>
+          
+        </div>
+        <!--产品推荐-->
+        <div class="m_a">
+        	<h3>公司简介</h3>
+            <div class="m_ainfo">
+            <img src="./深圳市华世联网络科技有限公司_files/2015910075267422.jpg" width="316" height="184">
+            <div class="ainfo"></div>
+            </div>
+        </div>
+        <!--公司简介-->
+    </div>
+</div>
+<!--内容区-->
+<div class="links">
+	<div class="l_c">
+    	<ul>
+            
+        	<li><h3>责任</h3><span>诚信是我们公司的一个值。我们关心和分享与我们的客户、供应商、以及我们所有的员工。</span></li>
+            
+        	<li><h3>质量</h3><span>我们相信质量来自于优秀的设计。</span></li>
+            
+        	<li><h3>成本</h3><span>设计制造和设计成本,我们有一个严格的管理流程来控制我们的成本。</span></li>
+            
+        	<li><h3>速度</h3><span>这一直是我们的首要任务向国内引进了最先进的显示解决方案在最短的期间</span></li>
+            
+        </ul>
+    </div>
+</div>
+<!--友情链接-->
+
+<!--友情链接-->
+<div id="conact">
+	<div class="con_m">
+    	<h3>联系我们</h3>
+        <ul>
+            
+        	<li><h4>中国总部</h4></li>
+            
+        	<li><h4>.</h4><p>
+	&nbsp;
+</p></li>
+            
+        	<li><h4>.</h4><p>
+	&nbsp;
+</p></li>
+            
+        </ul>
+    </div>
+</div>
+<!--联系我们-->
+<div id="footerbg"><div class="footer"><p>
+	Copyright © 深圳市华世联网络科技有限公司
+</p></div></div>
+<!--页脚信息-->
+
+
+
+
+</body></html>
