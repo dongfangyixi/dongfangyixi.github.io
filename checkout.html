@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Home</title>
+<title>Checkout</title>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary JavaScript plugins) -->
 <script type='text/javascript' src="js/jquery-1.11.1.min.js"></script>
@@ -16,7 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- start menu -->
 <script type="text/javascript" src="js/bootstrap.js"></script>
-
+<script src="js/menu_jquery.js"></script>
 <script src="js/simpleCart.min.js"> </script>
 <script src="js/responsiveslides.min.js"></script>
 <script>
@@ -31,7 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
 	
   </script>
-<script type="text/javascript" src="js/move-top.js"></script>
+  <script type="text/javascript" src="js/move-top.js"></script>
        <script type="text/javascript" src="js/easing.js"></script>
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
@@ -160,146 +160,106 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 </div>
 <!-- start banner -->
-<div class="banner">
-	<div class="container">
-		<div class="col-md-6 banner-left">
-			<div class="header-slider">
-				<div class="slider">
-					<div class="callbacks_container">
-					  	<ul class="rslides" id="slider">
-							<li>
-								<img src="images/1.jpg" class="img-responsive" alt="">
-								<div class="caption">
-									<h3>Maecenas malesuada elit </h3>
-									<p>Curabitur et ligula. Ut molestie a, ultricies </p>
-								</div>
-							</li>
-							<li>
-								<img src="images/4.jpg" class="img-responsive" alt="">
-								<div class="caption">
-									<h3>Ultrasound Machine</h3>
-									<p>Maecenas malesuada elit lectus felis,igula.</p>
-								</div>
-							</li>
-							<li>
-								<img src="images/10.jpg" class="img-responsive" alt="">
-								<div class="caption">
-									<h3>Etiam ullamcorper. e</h3>
-									<p>Suspendisse a pellentesque dui, non felis. </p>
-								</div>
-							</li>
+<div class="check">	 
+<div class="container">
+	
+			 <div class="col-md-3 cart-total">
+			 <a class="continue" href="#">Continue to basket</a>
+			 <div class="price-details">
+				 <h3>Price Details</h3>
+				 <span>Total</span>
+				 <span class="total1">6200.00</span>
+				 <span>Discount</span>
+				 <span class="total1">---</span>
+				 <span>Delivery Charges</span>
+				 <span class="total1">150.00</span>
+				 <div class="clearfix"></div>				 
+			 </div>	
+			 <ul class="total_price">
+			   <li class="last_price"> <h4>TOTAL</h4></li>	
+			   <li class="last_price"><span>6350.00</span></li>
+			   <div class="clearfix"> </div>
+			 </ul>
+			
+			 
+			 <div class="clearfix"></div>
+			 <a class="order" href="#">Place Order</a>
+			 <div class="total-item">
+				 <h3>OPTIONS</h3>
+				 <h4>COUPONS</h4>
+				 <a class="cpns" href="#">Apply Coupons</a>
+				 <p><a href="#">Log In</a> to use accounts - linked coupons</p>
+			 </div>
+			</div>
+		 <div class="col-md-9 cart-items">
+			 <h1>My Shopping Bag (2)</h1>
+				<script>$(document).ready(function(c) {
+					$('.close1').on('click', function(c){
+						$('.cart-header').fadeOut('slow', function(c){
+							$('.cart-header').remove();
+						});
+						});	  
+					});
+			   </script>
+			 <div class="cart-header">
+				 <div class="close1"> </div>
+				 <div class="cart-sec simpleCart_shelfItem">
+						<div class="cart-item cyc">
+							 <img src="images/8.jpg" class="img-responsive" alt=""/>
+						</div>
+					   <div class="cart-item-info">
+						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
+						<ul class="qty">
+							<li><p>Size : 5</p></li>
+							<li><p>Qty : 1</p></li>
 						</ul>
-			  		</div>
-				 </div>
-				</div>
-		</div>
-		<div class="col-md-6 banner-right">
-			<div class="col-md-6 banner-top">
-				<h6>Dialysis Chairs</h6>
-				
-			</div>
-			<div class="col-md-6 banner-top1">
-				<h6>Surgical Bed</h6>
-				
-			</div>
-			<div class="col-md-6 banner-top2">
-				<h6>Wheel Chairs</h6>
-				
-			</div>
-			<div class="col-md-6 banner-top3">
-				<h6>Radiant Warmers</h6>
-				
-			</div>
+						
+							 <div class="delivery">
+							 <p>Service Charges : Rs.100.00</p>
+							 <span>Delivered in 2-3 bussiness days</span>
+							 <div class="clearfix"></div>
+				        </div>	
+					   </div>
+					   <div class="clearfix"></div>
+											
+				  </div>
+			 </div>
+			 <script>$(document).ready(function(c) {
+					$('.close2').on('click', function(c){
+							$('.cart-header2').fadeOut('slow', function(c){
+						$('.cart-header2').remove();
+					});
+					});	  
+					});
+			 </script>
+			 <div class="cart-header2">
+				 <div class="close2"> </div>
+				  <div class="cart-sec simpleCart_shelfItem">
+						<div class="cart-item cyc">
+							 <img src="images/11.jpg" class="img-responsive" alt=""/>
+						</div>
+					   <div class="cart-item-info">
+						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
+						<ul class="qty">
+							<li><p>Size : 5</p></li>
+							<li><p>Qty : 1</p></li>
+						</ul>
+							 <div class="delivery">
+							 <p>Service Charges : Rs.100.00</p>
+							 <span>Delivered in 2-3 bussiness days</span>
+							 <div class="clearfix"></div>
+				        </div>	
+					   </div>
+					   <div class="clearfix"></div>
+											
+				  </div>
+			  </div>		
+		 </div>
+		 
+		
 			<div class="clearfix"> </div>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
-</div>
-<!-- end banner -->
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >手机网站模板</a></div>
-<div class="special">
-	<div class="container">
-		<div class="specia-top">
-			<ul class="grid_2">
-		<li>
-				<a href="sale.html"><img src="images/2.jpg" class="img-responsive" alt=""></a>
-				<div class="special-info grid_1 simpleCart_shelfItem">
-					<h5>Lorem ipsum dolor</h5>
-					<div class="item_add"><span class="item_price"><h6>ONLY $540.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">Add to cart</a></span></div>
-				</div>
-		</li>
-		<li>
-				<a href="sale.html"><img src="images/3.jpg" class="img-responsive" alt=""></a>
-				<div class="special-info grid_1 simpleCart_shelfItem">
-					<h5>Consectetur adipis</h5>
-					<div class="item_add"><span class="item_price"><h6>ONLY $460.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">Add to cart</a></span></div>
-			</div>
-		</li>
-		<li>
-				<a href="sale.html"><img src="images/5.jpg" class="img-responsive" alt=""></a>
-				<div class="special-info grid_1 simpleCart_shelfItem">
-					<h5>Commodo consequ</h5>
-					<div class="item_add"><span class="item_price"><h6>ONLY $614.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">Add to cart</a></span></div>
-			</div>
-		</li>
-		<li>
-				<a href="sale.html"><img src="images/11.jpg" class="img-responsive" alt=""></a>
-				<div class="special-info grid_1 simpleCart_shelfItem">
-					<h5>Voluptate velit</h5>
-					<div class="item_add"><span class="item_price"><h6>ONLY $337.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">Add to cart</a></span></div>
-				</div>
-		</li>
-		<div class="clearfix"> </div>
-	</ul>
-		</div>
-	</div>
-</div>
-<!-- special -->
-<div class="special">
-	<div class="container">
-		<div class="specia-top">
-			<ul class="grid_2">
-		<li>
-				<a href="sale.html"><img src="images/4.jpg" class="img-responsive" alt=""></a>
-				<div class="special-info grid_1 simpleCart_shelfItem">
-					<h5>Lorem ipsum dolor</h5>
-					<div class="item_add"><span class="item_price"><h6>ONLY $640.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">Add to cart</a></span></div>
-				</div>
-		</li>
-		<li>
-				<a href="sale.html"><img src="images/6.jpg" class="img-responsive" alt=""></a>
-				<div class="special-info grid_1 simpleCart_shelfItem">
-					<h5>Consectetur adipis</h5>
-					<div class="item_add"><span class="item_price"><h6>ONLY $560.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">Add to cart</a></span></div>
-			</div>
-		</li>
-		<li>
-				<a href="sale.html"><img src="images/1.jpg" class="img-responsive" alt=""></a>
-				<div class="special-info grid_1 simpleCart_shelfItem">
-					<h5>Commodo consequ</h5>
-					<div class="item_add"><span class="item_price"><h6>ONLY $514.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">Add to cart</a></span></div>
-			</div>
-		</li>
-		<li>
-				<a href="sale.html"><img src="images/7.jpg" class="img-responsive" alt=""></a>
-				<div class="special-info grid_1 simpleCart_shelfItem">
-					<h5>Voluptate velit</h5>
-					<div class="item_add"><span class="item_price"><h6>ONLY $437.00</h6></span></div>
-					<div class="item_add"><span class="item_price"><a href="#">Add to cart</a></span></div>
-				</div>
-		</li>
-		<div class="clearfix"> </div>
-	</ul>
-		</div>
-	</div>
-</div>
+	 </div>
+	 </div>
 <div class="foot-top">
 	<div class="container">
 		<div class="col-md-6 s-c">
@@ -345,7 +305,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h4>CUSTOMER CARE</h4>
 				<li><a href="#">Help Center</a></li>
 				<li><a href="#">FAQ</a></li>
-				<li><a href="#">How To Buy</a></li>
+				<li><a href="buy.html">How To Buy</a></li>
 				<li><a href="#">Delivery</a></li>
 		</div>
 		<div class="col-md-3 abt">
