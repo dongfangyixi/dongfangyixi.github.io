@@ -8,3 +8,4 @@ categories: original
 # RL
 
 ### reinforcement learning
+$$ a_i^j = \sum_{i=1}^{15}f_6 $$
