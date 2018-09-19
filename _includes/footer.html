@@ -1,35 +1,22 @@
-<footer class="site-footer h-card">
-  <data class="u-url" href="{{ "/" | relative_url }}"></data>
+<div style="clear: both;"/>
+<footer class="site-footer">
+    2018 &copy; Built by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> and <a href="https://github.com/jekyll/minima/" target="_blank">minima</a> | View <a href="https://github.com/lilianweng/lil-log/tree/gh-pages" target="_blank">this</a> on Github
 
-  <div class="wrapper">
-
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">
-            {%- if site.author -%}
-              {{ site.author | escape }}
-            {%- else -%}
-              {{ site.title | escape }}
-            {%- endif -%}
-            </li>
-            {%- if site.email -%}
-            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-            {%- endif -%}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        {%- include social.html -%}
-      </div>
-
-      <div class="footer-col footer-col-3">
-        <p>{{- site.description | escape -}}</p>
-      </div>
-    </div>
-
-  </div>
-
+    <p>
+        <a href="{{ site.baseurl }}/feed.xml" target="_blank">
+            <img src="{{ '/assets/images/logo_rss.png' | relative_url }}" />
+        </a>
+        <a href="https://scholar.google.com/citations?user=dCa-pW8AAAAJ&hl=en&oi=ao" target="_blank">
+            <img src="{{ '/assets/images/logo_scholar.png' | relative_url }}" />
+        </a>
+        <a href="https://github.com/lilianweng" target="_blank">
+            <img src="{{ '/assets/images/logo_github.png' | relative_url }}" />
+        </a>
+        <a href="https://www.instagram.com/lilianweng/" target="_blank">
+            <img src="{{ '/assets/images/logo_instagram.png' | relative_url }}" />
+        </a>
+        <a href="https://twitter.com/lilianweng/" target="_blank">
+            <img src="{{ '/assets/images/logo_twitter.png' | relative_url }}" />
+        </a>
+    </p>
 </footer>
