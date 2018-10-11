@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "Introduction"
-date:   2018-10-11 18:03:25
+date:   2018-10-11
+author: lixu
 categories: original
 ---
 
