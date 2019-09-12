@@ -1,68 +1,52 @@
-# Site Settings
-encoding: UTF-8
-exclude: ["*.gem", "*.gemspec", "Gemfile", "Gemfile.lock", "node_modules", "Rakefile", "starter-kit", "vendor"]
-lang: en # Language code as defined in _data/i18n.yml. en, en-gb, en-us, zh, zh-cn, zh-tw etc.
-permalink: /blog/:year/:month/:day/:title/
+title: Your awesome title
+author: GitHub User
+email: your-email@domain.com
+description: > # this means to ignore newlines until "show_excerpts:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
 
-whitelist: [jekyll-feed, jekyll-redirect-from, jekyll-seo-tag, jekyll-sitemap]
-plugins:
-  - jekyll-feed
-  - jekyll-redirect-from
-  - jekyll-seo-tag
-  - jekyll-sitemap
+show_excerpts: false # set to true to show excerpts on the homepage
 
-markdown: kramdown
-kramdown:
-  auto_id_prefix: 'heading-'
-  smart_quotes: ["apos", "apos", "quot", "quot"]
-  toc_levels: 1..3
+# Minima date format
+# refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this
+minima:
+  date_format: "%b %-d, %Y"
 
-sass:
-  style: compressed
-
-# Site Data
-url: # the base hostname & protocol for your site, e.g. http://example.com
-baseurl: # the subpath of your site, e.g. /blog
-title: Simple Texture
-description: "A gem-based responsive simple texture styled Jekyll theme."
-keywords: 'jekyll,theme,gem-based,blog'
-author:
-  name:
-  job_title:
-  location:
-  email:
+  # generate social links in footer
   social_links:
-    - name: facebook
-      url:
-    - name: github
-      url: https://github.com/yizeng/jekyll-theme-simple-texture
-    - name: instagram
-      url:
-    - name: linkedin
-      url:
-    - name: stackoverflow
-      url:
-    - name: twitter
-      url: 
-    - name: vk
-      url:
-home:
-  section1: <h1>Simple Texutre</h1>
-  section2: <h2>A gem-based responsive simple texture styled Jekyll theme</h2>
-  section3: <div class="social-links"><a class="ico-github btn" href="https://github.com/yizeng/jekyll-theme-simple-texture" title="View on GitHub"></a></div>
-blog:
-  cc_license: http://creativecommons.org/licenses/by-sa/4.0/ # A link to CC License of your choice.
-  cc_license_image: /assets/images/theme/cc-by-sa.png # An image of your CC License. 
-  footer_content: A gem-based responsive simple texture styled <a href="http://jekyllrb.com/">Jekyll</a> theme.
+    twitter: jekyllrb
+    github:  jekyll
+    rss: rss
+    # dribbble: jekyll
+    # facebook: jekyll
+    # flickr:   jekyll
+    # instagram: jekyll
+    # linkedin: jekyll
+    # pinterest: jekyll
+    # youtube: jekyll
+    # youtube_channel: UC8CXR0-3I70i1tfPg1PAE1g
+    # youtube_channel_name: CloudCannon
+    # telegram: jekyll
+    # googleplus: +jekyll
+    # microdotblog: jekyll
+    # keybase: jekyll
 
-disqus:
-  shortname: # e.g. yizeng
-  public_key: # e.g. ULZ0b9TFefCUJHKQd4JCKv2v3u27YoG7YG8zXPewkWrT333Z0Se9YnxLzoV6VM8W
-google_tag_manager: # e.g. 'GTM-KCQJXZ8F'
-addthis_public_id: # AddThis sharing plugin. See http://www.addthis.com/. E.g. ra-53329e27694534j5 
+    # Mastodon instances
+    # mastodon:
+    # - username: jekyll
+    #   instance: example.com
+    # - username: jekyll2
+    #   instance: example.com
 
-paths:
-  home: /
-  blog: /blog/
-  categories: /blog/categories/
-  tags: /blog/tags/
+# If you want to link only specific pages in your header, uncomment
+# this and add the path to the pages in order as they should show up
+#header_pages:
+# - about.md
+
+# Build settings
+theme: minima
+
+plugins:
+ - jekyll-feed
+ - jekyll-seo-tag
