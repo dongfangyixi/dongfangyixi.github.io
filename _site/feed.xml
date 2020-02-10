@@ -1,14 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-12T21:36:14+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Chandler’s Blog</title><subtitle>This is a website of my tech blogs. Recording several awesome tech in computer science and Artificial Intelligence. 一个关于AI的网站
-</subtitle><author><name>Xu LI</name></author><entry><title type="html">Reinforcement learning</title><link href="http://localhost:4000/original/2018/09/09/Reinforcement-learning.html" rel="alternate" type="text/html" title="Reinforcement learning" /><published>2018-09-09T23:03:25+08:00</published><updated>2018-09-09T23:03:25+08:00</updated><id>http://localhost:4000/original/2018/09/09/Reinforcement-learning</id><content type="html" xml:base="http://localhost:4000/original/2018/09/09/Reinforcement-learning.html">&lt;h1 id=&quot;rl&quot;&gt;RL&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-18T00:06:25+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Chandler’s Blog</title><subtitle>This is a website of my tech blogs. Recording several awesome tech in computer science and Artificial Intelligence. 一个关于AI的网站
+</subtitle><author><name>Xu LI</name></author><entry><title type="html">Reinforcement learning</title><link href="http://localhost:4000/original/2018/09/09/Reinforcement-learning.html" rel="alternate" type="text/html" title="Reinforcement learning" /><published>2018-09-09T23:03:25+08:00</published><updated>2018-09-09T23:03:25+08:00</updated><id>http://localhost:4000/original/2018/09/09/Reinforcement-learning</id><content type="html" xml:base="http://localhost:4000/original/2018/09/09/Reinforcement-learning.html">&lt;h1 id=&quot;exploration-in-reinforcement-learning&quot;&gt;Exploration in reinforcement learning&lt;/h1&gt;
 
-&lt;h3 id=&quot;reinforcement-learning&quot;&gt;reinforcement learning&lt;/h3&gt;
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\begin{aligned}
+&lt;h2 id=&quot;exploration&quot;&gt;Exploration&lt;/h2&gt;
+
+&lt;h3 id=&quot;-epsilon--greedy&quot;&gt;$ \epsilon $-greedy&lt;/h3&gt;
+
+&lt;p&gt;$\epsilon$-greedy perhaps the implimentational easiest way to conduct exploration in reinforcement learning (RL). However it achieves amazing performance in most RL tasks.&lt;/p&gt;
+
+&lt;p&gt;greedy means take what the policy or Q function tells you to do&lt;/p&gt;
+
+&lt;p&gt;$\epsilon$ means that a random action is taken with a probability of $\epsilon$ .&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+a=\left\{
+\begin{array}{cl}
+\pi(s), &amp; &amp; in &amp; &amp;{p(1 - \epsilon)} \\
+random(A), &amp; &amp;in&amp;&amp;{p(\epsilon)}
+\end{array}
+\right. %]]&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;boltzmann-gibbs-softmax-action-selection&quot;&gt;Boltzmann (Gibbs, Softmax) action-selection&lt;/h3&gt;
+
+&lt;p&gt;In Boltzmann exploration, we would ideally like to exploit all the information present in the estimated Q-values produced by our network. &lt;em&gt;Boltzmann exploration&lt;/em&gt; does just this. Instead of always taking the optimal action, or taking a random action, this approach involves choosing an action with weighted probabilities. To accomplish this we use a softmax over the networks estimates of value for each action. In this case the action which the agent estimates to be optimal is most likely (but is not guaranteed) to be chosen. The biggest advantage over e-greedy is that information about likely value of the other actions can also be taken into consideration.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Adjusting during training&lt;/strong&gt;: In practice we utilize an additional temperature parameter (τ) which is annealed over time. This parameter controls the spread of the softmax distribution, such that all actions are considered equally at the start of training, and actions are sparsely distributed by the end of training.&lt;/p&gt;
+
+&lt;h3 id=&quot;discovery-of-subgoals&quot;&gt;Discovery of Subgoals&lt;/h3&gt;
+
+&lt;p&gt;Amy Mcgovern and Andrew G. Barto. Automatic discovery of subgoals in reinforcement learning using diverse density. In Proc. of ICML, 2001.&lt;/p&gt;
+
+&lt;p&gt;Sandeep Goel and Manfred Huber. Subgoal discovery for hierarchical reinforcement learning using learned policies. In Ingrid Russell and Susan M. Haller, editors, FLAIRS Conference, pages 346–350. AAAI Press, 2003.&lt;/p&gt;
+
+&lt;h3 id=&quot;count-based&quot;&gt;Count based&lt;/h3&gt;
+
+&lt;p&gt;Haoran Tang, Rein Houthooft, Davis Foote, Adam Stooke, Xi Chen, Yan Duan, John Schulman, Filip De Turck, and Pieter Abbeel. #exploration: A study of count-based exploration for deep reinforcement learning. CoRR, abs/1611.04717, 2016.&lt;/p&gt;
+
+&lt;p&gt;Jarryd Martin, Suraj Narayanan Sasikumar, Tom Everitt, and Marcus Hutter. Count-based exploration in feature space for reinforcement learning. CoRR, abs/1706.08090, 2017.&lt;/p&gt;
+
+&lt;h3 id=&quot;use-approximations-of-a-state-transition-graph-to-exploit-structural-patterns&quot;&gt;Use approximations of a state-transition graph to exploit structural patterns&lt;/h3&gt;
+
+&lt;p&gt;Sridhar Mahadevan. Proto-value functions: Developmental reinforcement learning. In Proceedings of the 22Nd International Conference on Machine Learning, ICML ’05, pages 553–560, New York, NY, USA, 2005. ACM.&lt;/p&gt;
+
+&lt;p&gt;Marlos C. Machado, Marc G. Bellemare, and Michael H. Bowling. A laplacian framework for option discovery in reinforcement learning. CoRR, abs/1703.00956, 2017.&lt;/p&gt;
+
+&lt;h3 id=&quot;reward-bonus&quot;&gt;Reward “bonus”&lt;/h3&gt;
+
+&lt;p&gt;takes a Bayesian approach by maintaining a model of the dynamics of the environment, obtaining a posterior of the model after taking an action, and using the KL divergence between these two models as a bonus. The intuition behind this approach is that encouraging actions that make large updates to the model allows the agent to better explore areas where the current model is inaccurate.&lt;/p&gt;
+
+&lt;p&gt;Rein Houthooft, Xi Chen, Yan Duan, John Schulman, Filip De Turck, and Pieter Abbeel. Curiosity-driven exploration in deep reinforcement learning via bayesian neural networks. CoRR, abs/1605.09674, 2016.&lt;/p&gt;
+
+&lt;p&gt;Deepak Pathak, Pulkit Agrawal, Alexei A. Efros, and Trevor Darrell. Curiosity-driven exploration by self-supervised prediction. CoRR, abs/1705.05363, 2017.&lt;/p&gt;
+
+&lt;p&gt;Fernando Fernandez and Manuela Veloso. Probabilistic policy reuse in a reinforcement learning agent. In Proceedings of the Fifth International Joint Conference on Autonomous Agents and Multiagent Systems, AAMAS ’06, pages 720–727, New York, NY, USA, 2006. ACM.&lt;/p&gt;
+
+&lt;h3 id=&quot;evolution-strategy&quot;&gt;Evolution strategy&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{aligned}
 a_i^j = \sum_{i=1}^{15}f_6 
-\end{aligned}&lt;/script&gt;&lt;/p&gt;
+\end{aligned}&lt;/script&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;if we want to start our work with reinforcement learning we should know that if one want to go one should know where to go&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Xu LI</name></author><summary type="html">RL</summary></entry><entry><title type="html">My Example Post</title><link href="http://localhost:4000/2016/05/20/my-example-post.html" rel="alternate" type="text/html" title="My Example Post" /><published>2016-05-20T00:00:00+08:00</published><updated>2016-05-20T00:00:00+08:00</updated><id>http://localhost:4000/2016/05/20/my-example-post</id><content type="html" xml:base="http://localhost:4000/2016/05/20/my-example-post.html">&lt;p&gt;Eos eu docendi tractatos sapientem, brute option menandri in vix, quando vivendo accommodare te ius. Nec melius fastidii constituam id, viderer theophrastus ad sit, hinc semper periculis cum id. Noluisse postulant assentior est in, no choro sadipscing repudiandae vix. Vis in euismod delenit dignissim. Ex quod nostrum sit, suas decore animal id ius, nobis solet detracto quo te.&lt;/p&gt;
+  &lt;li&gt;
+    &lt;p&gt;if we want to start our work with reinforcement learning we should know that if one want to go one should know where to go&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How to make the Eq in the middle of the page&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Xu LI</name></author><summary type="html">Exploration in reinforcement learning</summary></entry><entry><title type="html">My Example Post</title><link href="http://localhost:4000/2016/05/20/my-example-post.html" rel="alternate" type="text/html" title="My Example Post" /><published>2016-05-20T00:00:00+08:00</published><updated>2016-05-20T00:00:00+08:00</updated><id>http://localhost:4000/2016/05/20/my-example-post</id><content type="html" xml:base="http://localhost:4000/2016/05/20/my-example-post.html">&lt;p&gt;Eos eu docendi tractatos sapientem, brute option menandri in vix, quando vivendo accommodare te ius. Nec melius fastidii constituam id, viderer theophrastus ad sit, hinc semper periculis cum id. Noluisse postulant assentior est in, no choro sadipscing repudiandae vix. Vis in euismod delenit dignissim. Ex quod nostrum sit, suas decore animal id ius, nobis solet detracto quo te.&lt;/p&gt;
 
 &lt;p&gt;No laudem altera adolescens has, volumus lucilius eum no. Eam ei nulla audiam efficiantur. Suas affert per no, ei tale nibh sea. Sea ne magna harum, in denique scriptorem sea, cetero alienum tibique ei eos. Labores persequeris referrentur eos ei.&lt;/p&gt;</content><author><name>Xu LI</name></author><summary type="html">Eos eu docendi tractatos sapientem, brute option menandri in vix, quando vivendo accommodare te ius. Nec melius fastidii constituam id, viderer theophrastus ad sit, hinc semper periculis cum id. Noluisse postulant assentior est in, no choro sadipscing repudiandae vix. Vis in euismod delenit dignissim. Ex quod nostrum sit, suas decore animal id ius, nobis solet detracto quo te.</summary></entry><entry><title type="html">Some articles are just so long they deserve a really long title to see if things will break well</title><link href="http://localhost:4000/misc/2016/05/20/super-long-article.html" rel="alternate" type="text/html" title="Some articles are just so long they deserve a really long title to see if things will break well" /><published>2016-05-20T00:00:00+08:00</published><updated>2016-05-20T00:00:00+08:00</updated><id>http://localhost:4000/misc/2016/05/20/super-long-article</id><content type="html" xml:base="http://localhost:4000/misc/2016/05/20/super-long-article.html">&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.&lt;/p&gt;
 
