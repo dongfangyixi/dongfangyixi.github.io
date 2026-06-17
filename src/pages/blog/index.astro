@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL;
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<Base title="Blog · dongfangyixi" description="Tech blog by dongfangyixi.">
+  <section class="hero">
+    <h1>Blog</h1>
+    <p class="lede">Notes on technology, engineering, and things I'm learning.</p>
+  </section>
+  <section>
+    {posts.map((post) => (
+      <a class="card" href={`${base}blog/${post.slug}`}>
+        <h3>{post.data.title}</h3>
+        <p class="meta">{fmt(post.data.pubDate)}</p>
+        <p>{post.data.description}</p>
+        {post.data.tags.length > 0 && (
+          <div class="tags">{post.data.tags.map((t) => <span class="tag">{t}</span>)}</div>
+        )}
+      </a>
+    ))}
+    {posts.length === 0 && <p class="meta">No posts yet — add markdown files in <code>src/content/blog/</code>.</p>}
+  </section>
+</Base>

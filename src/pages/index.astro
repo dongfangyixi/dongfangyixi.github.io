@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { videos, embedUrl } from '../data/videos';
+
+const base = import.meta.env.BASE_URL;
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const news = (await getCollection('news'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
+
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+const topVideos = videos.slice(0, 2);
+---
+<Base title="dongfangyixi · Home">
+  <section class="hero">
+    <h1>Hi, I'm <span class="gradient-text">dongfangyixi</span> 👋</h1>
+    <p class="lede">
+      Engineer &amp; builder. I write about technology, share what I'm currently
+      focused on, and post videos. Welcome to my corner of the web.
+    </p>
+    <div class="socials">
+      <a href="https://github.com/dongfangyixi" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.youtube.com/@your-channel" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://space.bilibili.com/your-id" target="_blank" rel="noopener">Bilibili</a>
+      <a href={`${base}about`}>About me</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>Latest posts</h2>
+      <a href={`${base}blog`}>All posts →</a>
+    </div>
+    {posts.map((post) => (
+      <a class="card" href={`${base}blog/${post.slug}`}>
+        <h3>{post.data.title}</h3>
+        <p class="meta">{fmt(post.data.pubDate)}</p>
+        <p>{post.data.description}</p>
+      </a>
+    ))}
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>What I'm focusing on</h2>
+      <a href={`${base}news`}>All updates →</a>
+    </div>
+    {news.map((item) => (
+      <a class="card" href={item.data.link ?? `${base}news`} target={item.data.link ? '_blank' : undefined}>
+        <h3>{item.data.title}</h3>
+        <p class="meta">{fmt(item.data.date)}</p>
+      </a>
+    ))}
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>Videos</h2>
+      <a href={`${base}videos`}>All videos →</a>
+    </div>
+    <div class="video-grid">
+      {topVideos.map((v) => (
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src={embedUrl(v)} title={v.title} loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+          <div class="body"><h3>{v.title}</h3></div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

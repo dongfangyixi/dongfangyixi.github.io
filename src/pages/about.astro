@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Base title="About · dongfangyixi" description="About dongfangyixi.">
+  <section class="hero">
+    <h1>About me</h1>
+    <p class="lede">A short introduction — replace this with your own story.</p>
+  </section>
+  <section class="prose">
+    <p>
+      Hi! I'm <strong>dongfangyixi</strong>. I'm a software engineer who enjoys
+      building things and writing about what I learn along the way. This site is
+      where I collect my <a href={`${base}blog`}>tech blog</a>, the
+      <a href={`${base}news`}> things I'm currently focused on</a>, and my
+      <a href={`${base}videos`}> videos</a>.
+    </p>
+
+    <h2>What I work on</h2>
+    <ul>
+      <li>Topic one — e.g. backend systems</li>
+      <li>Topic two — e.g. open-source projects</li>
+      <li>Topic three — e.g. content creation</li>
+    </ul>
+
+    <h2>Find me online</h2>
+    <ul>
+      <li><a href="https://github.com/dongfangyixi" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.youtube.com/@your-channel" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://space.bilibili.com/your-id" target="_blank" rel="noopener">Bilibili</a></li>
+      <li>Email: <a href="mailto:xuluthebest@gmail.com">xuluthebest@gmail.com</a></li>
+    </ul>
+  </section>
+</Base>

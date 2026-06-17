@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+
+const { title = 'dongfangyixi', description = 'Personal homepage of dongfangyixi — tech blog, updates, and videos.' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const nav = [
+  { href: base, label: 'Home' },
+  { href: `${base}blog`, label: 'Blog' },
+  { href: `${base}videos`, label: 'Videos' },
+  { href: `${base}news`, label: 'News' },
+  { href: `${base}about`, label: 'About' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href={base}>东方一席</a>
+        <ul>
+          {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        © {new Date().getFullYear()} dongfangyixi · Built with
+        <a href="https://astro.build">Astro</a> · Hosted on GitHub Pages
+      </div>
+    </footer>
+  </body>
+</html>
