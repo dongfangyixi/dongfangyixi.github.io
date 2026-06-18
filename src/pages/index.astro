@@ -16,24 +16,28 @@ const news = (await getCollection('news'))
 const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 const topVideos = videos.slice(0, 2);
 ---
-<Base title="dongfangyixi · Home">
+<Base title="东方一席 · Home">
   <section class="hero">
-    <h1>Hi, I'm <span class="gradient-text">dongfangyixi</span> 👋</h1>
+    <div class="hero-mark">
+      <span class="seal" aria-hidden="true"><span>东</span><span>方</span><span>一</span><span>席</span></span>
+      <span class="reading">dōngfāng yīxí</span>
+    </div>
+    <h1>A <span class="name">seat at the table</span> — writing, building, and the AI frontier.</h1>
     <p class="lede">
-      Engineer &amp; builder. I write about technology, share what I'm currently
-      focused on, and post videos. Welcome to my corner of the web.
+      Engineer &amp; builder. I write about technology, track what's moving in AI,
+      and post videos. Pull up a chair.
     </p>
     <div class="socials">
       <a href="https://github.com/dongfangyixi" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.youtube.com/@your-channel" target="_blank" rel="noopener">YouTube</a>
       <a href="https://space.bilibili.com/your-id" target="_blank" rel="noopener">Bilibili</a>
-      <a href={`${base}about`}>About me</a>
+      <a href={`${base}about`}>About</a>
     </div>
   </section>
 
   <section>
     <div class="section-title">
-      <h2>Latest posts</h2>
+      <div><span class="eyebrow"><span class="cjk">笔记</span>Writing</span><h2>Latest posts</h2></div>
       <a href={`${base}blog`}>All posts →</a>
     </div>
     {posts.map((post) => (
@@ -47,7 +51,7 @@ const topVideos = videos.slice(0, 2);
 
   <section>
     <div class="section-title">
-      <h2>What I'm focusing on</h2>
+      <div><span class="eyebrow"><span class="cjk">近况</span>Now</span><h2>What I'm focusing on</h2></div>
       <a href={`${base}news`}>All updates →</a>
     </div>
     {news.map((item) => (
@@ -60,7 +64,7 @@ const topVideos = videos.slice(0, 2);
 
   <section>
     <div class="section-title">
-      <h2>Videos</h2>
+      <div><span class="eyebrow"><span class="cjk">影像</span>Video</span><h2>Videos</h2></div>
       <a href={`${base}videos`}>All videos →</a>
     </div>
     <div class="video-grid">

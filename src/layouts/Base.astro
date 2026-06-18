@@ -22,11 +22,20 @@ const nav = [
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@600;700&display=swap"
+    />
   </head>
   <body>
     <header class="site-header">
       <nav class="nav">
-        <a class="brand" href={base}>东方一席</a>
+        <a class="brand" href={base} aria-label="东方一席 — home">
+          <span class="seal" aria-hidden="true"><span>东</span><span>方</span><span>一</span><span>席</span></span>
+          <span class="wordmark">东方一席</span>
+        </a>
         <ul>
           {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
         </ul>
@@ -37,7 +46,8 @@ const nav = [
     </main>
     <footer class="site-footer">
       <div class="container">
-        © {new Date().getFullYear()} dongfangyixi · Built with
+        <div class="seal-small" aria-hidden="true">东方一席</div>
+        © {new Date().getFullYear()} · Built with
         <a href="https://astro.build">Astro</a> · Hosted on GitHub Pages
       </div>
     </footer>

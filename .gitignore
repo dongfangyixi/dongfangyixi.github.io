@@ -17,3 +17,8 @@ node_modules/
 # editor
 .vscode/
 .idea/
+
+# Local QA artifacts
+.playwright-mcp/
+/home-desktop.png
+/home-mobile.png

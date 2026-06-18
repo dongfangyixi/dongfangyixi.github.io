@@ -10,6 +10,7 @@ const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month:
 ---
 <Base title="News · dongfangyixi" description="What dongfangyixi is currently focusing on.">
   <section class="hero">
+    <span class="eyebrow"><span class="cjk">近况</span>Now</span>
     <h1>What I'm focusing on</h1>
     <p class="lede">Short updates on current projects, interests, and milestones.</p>
   </section>
@@ -17,7 +18,7 @@ const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month:
     {news.map(async (item) => {
       const { Content } = await item.render();
       return (
-        <div class="card" style="cursor:default">
+        <div class="card-framed">
           <h3>{item.data.link ? <a href={item.data.link} target="_blank" rel="noopener">{item.data.title}</a> : item.data.title}</h3>
           <p class="meta">{fmt(item.data.date)}</p>
           <div class="prose"><Content /></div>
