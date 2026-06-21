@@ -7,15 +7,21 @@ I wanted a wrist rest that actually matches my **AJAZZ AKS075 Alice keyboard**:
 the front edge is not a simple rectangle, the center has an Alice-style V shape,
 and the final part needs to be printable on a normal desktop 3D printer.
 
+![Final sliced wrist rest on the Bambu build plate](/images/news/ai-wrist-rest/final-bambu-slicer-result.png)
+
+*The final result: two split wrist-rest halves on the Bambu textured PEI plate,
+ready for a P2S print. The final estimate was **2h 17m** and **92.40 g** of PLA.*
+
 The interesting part is not just the wrist rest. The experiment was whether I
 could use a **Codex agent as the CAD operator**: describe the shape in normal
 language, let the agent drive Blender through Python, inspect the result, correct
 it, and repeat. I did not need to learn Blender first.
 
-![Final continuous-surface wrist rest render](/images/news/ai-wrist-rest/wrist-rest-full-render.png)
+![AJAZZ AKS075 Alice keyboard reference photo](/images/news/ai-wrist-rest/ajazz-aks075-keyboard-photo.png)
 
-*Final full reference render. The printable version is split into left and right
-parts so it fits comfortably on the build plate.*
+*The keyboard that drove the shape: an AJAZZ AKS075 Alice layout with an
+asymmetric front edge and a center V that a normal rectangular wrist rest would
+not follow.*
 
 ## The Shape
 
@@ -32,6 +38,25 @@ can be assembled after printing.
 
 *Split print version. The left part carries the fused male connector; the right
 part has the matching mortise slots.*
+
+## The Messy Middle
+
+This was not a one-shot result. The first versions got the outline roughly right,
+but the details kept breaking in ways that only became obvious when looking from
+another angle or thinking like a slicer:
+
+- the V notch was mirrored or shifted in the wrong direction;
+- the "middle of the V" was misunderstood as a surface region instead of the split
+  seam itself;
+- the first ergonomic surface looked too patchy under angled light;
+- a ring-based mesh created visible transition creases;
+- the mortise-and-tenon connector looked right visually, but the male tenons were
+  exported as separate loose shells instead of being fused into the left body.
+
+The final version only became trustworthy after checking the mesh like a printable
+object: the horizontal V stayed identical to the non-ergonomic reference, the top
+surface became one continuous heightfield, and the left split STL imports as **one
+loose part** with the tenons fused into the body.
 
 ## Print Result
 
@@ -59,8 +84,8 @@ reference model.
 
 This was absolutely possible with an AI coding agent. The agent wrote Blender
 Python, generated STL files, opened the scene for inspection, and iterated on the
-geometry: wall shape, rounded V transitions, split parts, continuous top surface,
-and a mortise-and-tenon connector.
+geometry: outline shape, rounded V transitions, split parts, continuous top
+surface, and a mortise-and-tenon connector.
 
 The key advantage is that the interface becomes language:
 
@@ -79,7 +104,8 @@ printable body. For 3D printing, "looks right" is not enough; the STL has to be
 checked as a real manufacturable mesh.
 
 The lesson: AI can be a useful CAD operator, but the human still needs to inspect,
-measure, print, and correct.
+measure, print, and correct. It is less like pressing a magic button and more like
+pairing with a very fast junior CAD assistant who can write Blender code.
 
 ## Next Time
 
