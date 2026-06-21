@@ -242,6 +242,57 @@ section { margin: 3.25rem 0; }
 }
 .prose hr { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
 
+.prose .stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.prose .stat-grid div {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+}
+
+.prose .stat-grid strong {
+  display: block;
+  color: var(--seal);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.prose .stat-grid span {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.prose .download-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.prose .download-grid a {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 0.85rem 1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.prose .download-grid a:hover {
+  border-color: var(--seal);
+  color: var(--seal);
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   border-top: 1px solid var(--line); margin-top: 5rem; padding: 2.5rem 0;
