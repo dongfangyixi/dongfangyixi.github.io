@@ -55,7 +55,7 @@ const topVideos = videos.slice(0, 2);
       <a href={`${base}news`}>All updates →</a>
     </div>
     {news.map((item) => (
-      <a class="card" href={item.data.link ?? `${base}news`} target={item.data.link ? '_blank' : undefined}>
+      <a class="card" href={`${base}news/${item.slug}`}>
         <h3>{item.data.title}</h3>
         <p class="meta">{fmt(item.data.date)}</p>
       </a>

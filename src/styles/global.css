@@ -17,7 +17,7 @@
   --seal-deep: #b23f2c;
   --line: #342c21;
 
-  --maxw: 720px;
+  --maxw: 1180px;  /* content caps here; fluid (full width) on anything narrower */
   --radius: 6px;
 
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
@@ -187,6 +187,17 @@ section { margin: 3.25rem 0; }
   border-radius: var(--radius); padding: 1.4rem 1.5rem; margin-bottom: 1rem;
 }
 .card-framed h3 { font-family: var(--font-display); margin: 0 0 0.2rem; font-size: 1.2rem; }
+
+/* ---------- Source link (news detail) ---------- */
+.source-link {
+  margin: 1.75rem 0 0;
+}
+.source-link a {
+  display: inline-block;
+  padding: 0.45rem 0.9rem; border: 1px solid var(--line); border-radius: 3px;
+  font-size: 0.88rem; letter-spacing: 0.02em; color: var(--seal);
+}
+.source-link a:hover { border-color: var(--seal); text-decoration: none; }
 
 /* ---------- Video grid ---------- */
 .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
