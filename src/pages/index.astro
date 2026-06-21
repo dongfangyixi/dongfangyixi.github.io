@@ -16,10 +16,10 @@ const news = (await getCollection('news'))
 const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 const topVideos = videos.slice(0, 2);
 ---
-<Base title="东方一席 · Home">
+<Base title="东方一㬢 · Home">
   <section class="hero">
     <div class="hero-mark">
-      <span class="seal" aria-hidden="true"><span>东</span><span>方</span><span>一</span><span>席</span></span>
+      <img class="seal" src={`${base}seal.png`} alt="东方一㬢 seal" width="54" height="54" />
       <span class="reading">dōngfāng yīxí</span>
     </div>
     <h1>A <span class="name">seat at the table</span> — writing, building, and the AI frontier.</h1>

@@ -18,7 +18,8 @@ const nav = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="icon" type="image/png" href={`${base}favicon.png`} />
+    <link rel="apple-touch-icon" href={`${base}favicon.png`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -32,9 +33,9 @@ const nav = [
   <body>
     <header class="site-header">
       <nav class="nav">
-        <a class="brand" href={base} aria-label="东方一席 — home">
-          <span class="seal" aria-hidden="true"><span>东</span><span>方</span><span>一</span><span>席</span></span>
-          <span class="wordmark">东方一席</span>
+        <a class="brand" href={base} aria-label="东方一㬢 — home">
+          <img class="seal" src={`${base}seal.png`} alt="" aria-hidden="true" width="40" height="40" />
+          <span class="wordmark">东方一㬢</span>
         </a>
         <ul>
           {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
@@ -46,7 +47,7 @@ const nav = [
     </main>
     <footer class="site-footer">
       <div class="container">
-        <div class="seal-small" aria-hidden="true">东方一席</div>
+        <div class="seal-small" aria-hidden="true">东方一㬢</div>
         © {new Date().getFullYear()} · Built with
         <a href="https://astro.build">Astro</a> · Hosted on GitHub Pages
       </div>
