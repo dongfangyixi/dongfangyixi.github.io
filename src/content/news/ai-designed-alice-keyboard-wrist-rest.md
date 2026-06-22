@@ -7,17 +7,17 @@ I wanted a wrist rest that actually matches my **AJAZZ AKS075 Alice keyboard**:
 the front edge is not a simple rectangle, the center has an Alice-style V shape,
 and the final part needs to be printable on a normal desktop 3D printer.
 
-![Final sliced wrist rest on the Bambu build plate](/images/news/ai-wrist-rest/final-bambu-slicer-result.png)
+![Printed wrist rest matched to the AJAZZ AKS075 keyboard](/images/news/ai-wrist-rest/final-printed-wrist-rest.jpg)
 
-*The final result: two split wrist-rest halves on the Bambu textured PEI plate,
-ready for a P2S print. The final estimate was **2h 17m** and **92.40 g** of PLA.*
+*The final result: a split, 3D-printed wrist rest fitted to the AJAZZ AKS075
+Alice keyboard.*
 
 The interesting part is not just the wrist rest. The experiment was whether I
 could use a **Codex agent as the CAD operator**: describe the shape in normal
 language, let the agent drive Blender through Python, inspect the result, correct
 it, and repeat. I did not need to learn Blender first.
 
-![AJAZZ AKS075 Alice keyboard reference photo](/images/news/ai-wrist-rest/ajazz-aks075-keyboard-photo.png)
+![AJAZZ AKS075 Alice keyboard reference photo](/images/news/ai-wrist-rest/ajazz-aks075-keyboard-photo.jpg)
 
 *The keyboard that drove the shape: an AJAZZ AKS075 Alice layout with an
 asymmetric front edge and a center V that a normal rectangular wrist rest would
@@ -34,7 +34,7 @@ The final printable version is split at the V seam. The left side has fused
 trapezoid tenons, and the right side has matching female slots, so the two halves
 can be assembled after printing.
 
-![Split STL render with fused connector](/images/news/ai-wrist-rest/wrist-rest-split-render.png)
+![Split STL render with fused connector](/images/news/ai-wrist-rest/wrist-rest-split-render.jpg)
 
 *Split print version. The left part carries the fused male connector; the right
 part has the matching mortise slots.*
@@ -68,6 +68,10 @@ The final slicing estimate in Bambu Studio for a P2S:
   <div><strong>Print time</strong><span>2h 17m</span></div>
   <div><strong>Filament</strong><span>92.40 g</span></div>
 </div>
+
+![Bambu Studio slicing preview](/images/news/ai-wrist-rest/final-bambu-slicer-result.jpg)
+
+*The final split layout in Bambu Studio before printing.*
 
 ## STL Files
 
