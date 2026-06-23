@@ -18,7 +18,7 @@ function cleanSlug(slug: string): string {
 
 <Base title={`${t(locale, 'blog.title')} · ${t(locale, 'site.brand')}`} description={t(locale, 'blog.description')}>
   <section class="hero">
-    <span class="eyebrow"><span class="cjk">笔记</span>Writing</span>
+    <span class="eyebrow">{locale === "zh" ? <span class="cjk">笔记</span> : "Writing"}</span>
     <h1>{t(locale, 'blog.title')}</h1>
     <p class="lede">{t(locale, 'blog.description')}</p>
   </section>

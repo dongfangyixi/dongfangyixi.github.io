@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { videos, embedUrl } from '../data/videos';
 import { t, tHtml, formatDate } from '../i18n/ui';
 
 const locale = (Astro.currentLocale ?? 'en') as 'en' | 'zh';
@@ -21,8 +20,6 @@ function cleanSlug(slug: string): string {
   const i = slug.indexOf('/');
   return i >= 0 ? slug.slice(i + 1) : slug;
 }
-
-const topVideos = videos.slice(0, 2);
 ---
 <Base title={`${t(locale, 'site.brand')} · ${t(locale, 'site.title')}`}>
   <section class="hero">
@@ -42,7 +39,7 @@ const topVideos = videos.slice(0, 2);
 
   <section>
     <div class="section-title">
-      <div><span class="eyebrow"><span class="cjk">笔记</span>Writing</span><h2>{t(locale, 'section.latestPosts')}</h2></div>
+      <div><span class="eyebrow">{locale === 'zh' ? <span class="cjk">笔记</span> : 'Writing'}</span><h2>{t(locale, 'section.latestPosts')}</h2></div>
       <a href={`${lBase}${base}blog`}>{t(locale, 'section.allPosts')}</a>
     </div>
     {posts.map((post) => (
@@ -56,7 +53,7 @@ const topVideos = videos.slice(0, 2);
 
   <section>
     <div class="section-title">
-      <div><span class="eyebrow"><span class="cjk">近况</span>Now</span><h2>{t(locale, 'section.focusingOn')}</h2></div>
+      <div><span class="eyebrow">{locale === 'zh' ? <span class="cjk">近况</span> : 'Now'}</span><h2>{t(locale, 'section.focusingOn')}</h2></div>
       <a href={`${lBase}${base}news`}>{t(locale, 'section.allUpdates')}</a>
     </div>
     {news.map((item) => (
@@ -65,24 +62,5 @@ const topVideos = videos.slice(0, 2);
         <p class="meta">{formatDate(locale, item.data.date)}</p>
       </a>
     ))}
-  </section>
-
-  <section>
-    <div class="section-title">
-      <div><span class="eyebrow"><span class="cjk">影像</span>Video</span><h2>{t(locale, 'section.videos')}</h2></div>
-      <a href={`${lBase}${base}videos`}>{t(locale, 'section.allVideos')}</a>
-    </div>
-    <div class="video-grid">
-      {topVideos.map((v) => (
-        <div class="video-card">
-          <div class="video-embed">
-            <iframe src={embedUrl(v)} title={v.title} loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          </div>
-          <div class="body"><h3>{v.title}</h3></div>
-        </div>
-      ))}
-    </div>
   </section>
 </Base>

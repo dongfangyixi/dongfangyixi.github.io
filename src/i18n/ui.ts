@@ -102,8 +102,8 @@ const ui = {
     zh: '凌一㬢 — 凌云而上总能看到一㬢晨光。',
   },
   'hero.lede': {
-    en: 'Engineer & builder. I write about technology, track what\'s moving in AI, and post videos. Pull up a chair.',
-    zh: '工程师 & 建造者。写技术文章，追踪AI前沿动态，发布视频。来，坐下聊聊。',
+    en: 'Engineer & builder. I write about technology and track what\'s moving in AI. Pull up a chair.',
+    zh: '工程师 & 建造者。写技术文章，追踪 AI 前沿动态。来，坐下聊聊。',
   },
 
   // ── Sections ──
@@ -125,8 +125,8 @@ const ui = {
     zh: '这里汇集了我的文章、动态和视频。',
   },
   'about.intro': {
-    en: 'Welcome. This site brings together my <a href="{blog}">blog</a>, the <a href="{news}">latest news I\'m following</a>, and my <a href="{videos}">videos</a>.',
-    zh: '欢迎。本站收录了我的<a href="{blog}">博客</a>、<a href="{news}">近期关注的动态</a>和<a href="{videos}">视频</a>。',
+    en: 'Welcome. This site brings together my <a href="{blog}">blog</a> and the <a href="{news}">latest news I\'m following</a>.',
+    zh: '欢迎。本站收录了我的<a href="{blog}">博客</a>和<a href="{news}">近期关注的动态</a>。',
   },
 
   // ── Blog page ──
