@@ -66,9 +66,9 @@ const isZh = locale === 'zh';
   <body>
     <header class="site-header">
       <nav class="nav">
-        <a class="brand" href={`${lBase}${base}`} aria-label={`${locale === 'zh' ? '凌一㬢' : 'beyond light'} — ${t(locale, 'nav.home')}`}>
+        <a class="brand" href={`${lBase}${base}`} aria-label={`${locale === 'zh' ? '凌一而㬢' : 'beyond light'} — ${t(locale, 'nav.home')}`}>
           <img class="avatar" src={`${base}avatar.svg`} alt="" aria-hidden="true" width="38" height="38" />
-          <span class="wordmark">{locale === 'zh' ? '凌一㬢' : 'beyond light'}</span>
+          <span class="wordmark">{locale === 'zh' ? '凌一而㬢' : 'beyond light'}</span>
         </a>
         <ul>
           {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
@@ -81,7 +81,7 @@ const isZh = locale === 'zh';
     </main>
     <footer class="site-footer">
       <div class="container">
-        <div class="seal-small" aria-hidden="true">{locale === 'zh' ? '凌一㬢' : 'beyond light'}</div>
+        <div class="seal-small" aria-hidden="true">{locale === 'zh' ? '凌一而㬢' : 'beyond light'}</div>
         © {new Date().getFullYear()} · {t(locale, 'footer.builtWith')}
         <a href="https://astro.build">Astro</a> · {t(locale, 'footer.hostedOn')}
       </div>

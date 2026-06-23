@@ -75,10 +75,10 @@ export function translatedPath(
 // ═══════════════════════════════════════════════════
 
 const ui = {
-  // Brand name — English uses "beyond light", Chinese uses 凌一㬢
+  // Brand name — English uses "beyond light", Chinese uses 凌一而㬢
   'site.brand': {
     en: 'beyond light',
-    zh: '凌一㬢',
+    zh: '凌一而㬢',
   },
   'site.title': {
     en: 'Home',
@@ -99,7 +99,7 @@ const ui = {
   // ── Home hero ──
   'hero.tagline': {
     en: '<span class="name">beyond light</span> — writing, building, and the AI frontier.',
-    zh: '凌一㬢 — 凌云而上总能看到一㬢晨光。',
+    zh: '凌一而㬢 — 凌云而上总能看到一㬢晨光。',
   },
   'hero.lede': {
     en: 'Engineer & builder. I write about technology and track what\'s moving in AI. Pull up a chair.',
@@ -180,7 +180,7 @@ const ui = {
   // ── Meta defaults ──
   'meta.defaultTitle': {
     en: 'beyond light',
-    zh: '凌一㬢',
+    zh: '凌一而㬢',
   },
   'meta.defaultDescription': {
     en: 'Personal homepage — tech blog, updates, and videos.',

@@ -313,7 +313,7 @@ section { margin: 3.25rem 0; }
 }
 .site-footer .seal-small {
   display: inline-block; color: var(--seal);
-  font-family: var(--font-display);  /* works for both "beyond light" (Fraunces) and 凌一㬢 (falls back to serif) */
+  font-family: var(--font-display);  /* works for both "beyond light" (Fraunces) and 凌一而㬢 (falls back to serif) */
   margin-bottom: 0.5rem; font-size: 1rem; letter-spacing: 0.02em;
 }
 
