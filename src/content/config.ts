@@ -9,6 +9,7 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    locale: z.enum(['en', 'zh']).default('en'),
   }),
 });
 
@@ -19,6 +20,7 @@ const news = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     link: z.string().url().optional(),
+    locale: z.enum(['en', 'zh']).default('en'),
   }),
 });
 

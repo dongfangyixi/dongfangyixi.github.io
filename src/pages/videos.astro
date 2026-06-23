@@ -1,12 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 import { videos, embedUrl } from '../data/videos';
+import { t } from '../i18n/ui';
+
+const locale = (Astro.currentLocale ?? 'en') as 'en' | 'zh';
 ---
-<Base title="Videos · dongfangyixi" description="Videos by dongfangyixi on YouTube and Bilibili.">
+
+<Base title={`${t(locale, 'videos.title')} · ${t(locale, 'site.brand')}`} description={t(locale, 'videos.description')}>
   <section class="hero">
     <span class="eyebrow"><span class="cjk">影像</span>Video</span>
-    <h1>Videos</h1>
-    <p class="lede">My videos from YouTube and Bilibili. Edit <code>src/data/videos.ts</code> to add more.</p>
+    <h1>{t(locale, 'videos.title')}</h1>
+    <p class="lede">{t(locale, 'videos.description')}</p>
   </section>
   <section>
     <div class="video-grid">

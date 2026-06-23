@@ -1,6 +1,7 @@
 ---
 title: "Reading: Qwen-RobotWorld — language as a universal action interface for world models"
 date: 2026-06-21
+locale: en
 link: https://arxiv.org/abs/2606.17030
 ---
 

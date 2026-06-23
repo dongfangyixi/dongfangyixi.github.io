@@ -1,6 +1,7 @@
 ---
 title: "Designing a printable Alice keyboard wrist rest with Codex and Blender"
 date: 2026-06-21
+locale: en
 ---
 
 I wanted a wrist rest that actually matches my **AJAZZ AKS075 Alice keyboard**:

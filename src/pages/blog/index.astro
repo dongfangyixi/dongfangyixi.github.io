@@ -1,30 +1,38 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { t, formatDate } from '../../i18n/ui';
 
+const locale = (Astro.currentLocale ?? 'en') as 'en' | 'zh';
 const base = import.meta.env.BASE_URL;
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
+const lBase = locale === "zh" ? "/zh" : "";
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.locale === locale))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+function cleanSlug(slug: string): string {
+  const i = slug.indexOf('/');
+  return i >= 0 ? slug.slice(i + 1) : slug;
+}
 ---
-<Base title="Blog · dongfangyixi" description="Tech blog by dongfangyixi.">
+
+<Base title={`${t(locale, 'blog.title')} · ${t(locale, 'site.brand')}`} description={t(locale, 'blog.description')}>
   <section class="hero">
     <span class="eyebrow"><span class="cjk">笔记</span>Writing</span>
-    <h1>Blog</h1>
-    <p class="lede">Notes on technology, engineering, and things I'm learning.</p>
+    <h1>{t(locale, 'blog.title')}</h1>
+    <p class="lede">{t(locale, 'blog.description')}</p>
   </section>
   <section>
     {posts.map((post) => (
-      <a class="card" href={`${base}blog/${post.slug}`}>
+      <a class="card" href={`${lBase}${base}blog/${cleanSlug(post.slug)}`}>
         <h3>{post.data.title}</h3>
-        <p class="meta">{fmt(post.data.pubDate)}</p>
+        <p class="meta">{formatDate(locale, post.data.pubDate)}</p>
         <p>{post.data.description}</p>
         {post.data.tags.length > 0 && (
           <div class="tags">{post.data.tags.map((t) => <span class="tag">{t}</span>)}</div>
         )}
       </a>
     ))}
-    {posts.length === 0 && <p class="meta">No posts yet — add markdown files in <code>src/content/blog/</code>.</p>}
+    {posts.length === 0 && <p class="meta" set:html={t(locale, 'blog.empty')} />}
   </section>
 </Base>

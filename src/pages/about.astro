@@ -1,18 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
+import { t, tHtml } from '../i18n/ui';
+
+const locale = (Astro.currentLocale ?? 'en') as 'en' | 'zh';
 const base = import.meta.env.BASE_URL;
+const lBase = locale === 'zh' ? '/zh' : '';
 ---
-<Base title="About" description="About this site.">
+<Base title={t(locale, 'about.title')} description={t(locale, 'about.description')}>
   <section class="hero">
     <span class="eyebrow"><span class="cjk">关于</span>About</span>
-    <h1>About</h1>
-    <p class="lede">This is where I collect my writing, updates, and videos.</p>
+    <h1>{t(locale, 'about.title')}</h1>
+    <p class="lede">{t(locale, 'about.lede')}</p>
   </section>
   <section class="prose">
-    <p>
-      Welcome. This site brings together my <a href={`${base}blog`}>blog</a>, the
-      <a href={`${base}news`}> latest news I'm following</a>, and my
-      <a href={`${base}videos`}> videos</a>.
-    </p>
+    <p set:html={tHtml(locale, 'about.intro', { blog: `${lBase}${base}blog`, news: `${lBase}${base}news`, videos: `${lBase}${base}videos` })} />
   </section>
 </Base>

@@ -1,6 +1,7 @@
 ---
 title: "Building terminalboard — TensorBoard in your terminal, with an AI assistant"
 date: 2026-06-16
+locale: en
 link: https://github.com/dongfangyixi/terminalboard
 ---
 

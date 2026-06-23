@@ -81,21 +81,18 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
   padding: 0.75rem 1.5rem; max-width: var(--maxw); margin: 0 auto;
 }
 
-/* The seal / chop — the page's signature element */
+/* The avatar — the page's signature mark (a dawn/sunrise badge) */
 .brand { display: inline-flex; align-items: center; gap: 0.6rem; }
 .brand:hover { text-decoration: none; }
-.seal {
+.avatar {
   display: block;
-  width: 2.5rem; height: 2.5rem;
-  object-fit: contain;
-  padding: 3px;
-  background: #f7efe2;          /* paper chip so the red seal reads on both themes */
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.28);
-  transform: rotate(-2deg);
+  width: 2.4rem; height: 2.4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 1px 3px rgba(0,0,0,.22), inset 0 0 0 1px rgba(0,0,0,.06);
   transition: transform .2s ease;
 }
-.brand:hover .seal { transform: rotate(0deg) scale(1.04); }
+.brand:hover .avatar { transform: scale(1.06); }
 .brand .wordmark {
   font-family: var(--font-display);
   font-weight: 600; font-size: 1.05rem; color: var(--text);
@@ -109,6 +106,22 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
 }
 .nav ul a:hover { color: var(--text); text-decoration: none; border-bottom-color: var(--seal); }
 
+/* Language switcher pill in the nav */
+.lang-switcher {
+  display: inline-flex; align-items: center; flex-shrink: 0;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  color: var(--muted);
+  transition: border-color .15s, color .15s;
+}
+.lang-switcher:hover {
+  border-color: var(--seal);
+  color: var(--seal);
+  text-decoration: none;
+}
+
 /* ---------- Hero ---------- */
 .hero { padding: 4rem 0 2.25rem; }
 .hero h1 {
@@ -119,13 +132,13 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
   color: var(--muted); font-size: 1.15rem; max-width: 54ch; margin: 0;
 }
 
-/* Home hero: oversized seal as the opening statement */
+/* Home hero: oversized avatar as the opening statement */
 .hero-mark {
   display: inline-flex; align-items: center; gap: 0.9rem; margin-bottom: 1.5rem;
   animation: rise .6s cubic-bezier(.2,.7,.2,1) both;
 }
-.hero-mark .seal {
-  width: 3.4rem; height: 3.4rem; border-radius: 7px;
+.hero-mark .avatar {
+  width: 3.6rem; height: 3.6rem;
 }
 .hero-mark .reading {
   font-family: var(--font-display); font-style: italic;
@@ -299,8 +312,9 @@ section { margin: 3.25rem 0; }
   color: var(--muted); font-size: 0.85rem; text-align: center;
 }
 .site-footer .seal-small {
-  display: inline-block; color: var(--seal); font-family: var(--font-cjk);
-  margin-bottom: 0.5rem; font-size: 1rem; letter-spacing: 0.15em;
+  display: inline-block; color: var(--seal);
+  font-family: var(--font-display);  /* works for both "beyond light" (Fraunces) and 凌一㬢 (falls back to serif) */
+  margin-bottom: 0.5rem; font-size: 1rem; letter-spacing: 0.02em;
 }
 
 .back-link { display: inline-block; margin: 2rem 0; color: var(--muted); }

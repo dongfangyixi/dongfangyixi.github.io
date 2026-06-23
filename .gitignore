@@ -22,3 +22,6 @@ node_modules/
 .playwright-mcp/
 /home-desktop.png
 /home-mobile.png
+
+# Raw source materials (not for publishing)
+raw_materials_not_commit_not_push/

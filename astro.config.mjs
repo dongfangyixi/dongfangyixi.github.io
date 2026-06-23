@@ -7,4 +7,11 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://dongfangyixi.github.io',
   base: '/',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'zh'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });
