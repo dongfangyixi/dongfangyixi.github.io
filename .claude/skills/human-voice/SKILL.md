@@ -80,6 +80,11 @@ in a single page, rewrite:
 - [ ] Every section ends with a "transition sentence" that previews the next one
 - [ ] The piece reads like it could have been written by any competent engineer
       rather than *this specific person*
+- [ ] Any "不是X，是Y" (not X, but Y) sentence used as a rhetorical payoff — e.g.
+      "这不是技术问题，是思维问题" / "关键不是速度，是方向". This is one of the
+      most reliable AI tells in Chinese prose. Concrete contrast grounded in
+      evidence is fine ("这个模型不是 70B，是 7B"). Pseudo-profound framing where
+      both X and Y are abstractions is never fine. Kill it and just say what it IS.
 
 ## Before/after
 

@@ -24,9 +24,9 @@ Cognition 说：多 Agent 不行，因为上下文没法充分共享。Anthropic
 
 他们在故障模式上达成了完全一致。区别只是 Cognition 把这条边界当作"所以别用"，Anthropic 把它当作"所以只在满足条件时用"。同一个诊断，不同的处方。读到 Anthropic 那句限制条件时我才反应过来——这两篇根本不是在对立，是在互补。
 
-后来的学术工作补上了理论底座。Tran & Jin（arXiv 2604.02460）在 Qwen3、DeepSeek、Gemini 2.5 上验证了同一个结论：**思考token 预算拉平后，单 Agent 在多跳推理上匹配甚至超越多 Agent。**根因指向数据处理不等式——决策一旦分散到多个 Agent，边界处的信息损失在数学上无法避免。
+后来的学术工作补上了理论底座。2026 年 4 月，Tran 和 Kiela（Stanford / Cohere）在 arXiv 上发了一篇论文[^9]，在 Qwen3、DeepSeek、Gemini 2.5 上验证了同一个结论：**思考 token 预算拉平后，单 Agent 在多跳推理上匹配甚至超越多 Agent。** 这篇工作最有意思的地方不是实验结果本身——是它给这个工程直觉找到了一个严格的理论框架：Shannon 1948 年提出的**数据处理不等式**（Data Processing Inequality）。信息每经过一次处理——包括 Agent 之间的消息传递——只能被保留或丢失，不可能凭空增加。把决策分散到多个 Agent，边界处的信息损失是数学上无法避免的，不是工程上修修补补能解决的。
 
-所以 2026 年的共识不是"谁赢了"。是边界清楚了。
+到 2026 年，争论的双方实际上已经把边界画出来了。
 
 **默认单 Agent。** 一个推理模型在循环中调用工具。当任务确实能拆成互不依赖、可并行执行的子问题时，起几个上下文隔离的短命子 Agent，跑完只把压缩摘要扔回来。
 
@@ -56,7 +56,7 @@ Agent 就是"一个 LLM 在循环中自主调用工具"（Simon Willison 给的�
 
 Chroma Research 用控制变量实验测了 18 个前沿模型[^4]。结论很刺眼：**所有模型的性能随输入长度持续下降，且窗口远未填满时就开始了。**200K 窗口的模型，大约 50K token 处就开始掉准确率。不是到了极限突然崩，是一条缓慢向下的斜坡。一直往下出溜。
 
-你的模型能力不是"能处理 200K 上下文"。是"前 50K 左右处理得不错，后面越来越差"。信噪比才是该盯的指标。窗口容量不是。
+你的模型能力是"前 50K 左右处理得不错，后面越来越差"。别被窗口容量那个数字骗了。该盯的指标是信噪比。
 
 ![Context rot：Claude、GPT-4.1、Qwen3 和 Gemini 2.5 Flash 在控制变量任务上，准确率随输入长度持续下滑。](/images/blog/agent-system-design-2026/context-rot.jpg)
 
@@ -86,7 +86,7 @@ IterResearch（arXiv 2511.07327, 阿里/人大）从 MDP 切入：每次交互�
 
 AgentGym-RL（arXiv 2509.08755, 复旦）则盯着训练稳定性：从零 RL 训 Agent，渐进拉长交互轮次防止训崩。
 
-都还在论文阶段，离产品化有距离。但方向足够清晰——下一代 Agent不是靠更精巧的压缩规则活的，是自己学会了管理上下文。
+都还在论文阶段，离产品化有距离。但方向足够清晰——下一代 Agent 的方向是学会自己管理上下文，而不是靠更精巧的手写规则续命。
 
 我猜这个方向两年内会出现第一个产品级实现。Context-Folding 的思路——分支、折叠、回来——和 Anthropic 现在手写的 subagent summary 模式本质上是同一个形状。区别只是一个用 RL 学，一个用手写规则。RL 版本一定会替代手写版本，问题只是时间。
 
@@ -130,7 +130,7 @@ Opus 4.5 代做到了产品级：Tool Search Tool 按需加载，85% token削减
 > 限制和监控。这些基础设施要求增加了直接工具调用所不需要的
 > 运维开销和安全考量。"
 
-这句话值得停下来想一秒。它说的不是"建议配置"。是"不加这个别用"。
+这句话值得停下来想一秒。这不是建议。是硬前提。
 
 所以沙箱现在是 Agent 栈里争夺最激烈的一块地皮。隔离分三档，判断标准非常直接：你的 workload 吃到了攻击者能控制的输入吗？吃到了，就别在共享内核上跑。
 
@@ -182,7 +182,7 @@ SWE-bench 这类 benchmark 测的是模型 × 脚手架，不是模型本身。�
 
 ## 如果今天让我从头搭
 
-下面不是"建议"。是我会怎么选。你当参考。
+以下是我的选择。你当参考。
 
 **默认单 Agent。** 多 Agent 不是不能用，但要先证明单 Agent 不够——任务真能拆成互不依赖的并行子问题，且你愿意付 15 倍 token。我见过太多团队一上来就想做多 Agent，因为"听起来更高级"。别。它只是更贵。
 
@@ -207,5 +207,6 @@ SWE-bench 这类 benchmark 测的是模型 × 脚手架，不是模型本身。�
 [^6]: Anthropic internal evaluation; cited in Anthropic engineering posts and third-party analysis. The 42%→95% delta demonstrates harness-sensitivity of agent benchmarks.
 [^7]: Gray Swan AI, red-teaming evaluation of frontier model prompt injection resistance, 2025–2026.
 [^8]: Tool poisoning and MCP security: see arXiv 2601.17549 (tool-description injection), arXiv 2603.22489 (cross-tool escalation and server impersonation).
+[^9]: Dat Tran, Douwe Kiela, "Single-Agent LLMs Outperform Multi-Agent Systems on Multi-Hop Reasoning Under Equal Thinking Token Budgets," arXiv 2604.02460, April 2, 2026 (v1). The Data Processing Inequality is from Shannon, "A Mathematical Theory of Communication," Bell System Technical Journal, 1948; Tran & Kiela apply it to the multi-agent setting.
 *文中图片来自 Anthropic Engineering、Context-Folding 项目页和Chroma Research，图注已标出处。模型数据来自各实验室（Anthropic、OpenAI、Google），截至 2026 年中，均为自报数据，非独立复现。*
 
