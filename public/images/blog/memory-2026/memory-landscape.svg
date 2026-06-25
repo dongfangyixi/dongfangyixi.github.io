@@ -1,0 +1,80 @@
+<svg width="980" height="560" viewBox="0 0 980 560" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+  <rect width="980" height="560" fill="#fbf8f1"/>
+
+  <!-- title -->
+  <text x="40" y="44" font-size="20" font-weight="700" fill="#221c14">The 2026 memory landscape</text>
+  <text x="40" y="66" font-size="13" fill="#6c6253">X axis: where memory physically lives  ·  Y axis: where the hard work happens</text>
+
+  <!-- axes -->
+  <line x1="70" y1="500" x2="940" y2="500" stroke="#c9bfa9" stroke-width="1.5"/>
+  <line x1="70" y1="100" x2="70" y2="500" stroke="#c9bfa9" stroke-width="1.5"/>
+
+  <!-- x labels (where memory lives) -->
+  <text x="150" y="525" font-size="12" font-weight="600" fill="#6c6253" text-anchor="middle">context window</text>
+  <text x="370" y="525" font-size="12" font-weight="600" fill="#6c6253" text-anchor="middle">external text store</text>
+  <text x="610" y="525" font-size="12" font-weight="600" fill="#6c6253" text-anchor="middle">structured / graph</text>
+  <text x="850" y="525" font-size="12" font-weight="600" fill="#6c6253" text-anchor="middle">model weights</text>
+  <text x="505" y="548" font-size="11" fill="#a89c87" text-anchor="middle">— more durable, more compositional, harder to update →</text>
+
+  <!-- y labels (read vs write) -->
+  <text x="52" y="160" font-size="12" font-weight="600" fill="#6c6253" text-anchor="middle" transform="rotate(-90 52 160)">write / consolidate</text>
+  <text x="52" y="440" font-size="12" font-weight="600" fill="#6c6253" text-anchor="middle" transform="rotate(-90 52 440)">read / retrieve</text>
+
+  <!-- region tints -->
+  <rect x="70" y="100" width="220" height="400" fill="#e9a23b" opacity="0.05"/>
+  <rect x="290" y="100" width="240" height="400" fill="#d4543c" opacity="0.05"/>
+  <rect x="530" y="100" width="240" height="400" fill="#6e9e87" opacity="0.06"/>
+  <rect x="770" y="100" width="170" height="400" fill="#7c6cf0" opacity="0.06"/>
+
+  <!-- node style helper via repeated elements -->
+  <!-- READ-side, external store -->
+  <g font-size="11" fill="#221c14">
+    <rect x="320" y="400" width="120" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="380" y="417" text-anchor="middle">Mem0 / A-Mem*</text>
+    <rect x="320" y="362" width="150" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="395" y="379" text-anchor="middle">TriMem (27) granularity</text>
+    <rect x="300" y="324" width="120" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="360" y="341" text-anchor="middle">CluE (06)</text>
+    <rect x="430" y="324" width="130" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="495" y="341" text-anchor="middle">Memory-Transfer (09)</text>
+  </g>
+
+  <!-- context window column -->
+  <g font-size="11" fill="#221c14">
+    <rect x="95" y="362" width="170" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="180" y="379" text-anchor="middle">long-context baselines</text>
+    <rect x="95" y="408" width="150" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="170" y="425" text-anchor="middle">OCR-Memory (15)</text>
+    <text x="180" y="452" font-size="10" fill="#a05a3c" text-anchor="middle">optical compression</text>
+  </g>
+
+  <!-- structured / graph column -->
+  <g font-size="11" fill="#221c14">
+    <rect x="545" y="408" width="120" height="26" rx="13" fill="#fff" stroke="#cfe0d6"/><text x="605" y="425" text-anchor="middle">GAM (08)</text>
+    <rect x="675" y="408" width="120" height="26" rx="13" fill="#fff" stroke="#cfe0d6"/><text x="735" y="425" text-anchor="middle">StructMem (13)</text>
+    <rect x="545" y="370" width="125" height="26" rx="13" fill="#fff" stroke="#cfe0d6"/><text x="607" y="387" text-anchor="middle">HLTM / LinkedIn (14)</text>
+    <rect x="545" y="208" width="140" height="26" rx="13" fill="#fff" stroke="#cfe0d6"/><text x="615" y="225" text-anchor="middle">FluxMem (31) evolving</text>
+    <rect x="690" y="208" width="120" height="26" rx="13" fill="#fff" stroke="#cfe0d6"/><text x="750" y="225" text-anchor="middle">EVOLVEMEM (23)</text>
+    <rect x="545" y="170" width="135" height="26" rx="13" fill="#fff" stroke="#cfe0d6"/><text x="612" y="187" text-anchor="middle">SCG-MEM (11) trie</text>
+  </g>
+
+  <!-- WRITE-side, external store: consolidation cluster -->
+  <g font-size="11" fill="#221c14">
+    <rect x="300" y="170" width="155" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="377" y="187" text-anchor="middle">Auto-Dreamer (28)</text>
+    <rect x="300" y="208" width="120" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="360" y="225" text-anchor="middle">Prism (10)</text>
+    <rect x="300" y="132" width="170" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="385" y="149" text-anchor="middle">When-to-Forget (07)</text>
+    <rect x="300" y="246" width="120" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="360" y="263" text-anchor="middle">STALE (20)</text>
+  </g>
+
+  <!-- weights column -->
+  <g font-size="11" fill="#221c14">
+    <rect x="790" y="300" width="120" height="26" rx="13" fill="#fff" stroke="#d8cbe8"/><text x="850" y="317" text-anchor="middle">MEMO (24)</text>
+    <rect x="790" y="262" width="135" height="26" rx="13" fill="#fff" stroke="#d8cbe8"/><text x="857" y="279" text-anchor="middle">MIA (03) param↔non</text>
+    <rect x="790" y="170" width="150" height="26" rx="13" fill="#fff" stroke="#d8cbe8"/><text x="865" y="187" text-anchor="middle">"Memo, not memory" (16)</text>
+  </g>
+
+  <!-- environment-as-memory: off-grid annotation -->
+  <g font-size="11">
+    <rect x="95" y="132" width="180" height="26" rx="13" fill="#fff" stroke="#d8cdb8"/><text x="185" y="149" text-anchor="middle" fill="#221c14">Artifacts-as-Memory (05)</text>
+    <text x="185" y="172" font-size="10" fill="#a05a3c" text-anchor="middle">memory in the environment</text>
+  </g>
+
+  <!-- the "reckoning" banner -->
+  <text x="700" y="478" font-size="11" fill="#a89c87" text-anchor="middle">benchmarks spanning all columns: EvoMemBench (26) · MemGym (29) · Memory-in-LLM-Era (02)</text>
+
+  <text x="940" y="92" font-size="10" fill="#a89c87" text-anchor="end">*recurring baseline, not reviewed here</text>
+</svg>
