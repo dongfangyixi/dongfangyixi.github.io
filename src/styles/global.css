@@ -235,10 +235,18 @@ section { margin: 3.25rem 0; }
 .socials a:hover { border-color: var(--seal); color: var(--seal); text-decoration: none; }
 
 /* ---------- Prose (articles) ---------- */
-.prose { font-size: 1.06rem; }
+.prose {
+  font-size: 1.06rem;
+  overflow-wrap: break-word;
+}
 .prose h2 { margin-top: 2.25rem; font-size: 1.4rem; }
 .prose h3 { margin-top: 1.75rem; }
-.prose a { text-decoration: underline; text-underline-offset: 3px; }
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.prose .footnotes { overflow-wrap: anywhere; }
 .prose pre {
   background: var(--surface-2); padding: 1rem 1.1rem; border-radius: var(--radius);
   border: 1px solid var(--line); overflow-x: auto;
