@@ -1,22 +1,24 @@
 ---
-title: "Building terminalboard — TensorBoard in your terminal, with an AI assistant"
-date: 2026-06-16
+title: "terminalboard — TensorBoard in your terminal, with an AI assistant"
+date: 2026-08-13
 locale: en
 link: https://github.com/dongfangyixi/terminalboard
 ---
 
-Just shipped a small project I'm pretty happy with: **terminalboard**, a TensorBoard viewer that lives entirely in your terminal — no browser, no X11, no `ssh -L` port forwarding.
-
-The itch: checking training curves on a remote box usually means the `ssh -L 6006:localhost:6006` dance plus a browser tab — or giving up and `grep`-ing the logs. terminalboard reads the event files directly and draws everything as crisp Unicode/braille text, so a plain SSH session is all you need. (And it's just as nice locally.)
+**terminalboard** is a TensorBoard viewer that lives entirely in your terminal. `pip install terminalboard`, point it at a logdir, and your live training curves draw themselves as Unicode/braille text in any SSH session. No browser, no X11, no port forwarding.
 
 ![terminalboard live dashboard in a terminal](/images/news/terminalboard/demo.gif)
 
-## What it does
+The itch is familiar to anyone who trains on remote boxes: you want to know whether val loss is still going down, and the official answer is `ssh -L 6006:localhost:6006`, a browser tab, and a web UI loading a dashboard you'll look at for nine seconds. Most days I gave up and grep-ed the event logs instead.
 
-- **Every TensorBoard type, as terminal text** — scalar curves, text summaries, histograms (a heatmap *or* distribution bands), PR curves, and a runs × hyperparameters table. - **Built for comparison** — overlay multiple experiments with stable colors, smoothing, log-Y, zoom, a tag/experiment filter grammar, and a drill-down view with a value cursor. - **Chat with your runs** — press `a` and ask in plain English. The assistant sees your live view and all the log data, and it both *drives the dashboard* (filter, smooth, open a tag…) and *analyzes* results — "which run is overfitting?" Works with any LLM provider, and it stays off until you set it up. - **Light by default** — one small dependency (`plotext`) plus a self-contained, pure-Python event parser; the `tensorboard` library and the LLM extra are optional.
+Checking a curve should feel like `tail -f`. That's the whole design brief.
 
-## Why I built it
+So terminalboard reads the event files directly — a self-contained pure-Python TFRecord parser; the `tensorboard` package itself is an optional extra — and renders every TensorBoard type as text: scalar curves, histograms as heatmaps or percentile bands, text summaries, PR curves, and a runs × hyperparameters table. Multi-experiment overlays keep stable colors, and you get smoothing, log-Y, zoom, a drill-down cursor, and a small filter grammar (`train/*loss* !aux` does what you'd hope).
 
-I do most of my training on remote machines over SSH, and the browser-based workflow never fit that — I wanted to glance at live curves the same way I `tail` a log. Then I added the assistant so I could just *ask* "is this converging?" instead of squinting across six panels.
+The part I like most: press `a` and chat with your runs.
 
-It's on [PyPI](https://pypi.org/project/terminalboard/) — `pip install terminalboard` — and MIT-licensed. Source on [GitHub](https://github.com/dongfangyixi/terminalboard). 
+The assistant sees your live view plus the log data, and it answers *and* drives the dashboard in the same turn — "show only validation losses, smoothed" actually applies the filter; "which run is overfitting?" gets you a train-vs-val comparison. Any provider works via LiteLLM, and a cheap small model is genuinely enough here. It stays off until you configure it, and its actions are a typed whitelist — no shell, no files. One honest caveat: queries send your tag names and metric summaries to the provider, and tag names can leak architecture details. If that matters, point it at a local Ollama model and nothing leaves the machine.
+
+The default install is one small dependency (`plotext`). MIT-licensed, on [PyPI](https://pypi.org/project/terminalboard/) — or `uvx terminalboard <logdir>` if you don't even want to install it. Source on [GitHub](https://github.com/dongfangyixi/terminalboard).
+
+Next up: an agent loop so the assistant can pull data on demand, and a non-interactive `--analyze` report.
