@@ -31,6 +31,7 @@ locale: en
   - [Testing is the hidden tax](#testing-is-the-hidden-tax)
 - [The wall has an address: contact](#the-wall-has-an-address-contact)
 - [So why is action the exception?](#so-why-is-action-the-exception)
+- [If you train these models](#if-you-train-these-models)
 - [What to watch](#what-to-watch)
 
 ## Background: the models and the symptom
@@ -320,6 +321,20 @@ Because three problems stack, and each would be survivable alone.
 **The measurement is blind or expensive.** The metrics that scale cleanly are open-loop proxies averaging over the wrong distribution; the evaluation that counts is physical, slow, and statistically hungry — and the compounding-error arithmetic (*δT²*) means small per-step differences matter enormously, precisely where measurements are noisiest.
 
 And all three maximize at the same coordinates: contact. Notice what's absent: no impossibility, no paradox, no missing genius. Just a signal-quality problem, a price list, and a measurement gap. That is the optimistic reading — paradoxes don't yield to engineering, but noise can be modeled, shortcuts can be regularized away, prices fall on published curves, and better evaluators are an engineering project already underway.
+
+## If you train these models
+
+The diagnosis converts to practice directly; each habit below is a result from above, turned around to face your own training run.
+
+- **Measure your floor before you scale.** Estimate the local spread of action labels at matched inputs — the direct measurement that put the rig's floor at *B<sub>A</sub>* ≈ 0.32<sup><a href="#ref-14">[14]</a></sup>. Training error below the floor is memorization by definition; progress is validation error closing on the floor, not training error sinking under it.
+- **Lower *H(a|o)* at the source.** Debias operator styles<sup><a href="#ref-24">[24]</a></sup>, and where the pipeline allows it, predict a target one step downstream of the decision — on the rig, executed velocity instead of raw command cut validation error threefold, 0.62 to 0.22.
+- **Never train the action head alone.** Co-train the backbone on video or vision-language data<sup><a href="#ref-13">[13]</a>,<a href="#ref-23">[23]</a></sup> and insulate it from raw action gradients<sup><a href="#ref-22">[22]</a></sup>: the data that most improves a robot policy is vision-language data, and robot-only training measurably erodes the backbone<sup><a href="#ref-23">[23]</a></sup>.
+- **Spend collection budget on conditions, not repetitions.** Demonstrations per environment saturate around fifty while generalization follows a power law in environments and objects<sup><a href="#ref-21">[21]</a></sup> — and the diversity that pays most is unglamorous: camera poses and spatial arrangements<sup><a href="#ref-31">[31]</a></sup>.
+- **Budget the anchor in, not out.** No demonstrated precision skill exists without per-task on-robot data, and scale works through the anchor, not around it<sup><a href="#ref-13">[13]</a></sup>; deleting it would save thousands where corpus expansion costs tens of millions<sup><a href="#ref-30">[30]</a></sup>.
+- **Read validation action error as a debugging tool, never a capability claim.** It averages over *d<sub>expert</sub>*, not *d<sub>π̂</sub>*: the rig's 31% open-loop improvement bought zero closed-loop gain, and driving's near-perfect open-loop power law (r = −0.963) did not survive handing the model the wheel<sup><a href="#ref-33">[33]</a></sup>.
+- **Buy verdicts at their real price.** Pinning a 90% success rate inside ±2 points takes ~1,030 trials<sup><a href="#ref-38">[38]</a>,<a href="#ref-39">[39]</a></sup>; at the customary N=10<sup><a href="#ref-40">[40]</a></sup>, a 5-point improvement is close to a coin flip. Claim only what your trial count supports.
+
+None of this solves the bottleneck; it is what respecting it looks like.
 
 ## What to watch
 
