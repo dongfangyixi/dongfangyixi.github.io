@@ -163,7 +163,7 @@ Read those numbers against the floor, which can be measured directly on the rig:
 
 ![Training curves: the vision head's train and validation errors overlap near zero for 4,000 epochs; in the action head's panel a dotted horizontal line marks the measured floor at 0.32 — validation error bottoms out at 0.53 at epoch 45 and drifts up, while training error sinks below the floor](/images/blog/action-bottleneck/fig-curves.svg)
 
-*Same data, same network, same training — only the target differs. Left: the vision head's two curves overlap at its floor, near zero. Right: the dotted line is the action head's measured floor, B<sub>A</sub> ≈ 0.32. Validation (orange) bottoms out at 0.53 — floor plus what eight episodes can't teach — then drifts up; training (blue, dashed) keeps sinking straight through the floor, and everything below that line is storage, not learning.*
+*Same data, same network, same training — only the target differs. Left: the vision head's two curves overlap at its floor, near zero. Right: the dotted line is the action head's measured floor, B<sub>A</sub> ≈ 0.32. Validation (orange) bottoms out at 0.53 — floor plus what eight episodes can't teach — then drifts up; training (blue, dashed) is still falling and ends just under the floor — everything it sheds below that line is memorization, not learning.*
 
 ### Claim 3: the visual loss hides the same ignorance under an average
 

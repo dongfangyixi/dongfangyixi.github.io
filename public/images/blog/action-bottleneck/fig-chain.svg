@@ -31,16 +31,16 @@
 <text x="1032" y="117" font-size="12.5" fill="#6b6558" text-anchor="middle">the filtered response</text>
 <text x="1032" y="138" font-size="12" fill="#8a857a" text-anchor="middle" font-style="italic">what the camera sees</text>
 <path d="M 433 152 L 427.5 161 L 438.5 161 Z" fill="#C2410C"/>
-<line x1="433" y1="161" x2="433" y2="172" stroke="#C2410C" stroke-width="2"/>
+<line x1="433" y1="161" x2="433" y2="176" stroke="#C2410C" stroke-width="2"/>
 <text x="433" y="192" font-size="14" fill="#C2410C" text-anchor="middle" font-weight="700">ACTION HEAD predicts here</text>
 <text x="433" y="212" font-size="12.5" fill="#1c1b1a" text-anchor="middle">upstream of the filter — faces <tspan font-style="italic">z</tspan> and <tspan font-style="italic">ε</tspan> head-on</text>
-<text x="433" y="231" font-size="13.5" fill="#1c1b1a" text-anchor="middle" font-weight="600">floor <tspan font-style="italic">B</tspan><tspan font-size="10" dy="3">A</tspan><tspan dy="-3"> ≈ 0.32</tspan></text>
+<text x="433" y="231" font-size="13.5" fill="#C2410C" text-anchor="middle" font-weight="700">floor <tspan font-style="italic">B</tspan><tspan font-size="10" dy="3">A</tspan><tspan dy="-3"> ≈ 0.32</tspan></text>
 <text x="433" y="250" font-size="12" fill="#8a857a" text-anchor="middle">a third of the target — Claim 2</text>
 <path d="M 1032 152 L 1026.5 161 L 1037.5 161 Z" fill="#2563EB"/>
-<line x1="1032" y1="161" x2="1032" y2="172" stroke="#2563EB" stroke-width="2"/>
+<line x1="1032" y1="161" x2="1032" y2="176" stroke="#2563EB" stroke-width="2"/>
 <text x="1032" y="192" font-size="14" fill="#2563EB" text-anchor="middle" font-weight="700">VISION HEAD predicts here</text>
 <text x="1032" y="212" font-size="12.5" fill="#1c1b1a" text-anchor="middle">downstream — behind the momentum cushion</text>
-<text x="1032" y="231" font-size="13.5" fill="#1c1b1a" text-anchor="middle" font-weight="600">floor <tspan font-style="italic">B</tspan><tspan font-size="10" dy="3">V</tspan><tspan dy="-3"> ≈ 0.0025</tspan></text>
+<text x="1032" y="231" font-size="13.5" fill="#2563EB" text-anchor="middle" font-weight="700">floor <tspan font-style="italic">B</tspan><tspan font-size="10" dy="3">V</tspan><tspan dy="-3"> ≈ 0.0025</tspan></text>
 <text x="1032" y="250" font-size="12" fill="#8a857a" text-anchor="middle">a quarter of one percent — Claim 3</text>
 <text x="50" y="278" font-size="13.5" fill="#6b6558">Both heads read the identical input — the last two observations. It contains neither <tspan font-style="italic">z</tspan> nor <tspan font-style="italic">ε</tspan>; the two targets differ only in how much of them they still carry.</text>
 </svg>
