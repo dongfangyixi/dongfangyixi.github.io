@@ -37,7 +37,7 @@ locale: en
 
 A language model can pass the bar exam. An image model can paint anything you describe. The robot arm that is supposed to load your dishwasher still fails often enough that nobody will ship one.
 
-The strange part is that the machinery is shared now. Robot AI's most visible family is the **VLA — vision-language-action model**: camera frames and a text instruction go in, motor commands come out, one network end to end. It has siblings: **world-action models (WAMs)**, which learn to predict future observations and actions together<sup><a href="#ref-1">[1]</a></sup>; systems where a language model writes code that calls motion primitives<sup><a href="#ref-2">[2]</a></sup>; diffusion- and flow-based policies that generate whole motion trajectories<sup><a href="#ref-3">[3]</a></sup>. Almost all of them learn the action part the same way, by **behavior cloning**: record a human doing the task (usually by *teleoperation* — a person puppets the robot while everything is logged), then train the network to reproduce the recorded actions from the recorded observations.
+The strange part: the machinery is shared now. Robot AI's most visible family is the **VLA — vision-language-action model**: camera frames and a text instruction go in, motor commands come out, one network end to end. It has siblings: **world-action models (WAMs)**, which learn to predict future observations and actions together<sup><a href="#ref-1">[1]</a></sup>; systems where a language model writes code that calls motion primitives<sup><a href="#ref-2">[2]</a></sup>; diffusion- and flow-based policies that generate whole motion trajectories<sup><a href="#ref-3">[3]</a></sup>. Almost all of them learn the action part the same way, by **behavior cloning**: record a human doing the task (usually by *teleoperation* — a person puppets the robot while everything is logged), then train the network to reproduce the recorded actions from the recorded observations.
 
 The architectures differ; the symptom doesn't. In every family, the vision and language components — pretrained on the internet — generalize well, and the action component is where generalization stops. The classic hand-wave for this is Moravec's paradox — "hard things are easy, easy things are hard"<sup><a href="#ref-4">[4]</a></sup> — which names the pattern and explains nothing. This essay tries to do better, starting with what "scaled" actually meant for vision and language.
 
@@ -53,7 +53,7 @@ In plain words: *L(D)* is the error after training on *D* units of data; *a* set
 
 **Second — the half people forget — the fuel.** The web already existed. Every forum argument, every product review, every captioned photo was produced by people for their own reasons, and already digitized. Researchers call this *found data*: data that exists as a byproduct of normal life. GPT-3's training set was mostly Common Crawl, a nonprofit's free archive of the web<sup><a href="#ref-7">[7]</a>,<a href="#ref-11">[11]</a></sup>; LAION was sieved out of the same archive<sup><a href="#ref-10">[10]</a></sup>. The trillionth token cost roughly as much as the first: nothing.
 
-Action is missing both — with an asterisk on the curves: robotics has them, but along an unexpected axis, measured on proxies that can lie. We'll get there. Underneath sits a deeper problem first, one no amount of fuel would fix. It needs stating precisely.
+Action is missing both — with an asterisk on the curves: robotics has them, but along an unexpected axis, measured on proxies that can lie. We'll get there. First, though, a deeper problem — one no amount of fuel would fix. It needs stating precisely.
 
 ## The problem, stated precisely
 
@@ -81,7 +81,7 @@ Both heads get the identical input <em>x<sub>t</sub> = (o<sub>t−1</sub>, o<sub
 
 <p style="text-align:center;"><em>B = E[Var(y | x)] / Var(y)</em></p>
 
-the **floor**: the share of the target that remains undetermined *even with the best possible use of the input*. No predictor, however large or well-trained, can score below *B* on fresh data — it is the part of the target the input does not contain.
+the **floor**: the share of the target that remains undetermined *even with the best possible use of the input*. No predictor, however large or well-trained, can score below *B* on fresh data.
 
 The problem this essay answers, in one line: **why is the generalization gap — validation NMSE minus training NMSE — near zero for the vision head and large and *growing* for the action head, on the same data, the same inputs, and the same network?** Equivalently: why is *B* tiny for *f* and huge for *π*, and why does training behave so pathologically when *B* is large?
 
@@ -128,7 +128,7 @@ Predicting the action is an *upstream* question: what will this person decide, r
 
 <p style="text-align:center;"><em>H(a|o) = H(a) − I(a; o)</em></p>
 
-— read: total action uncertainty, minus whatever the observation reveals. For the action head this remainder is large, and its squared-error version is exactly the floor: everything the demonstrator's hidden state contributes lands in *B<sub>A</sub>*. For the vision head, physics *f* is a function — once an action has been executed, the next frame is essentially decided, and the input already shows the executed motion — so *B<sub>V</sub>* is nearly zero, up to one small leak that Claim 3 makes precise.
+— read: total action uncertainty, minus whatever the observation reveals. For the action head this remainder is large, and its squared-error version is exactly the floor: everything the hidden state contributes lands in *B<sub>A</sub>*. For the vision head, physics *f* is a function — once an action has been executed, the next frame is essentially decided, and the input already shows the executed motion — so *B<sub>V</sub>* is nearly zero, up to one small leak that Claim 3 makes precise.
 
 **Test.** Fit a pure memorizer (nearest-neighbor) to 200 demonstrations and evaluate on 200 fresh ones. Training error: zero on both heads — a memorizer memorizes everything equally. Validation error: vision 0.003, action 0.631 — about **190 times worse**, from the same inputs, same data, same model. Then switch the hidden variables off one at a time, decomposing the floor into its *ε* and *z* parts:
 
@@ -143,7 +143,7 @@ Two rows matter most. Row three: remove every source of randomness — a fully d
 
 ### Claim 2: what the model cannot predict, it memorizes
 
-This answers the objection you should be raising: *if the action is genuinely unpredictable — if the floor B<sub>A</sub> is high — shouldn't training error also be stuck at the floor?*
+This claim answers the objection you should be raising: *if the action is genuinely unpredictable — if the floor B<sub>A</sub> is high — shouldn't training error also be stuck at the floor?*
 
 It would be — if the network had to *predict* the unpredictable part. On the training set, it can *remember* it instead. The coin flip in episode 137 is no longer a random variable; it is a recorded fact, and a network with spare capacity will store it, indexed by whatever incidental features identify that episode. So training error sinks *below the floor* — not by learning more, but by storing more. On fresh validation episodes the coins are re-rolled, there is nothing to look up, and error cannot go below *B*. In fact it climbs above it: a function bent through stored noise is warped everywhere in between. Schematically, over training time *t*:
 
@@ -175,7 +175,9 @@ If physics is deterministic, why isn't the vision head's floor *exactly* zero? B
 
 ### Claim 4: the action head can cheat, and cheats do not survive the loop
 
-Actions are smooth in time, so the single best predictor of the current action in the training set is the *previous* action. A model with history input can score well by copying its own inertia and learn nothing about why the motion happens. That failure mode is documented as the "copycat problem"<sup><a href="#ref-17">[17]</a></sup>, and it has a broader family: any incidental feature that identifies *which episode this is* — background details, lighting — unlocks a memorized sequence, a pathology named "causal confusion"<sup><a href="#ref-18">[18]</a></sup>. Real systems fail exactly this way: VLAs above 90% on the LIBERO benchmark drop to 0% when objects are shuffled, diagnosed as memorized action sequences<sup><a href="#ref-19">[19]</a></sup>, and pooled corpora make it worse — policies trained on fragmented multi-lab datasets learn to recognize *which sub-dataset they're in* from backgrounds and embodiment cues, then replay that fragment's habits<sup><a href="#ref-20">[20]</a></sup>. The visual target offers no equivalent shortcut: you can't predict a million numbers by copying a label.
+Actions are smooth in time, so the single best predictor of the current action in the training set is the *previous* action. A model with history input can score well by copying its own inertia and learn nothing about why the motion happens. That failure mode is documented as the "copycat problem"<sup><a href="#ref-17">[17]</a></sup>, and it has a broader family: any incidental feature that identifies *which episode this is* — background details, lighting — unlocks a memorized sequence, a pathology named "causal confusion"<sup><a href="#ref-18">[18]</a></sup>.
+
+Real systems fail exactly this way: VLAs above 90% on the LIBERO benchmark drop to 0% when objects are shuffled, diagnosed as memorized action sequences<sup><a href="#ref-19">[19]</a></sup>, and pooled corpora make it worse — policies trained on fragmented multi-lab datasets learn to recognize *which sub-dataset they're in* from backgrounds and embodiment cues, then replay that fragment's habits<sup><a href="#ref-20">[20]</a></sup>. The visual target offers no equivalent shortcut: you can't predict a million numbers by copying a label.
 
 The insidious part is *where* the cheat gets caught. Frame-by-frame scoring can't catch it — copying inertia looks accurate against a recording. The failure appears only when the policy has to live with its own outputs. Formally: open-loop metrics average the loss over the *expert's* state distribution *d<sub>expert</sub>*, but deployed performance is determined by the distribution *d<sub>π̂</sub>* that the policy generates by acting. Nothing ties the two together — a model can improve on the first while standing still, or collapsing, on the second.
 
@@ -207,7 +209,7 @@ That is the statistical problem: each action sample teaches less and misleads mo
 
 ### Robots joined the internet economy without an internet
 
-Think about the last time you cooked dinner. Your hands made thousands of tiny corrections — regripping the knife, easing off as the tomato skin gave way. How much of that was recorded? None of it, ever. Humanity generates motor data constantly and has never logged it.
+Think about the last time you cooked dinner. Your hands made thousands of tiny corrections — regripping the knife, easing off as the tomato skin gave way. How much of that was recorded? None. Humanity generates motor data constantly and has never logged it.
 
 So robot data cannot be found; it has to be **manufactured**. The standard method is teleoperation: one hour of skilled labor produces one hour of data — minus failed takes and scene resets. Vendor pricing runs from tens of dollars to around $200 per fully-loaded hour<sup><a href="#ref-25">[25]</a></sup>.
 
