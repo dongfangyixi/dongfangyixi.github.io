@@ -125,7 +125,7 @@ Two ground rules for the rig first. Its hidden variables are put in by hand — 
 
 The core asymmetry: **the two targets sit on opposite sides of the demonstrator's decisions.** Every timestep follows the same causal chain: the demonstrator decides → the hand executes → the world shows the result.
 
-Predicting the next frame is a *downstream* question: given the motion so far, what happens next? By the time you ask, the decision is made and its consequences are visible — the velocity between two frames is the executed record of the recent commands. The hard part is over before the question is posed.
+Predicting the next frame is a *downstream* question: given the motion so far, what happens next? By the time you ask, the decision is made and its consequences are visible — the velocity between two frames is the executed record of the recent commands.
 
 Predicting the action is an *upstream* question: what will this person decide, right now? At a genuine decision point, the observation does not contain the answer. Two demonstrators in the same position go opposite ways around an obstacle. The same demonstrator turns early on Monday and late on Tuesday, with hand tremor on top. In the notation above: the target depends on *z* and *ε*, and the input *x* contains neither. (Conditioning on more doesn't dissolve *z*. A language instruction names the task, not the grasp point or the detour side — the rig's goal is fixed and known, and the coin is hidden anyway. And history doesn't help at a genuine fork: until the turn begins, the choice appears in no frame.) Information theory gives this a name — the conditional entropy *H(a|o)*, the uncertainty about the action that remains after the observation is fully used — and a decomposition:
 
