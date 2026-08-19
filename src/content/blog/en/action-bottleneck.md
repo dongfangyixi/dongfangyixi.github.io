@@ -329,7 +329,7 @@ Signals that would mean this picture is breaking:
 2. **An anchor-free precision demo**: millimeter-tolerance work with zero task-specific robot data. No published system has done it; the day one does, the per-task line item starts dying.
 3. **Human-video corpora reaching ~10 million hours**, where the competing theories of the embodiment gap separate measurably<sup><a href="#ref-30">[30]</a></sup>. At current collection rates, that is two to three years out<sup><a href="#ref-29">[29]</a></sup>,<sup><a href="#ref-46">[46]</a></sup>.
 4. **A simulator that ranks policies correctly on cloth or deformables** — the result SIMPLER's authors scope away from today<sup><a href="#ref-41">[41]</a></sup>.
-5. **Wearable capture under ~$0.10 per usable hour**, two orders of magnitude below current disclosures — the cost parity between human and robot data flips.
+5. **Wearable capture under ~$0.10 per usable hour**, two orders of magnitude below current disclosures — the cost parity between human and robot data collapses.
 
 One caveat to carry: the load-bearing 2026 numbers here — Dyna-2's, GEN-1's — are self-reported by the labs that produced them, and nobody can independently replicate a million-hour training run. I've verified what the sources say; whether it reproduces is a different question. That uncertainty is, fittingly, the measurement problem again — and it's the part of this essay I expect to age fastest.
 
