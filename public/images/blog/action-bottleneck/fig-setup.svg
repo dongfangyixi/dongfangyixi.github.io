@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1180" height="470" viewBox="0 0 1180 470" font-family="system-ui, -apple-system, sans-serif">
 <rect width="1180" height="470" fill="#ffffff"/>
-<text x="40" y="30" font-size="17" font-weight="700" fill="#1c1b1a">A · 200 demonstrations, one hidden coin each</text>
+<text x="40" y="30" font-size="17" font-weight="700" fill="#1c1b1a">A · Demonstrations, one hidden coin each (26 of 200 shown)</text>
 <circle cx="387" cy="245" r="69" fill="#e5e1d8" stroke="#b7b1a4" stroke-width="1.5"/>
 <text x="387" y="250" font-size="13" fill="#6b6558" text-anchor="middle">obstacle</text>
 <path d="M 193.5 259.9 L 200.7 258.2 L 218.1 253.2 L 229.7 239.6 L 242.2 219.2 L 256.9 195.3 L 274.7 173.8 L 291.2 154.2 L 306.9 134.9 L 325.2 129.7 L 347.3 131.4 L 375.8 135.8 L 400.1 145.4 L 423.7 153.3 L 448.7 161.4 L 474.0 171.1 L 502.2 180.5 L 526.7 190.2 L 552.0 202.1 L 576.7 211.8 L 599.8 224.6" fill="none" stroke="#7C4DBE" stroke-width="1.6" opacity="0.55"/>

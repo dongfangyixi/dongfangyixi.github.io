@@ -130,6 +130,10 @@ Predicting the action is an *upstream* question: what will this person decide, r
 
 — read: total action uncertainty, minus whatever the observation reveals. For the action head this remainder is large, and its squared-error analogue is the floor defined above: everything the demonstrator's hidden state contributes lands in *B<sub>A</sub>*. For the vision head, physics *f* is a function — once an action has been executed, the next frame is essentially decided, and the input already shows the executed motion — so *B<sub>V</sub>* is nearly zero, up to one small leak that Claim 3 makes precise.
 
+![The causal chain of one timestep: hidden state z and tremor ε produce the action — the raw command — which the arm's inertia filter smooths into the next observation; the action head's target sits before the filter with measured floor 0.32, the vision head's target after it with floor 0.0025](/images/blog/action-bottleneck/fig-chain.svg)
+
+*Where each head taps the chain. The action head's target sits upstream of the arm's filter: z and ε land in it at full strength, and a third of its variance (B<sub>A</sub> ≈ 0.32, measured in Claim 2) is undetermined by the input. The vision head's target sits downstream: the same unknowns arrive scaled by the filter and buried under momentum, an undetermined share of a quarter of one percent (B<sub>V</sub> ≈ 0.0025, measured in Claim 3). Neither head can see z or ε — the chain decides how much that ignorance costs each of them.*
+
 **Test.** Fit a pure memorizer (nearest-neighbor) to 200 demonstrations and evaluate on 200 fresh ones. Training error: zero on both heads — a memorizer memorizes everything equally. Validation error: vision 0.003, action 0.631 — about **190 times worse**, from the same inputs, same data, same model. Then switch the hidden variables off one at a time, which decomposes that validation error into its *ε* and *z* parts:
 
 | Variant | Action head | Vision head |
@@ -157,9 +161,9 @@ It would be — if the network had to *predict* the unpredictable part. On the t
 
 Read those numbers against the floor, which can be measured directly on the rig: estimate Var(*y*|*x*) by the local spread of action labels at matched inputs across thirty thousand fresh samples, and *B<sub>A</sub>* ≈ 0.32 — which also retro-checks Claim 1, whose memorizer landed at 0.63, twice the floor, right where nearest-neighbor theory puts it. So the best validation error, 0.53, is the floor plus what eight episodes cannot yet teach. Training error, at 0.31, has burrowed down to the floor itself — everything it sheds from here on is memorization by definition, not learning. And validation error ends at 0.60, nearly double the floor: the climb from 0.53 is the damage.
 
-![Training curves: the vision head's train and validation errors overlap near zero for 4,000 epochs; the action head's validation error bottoms out at epoch 45 and rises while its training error keeps falling](/images/blog/action-bottleneck/fig-curves.svg)
+![Training curves: the vision head's train and validation errors overlap near zero for 4,000 epochs; in the action head's panel a dotted horizontal line marks the measured floor at 0.32 — validation error bottoms out at 0.53 at epoch 45 and drifts up, while training error sinks below the floor](/images/blog/action-bottleneck/fig-curves.svg)
 
-*Same data, same network, same training — only the target differs. The vision head's two curves overlap at the floor. The action head's validation error turns upward after epoch 45: from there on, everything "learned" is noise.*
+*Same data, same network, same training — only the target differs. Left: the vision head's two curves overlap at its floor, near zero. Right: the dotted line is the action head's measured floor, B<sub>A</sub> ≈ 0.32. Validation (orange) bottoms out at 0.53 — floor plus what eight episodes can't teach — then drifts up; training (blue, dashed) keeps sinking straight through the floor, and everything below that line is storage, not learning.*
 
 ### Claim 3: the visual loss hides the same ignorance under an average
 
