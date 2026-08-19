@@ -1,12 +1,12 @@
 ---
 title: 'The Action Bottleneck'
-description: "Why the action head overfits where the vision head doesn't, why every hour of action data must be bought, and why every cost in robot learning converges on contact. Five tested claims, stated formally, from the ground up."
+description: "Why the action head memorizes where the vision head generalizes, why every hour of action data must be bought, and why the metrics that scale are the ones that can lie. Three stacked problems, five tested claims, one wall: contact."
 pubDate: 2026-08-16
 tags: [embodied-ai, robotics, VLA, scaling, world-models]
 locale: en
 ---
 
-**Abstract.** Vision and language models scaled; robot action models did not. This essay argues the reason is three stacked problems, not one. First, a *statistical* problem: on identical training data, the action-prediction target carries hidden demonstrator decisions that no observation determines, so the action head memorizes where the vision head generalizes. Below, this becomes five explicit claims, each tested: four on a minimal simulated rig, the fifth against the largest real-robot data-scaling study on record. Second, a *data-supply* problem: there is no found corpus for action; every hour, human or robot, is commissioned at positive cost, and a small per-task "anchor" of on-robot data survives every scaling recipe. Third, a *measurement* problem: the metrics that scale cleanly are open-loop proxies scored against recordings, and the evaluation that counts — closed-loop success — is expensive, noisy, and provably harder. All three problems reach their maximum at the same place: contact.
+**Abstract.** Vision and language models scaled; robot action models did not. The reason, this essay argues, is three stacked problems, not one. First, a *statistical* problem: on identical training data, the action-prediction target carries hidden demonstrator decisions that no observation determines, so the action head memorizes where the vision head generalizes. Below, that problem sharpens into five explicit claims, each tested: four on a minimal simulated rig, the fifth against the largest real-robot data-scaling study on record. Second, a *data-supply* problem: there is no found corpus for action; every hour, human or robot, is commissioned at positive cost, and a small per-task "anchor" of on-robot data survives every scaling recipe. Third, a *measurement* problem: the metrics that scale cleanly are open-loop proxies scored against recordings, while the evaluation that counts — closed-loop success — is expensive, noisy, and provably harder. All three problems peak at the same address: contact.
 
 **Outline**
 
@@ -35,7 +35,7 @@ locale: en
 
 ## Background: the models and the symptom
 
-A language model can pass the bar exam. An image model can paint anything you describe. The robot arm that is supposed to load your dishwasher still fails often enough that nobody will ship one.
+A language model can pass the bar exam. An image model can paint anything you describe. The robot arm that was supposed to be loading your dishwasher still fails often enough that nobody will ship one.
 
 The strange part: the machinery is shared now. Robot AI's most visible family is the **VLA — vision-language-action model**: camera frames and a text instruction go in, motor commands come out, one network end to end. It has siblings: **world-action models (WAMs)**, which learn to predict future observations and actions together<sup><a href="#ref-1">[1]</a></sup>; systems where a language model writes code that calls motion primitives<sup><a href="#ref-2">[2]</a></sup>; diffusion- and flow-based policies that generate whole motion trajectories<sup><a href="#ref-3">[3]</a></sup>. Almost all of them learn the action part the same way, by **behavior cloning**: record a human doing the task (usually by *teleoperation* — a person puppets the robot while everything is logged), then train the network to reproduce the recorded actions from the recorded observations.
 
@@ -313,13 +313,13 @@ Stack it up: touch data is scarcest where contact matters, simulation weakest wh
 
 Because three problems stack, and each would be survivable alone.
 
-**The signal is worse.** Action prediction is an upstream question: it must guess decisions at the moment they are made, before their consequences appear in any observation. Its floor *B<sub>A</sub>* is high — hidden intent, style, tremor — and on training data that undetermined share invites shortcuts and gets memorized. That is why, on identical data, the action head overfits and the visual head — downstream of every decision, behind its thick momentum cushion — doesn't.
+**The signal is worse.** Action prediction is an upstream question: it must guess decisions at the moment they are made, before their consequences appear in any observation. Its floor *B<sub>A</sub>* is high — hidden intent, style, tremor — and on training data, that undetermined share invites shortcuts and gets memorized. That is why, on identical data, the action head overfits and the visual head — downstream of every decision, behind its thick momentum cushion — doesn't.
 
-**The supply is priced.** What the signal can't give you for free, you must buy: commissioned human video at a ~3x embodiment discount, or commissioned robot hours at full price, plus a mandatory per-task anchor that no corpus size has yet removed. There is no found route.
+**The supply is priced.** What language and vision inherited for free, action must buy: commissioned human video at a ~3x embodiment discount, or commissioned robot hours at full price, plus a mandatory per-task anchor that no corpus size has yet removed. There is no found route.
 
 **The measurement is blind or expensive.** The metrics that scale cleanly are open-loop proxies averaging over the wrong distribution; the evaluation that counts is physical, slow, and statistically hungry — and the compounding-error arithmetic (*δT²*) means small per-step differences matter enormously, precisely where measurements are noisiest.
 
-And all three maximize at the same coordinates: contact. Notice what's absent: no impossibility, no paradox, no missing genius. Just a signal-quality problem, a price list, and a measurement gap. That is the optimistic reading — paradoxes don't yield to engineering, but noise can be modeled, shortcuts can be regularized away, prices fall on published curves, and better evaluators are an engineering project already underway.
+And all three maximize at the same coordinates: contact. Notice what's absent: no impossibility, no paradox, no missing genius. Just a signal-quality problem, a price list, and a measurement gap. That is the optimistic reading. Paradoxes don't yield to engineering; problems do — noise can be modeled, shortcuts regularized away, prices fall on published curves, and better evaluators are an engineering project already underway.
 
 ## What to watch
 
