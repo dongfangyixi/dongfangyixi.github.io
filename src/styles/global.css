@@ -16,6 +16,7 @@
   --seal: #d4543c;       /* 印泥 — seal paste vermilion */
   --seal-deep: #b23f2c;
   --line: #342c21;
+  color-scheme: dark;
 
   --maxw: 1180px;  /* content caps here; fluid (full width) on anything narrower */
   --radius: 6px;
@@ -28,8 +29,10 @@
   font-family: var(--font-body);
 }
 
+/* Theme resolution: an explicit data-theme choice (set by the header toggle,
+   persisted in localStorage) wins; otherwise follow the OS preference. */
 @media (prefers-color-scheme: light) {
-  :root {
+  :root:not([data-theme="dark"]) {
     /* Paper (light) */
     --bg: #f3eee2;
     --surface: #fbf8f1;
@@ -39,7 +42,20 @@
     --seal: #c0432c;
     --seal-deep: #a5371f;
     --line: #e2dac9;
+    color-scheme: light;
   }
+}
+:root[data-theme="light"] {
+  /* Paper (light) */
+  --bg: #f3eee2;
+  --surface: #fbf8f1;
+  --surface-2: #ece4d4;
+  --text: #221c14;
+  --muted: #6c6253;
+  --seal: #c0432c;
+  --seal-deep: #a5371f;
+  --line: #e2dac9;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -121,6 +137,33 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
   color: var(--seal);
   text-decoration: none;
 }
+
+/* Nav tools: language switcher + theme toggle */
+.nav-tools { display: inline-flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.9rem; height: 1.9rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.theme-toggle:hover { border-color: var(--seal); color: var(--seal); }
+.theme-toggle svg { width: 1rem; height: 1rem; }
+/* Icon shows the theme you would switch TO. Dark (default): sun. Light: moon.
+   Selectors mirror the palette blocks above so the icon always matches. */
+.theme-toggle .icon-moon { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .theme-toggle .icon-sun { display: none; }
+  :root:not([data-theme="dark"]) .theme-toggle .icon-moon { display: block; }
+}
+:root[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
 /* ---------- Hero ---------- */
 .hero { padding: 4rem 0 2.25rem; }
