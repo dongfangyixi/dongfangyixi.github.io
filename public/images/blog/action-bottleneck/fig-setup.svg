@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1180" height="470" viewBox="0 0 1180 470" font-family="system-ui, -apple-system, sans-serif">
 <rect width="1180" height="470" fill="#ffffff"/>
 <text x="40" y="30" font-size="17" font-weight="700" fill="#1c1b1a">A · Demonstrations, one hidden coin each (26 of 200 shown)</text>
-<circle cx="387" cy="245" r="69" fill="#e5e1d8" stroke="#b7b1a4" stroke-width="1.5"/>
-<text x="387" y="250" font-size="13" fill="#6b6558" text-anchor="middle">obstacle</text>
+<circle cx="422" cy="245" r="52" fill="#e5e1d8" stroke="#b7b1a4" stroke-width="1.5"/>
+<text x="422" y="313" font-size="13" fill="#6b6558" text-anchor="middle" paint-order="stroke" stroke="#ffffff" stroke-width="3">obstacle</text>
 <path d="M 193.5 259.9 L 200.7 258.2 L 218.1 253.2 L 229.7 239.6 L 242.2 219.2 L 256.9 195.3 L 274.7 173.8 L 291.2 154.2 L 306.9 134.9 L 325.2 129.7 L 347.3 131.4 L 375.8 135.8 L 400.1 145.4 L 423.7 153.3 L 448.7 161.4 L 474.0 171.1 L 502.2 180.5 L 526.7 190.2 L 552.0 202.1 L 576.7 211.8 L 599.8 224.6" fill="none" stroke="#7C4DBE" stroke-width="1.6" opacity="0.55"/>
 <path d="M 175.4 253.8 L 191.3 254.7 L 214.0 255.0 L 241.4 256.1 L 271.7 256.8 L 297.7 265.7 L 318.7 282.5 L 338.9 300.9 L 361.7 321.6 L 384.9 340.6 L 409.2 357.4 L 434.2 363.4 L 456.5 361.7 L 480.4 350.8 L 506.0 335.2 L 532.0 317.2 L 556.7 297.5 L 584.2 279.1 L 607.1 256.0" fill="none" stroke="#0F766E" stroke-width="1.6" opacity="0.55"/>
 <path d="M 202.9 245.4 L 213.9 245.7 L 233.6 244.0 L 260.1 242.8 L 288.8 244.0 L 311.8 254.2 L 330.1 270.5 L 344.2 287.7 L 360.9 305.2 L 378.6 325.3 L 395.3 342.8 L 415.1 347.2 L 434.4 347.0 L 457.7 338.8 L 478.3 329.2 L 498.3 316.0 L 520.8 302.0 L 546.3 286.2 L 571.3 267.6 L 594.9 250.0" fill="none" stroke="#0F766E" stroke-width="1.6" opacity="0.55"/>
