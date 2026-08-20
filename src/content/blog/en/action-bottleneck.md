@@ -228,7 +228,7 @@ That is the statistical problem: each action sample teaches less and misleads mo
 
 ## The data problem: what more data cannot buy
 
-"Then collect more samples." The natural response runs into the second problem — and it is not the one usually named. Robot data is famously expensive to collect, but price is beside the point here: even if every hour were free, what follows would still hold. The question is what more data can actually buy, and the record's answer is narrower than the LLM playbook assumes.
+"Then collect more samples." The natural response runs into the second problem — and it is not the one usually named. Robot data is famously expensive to collect, but price is beside the point here: even if every hour were free, what follows would still hold. The claims above say what the learner actually needs: not more demonstrations of the same conditions — those re-sample the same hidden coins and get memorized — but new *conditions*, and grounding in the robot's own *motor channel*. This section is about why neither can simply be fetched. Every route to a free supply turns out to be closed, and each subsection below closes one.
 
 ### Robots joined the internet economy without an internet
 
@@ -236,7 +236,7 @@ Think about the last time you cooked dinner. Your hands made thousands of tiny c
 
 So robot data cannot be found; it has to be **manufactured**. The standard method is teleoperation: one hour of skilled labor produces one hour of data — minus failed takes and scene resets. That linearity is the structural fact: the corpus grows only as fast as human hours go into it.
 
-Llama 3 trained on ~15 trillion tokens of found text<sup><a href="#ref-26">[26]</a></sup> — one estimate puts LLM-scale corpora at the equivalent of 100,000 years of human reading<sup><a href="#ref-27">[27]</a></sup>. All the major open robot datasets combined total about 11,000 hours<sup><a href="#ref-13">[13]</a></sup>,<sup><a href="#ref-28">[28]</a></sup>. Eleven thousand hours is *fifteen months* of round-the-clock experience. That is the field's entire shared inheritance, versus a species' worth of text.
+Llama 3 trained on ~15 trillion tokens of found text<sup><a href="#ref-26">[26]</a></sup> — one estimate puts LLM-scale corpora at the equivalent of 100,000 years of human reading<sup><a href="#ref-27">[27]</a></sup>. All the major open robot datasets combined total about 11,000 hours<sup><a href="#ref-13">[13]</a></sup>,<sup><a href="#ref-28">[28]</a></sup>. Eleven thousand hours is *fifteen months* of round-the-clock experience. The point is not that volume would cure anything — Claim 5 says it wouldn't — but that the self-supervised recipe which built vision and language needs a substrate of its own modality to run on, and for action that substrate barely exists.
 
 ### The "free" data that wasn't
 
@@ -246,7 +246,7 @@ Now the fine print. GEN-1's corpus comes from "low-cost wearable devices on huma
 
 **Commissioned.** Both of them. Paid for by the hour. *Commissioned data* — data that exists only because someone funded its creation — is the opposite of found data, whatever the marketing says. And once you see it, you see there is no found route anywhere in robotics. The web crawl that powered language and vision has no analogue here. The nearest attempt at one — mining pseudo-actions out of found video, the latent-action program — really does tap the web; what it cannot skip is grounding those latents in a particular robot's motors, and that step is bought like everything else here.
 
-What matters for scaling is not what the two corpus types cost but what they can teach. Human data carries a transfer penalty: train on a million human hours, and the model's zero-shot predictions of *robot* actions come out about 3x worse than its predictions of human actions (2.87x, in Dyna-2's own measurement)<sup><a href="#ref-14">[14]</a></sup>. (An open-loop number, note — by the standards of the measurement section below, it grades the pretraining objective, not deployment.) This is the **embodiment gap**: watching a thousand hours of chopstick use teaches a lot about food and grip strategy, and still doesn't hand a two-fingered rubber gripper the motor program. Bodies don't share muscle memory.
+What matters for scaling is not what the two corpus types cost but what they can teach. Human data carries a transfer penalty: train on a million human hours, and the model's zero-shot predictions of *robot* actions come out about 3x worse than its predictions of human actions (2.87x, in Dyna-2's own measurement)<sup><a href="#ref-14">[14]</a></sup>. (An open-loop number, note — by the standards of the measurement section below, it grades the pretraining objective, not deployment.) This is the **embodiment gap**: watching a thousand hours of chopstick use teaches a lot about food and grip strategy, and still doesn't hand a two-fingered rubber gripper the motor program. Bodies don't share muscle memory. Notice that this is Claim 1 operating across bodies: within one body, the demonstrator's motor channel is already hidden from the camera; between a human body and a robot's, still more of it is. For the action head, human video is mostly more *vision* data.
 
 ### Every skill still needs an anchor
 
