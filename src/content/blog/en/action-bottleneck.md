@@ -46,7 +46,7 @@ The architectures differ; the symptom doesn't. In every family, the vision and l
 
 When people say language and vision "scaled," they mean two things at once: a predictable curve, and free fuel.
 
-**First, the curve.** In 2020, researchers measured that a language model's test error falls along a smooth power law as data and compute grow<sup><a href="#ref-6">[6]</a></sup>:
+**First, the curve.** In 2020, Kaplan and colleagues measured that a language model's test error falls along a smooth power law as data and compute grow<sup><a href="#ref-6">[6]</a></sup>:
 
 <p style="text-align:center;"><em>L(D) ≈ k · D<sup>−α</sup> + L<sub>∞</sub></em></p>
 
@@ -256,7 +256,7 @@ The anchor has two awkward properties. **It doesn't transfer**: ten hours of loc
 
 The economics follow directly. An anchor costs a few hundred to a couple thousand dollars of robot time; a tenfold corpus expansion costs tens of millions. If giant corpora were justified as anchor-removers, the math would collapse instantly — erasing every anchor-hour in GEN-1's published portfolio would save about $7,000<sup><a href="#ref-30">[30]</a>,<a href="#ref-31">[31]</a></sup>. The per-task, per-robot line item that scaling was supposed to delete is still sitting in every pipeline.
 
-And is the embodiment gap at least *closing* with scale? Honestly: unknown. The published curve rests on four corpus sizes; fit it, ask where human-video pretraining matches robot-native performance, and the statistically consistent answers run from ten million hours to roughly 10¹⁷ — the latter on the order of all hours humanity has ever lived<sup><a href="#ref-31">[31]</a></sup>. That is not a forecast; it is a shrug with error bars. Treat any "N billion hours to human-level" headline accordingly.
+And is the embodiment gap at least *closing* with scale? Unknown. The published curve rests on four corpus sizes; fit it, ask where human-video pretraining matches robot-native performance, and the statistically consistent answers run from ten million hours to roughly 10¹⁷ — the latter on the order of all hours humanity has ever lived<sup><a href="#ref-31">[31]</a></sup>. That is not a forecast; it is a shrug with error bars. Treat any "N billion hours to human-level" headline accordingly.
 
 ### What scaling actually buys
 
