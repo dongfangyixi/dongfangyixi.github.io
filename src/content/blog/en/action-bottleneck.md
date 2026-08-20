@@ -6,7 +6,7 @@ tags: [embodied-ai, robotics, VLA, scaling, world-models]
 locale: en
 ---
 
-**Abstract.** Vision and language models scaled; robot action models did not. This essay traces that failure to three stacked problems. First, a *statistical* problem: both heads read the identical input, but their targets differ in how much of them that input determines. The next frame is almost fully determined — physics and momentum — while the recorded action is largely made of what the input does not carry: the demonstrator's hidden decisions. Forced to output what it cannot infer, the action head memorizes; the vision head, whose target it can infer, generalizes. Below, that problem becomes five claims, each tested: four on a minimal simulated rig, the fifth against the cleanest real-robot data-scaling study on record. Second, the field-scale record agrees: more demonstrations of the same conditions saturate or overfit, gains track condition diversity instead, human video transfers to robots at a measured discount, and a small per-task "anchor" of on-robot data survives every scaling recipe. Third, a *measurement* problem: the metrics that scale cleanly are open-loop proxies scored against recordings, while the evaluation that counts — closed-loop success — is expensive, noisy, and provably harder. Beneath the first problem lies a single driver: missing input information — the demonstrator's intent, the forces at the fingertips, the object's weight and friction, what the instruction leaves unsaid. A model required to answer anyway fills the gap from memory, the same arithmetic that makes language models hallucinate. The three problems compound worst where the most information is missing: manipulation of arbitrary objects.
+**Abstract.** Vision and language models scaled; robot action models did not. This essay traces that failure to three stacked problems. First, a *statistical* problem: both heads read the identical input, but their targets differ in how much of them that input determines. The next frame is almost fully determined — physics and momentum — while the recorded action is largely made of what the input does not carry: the demonstrator's hidden decisions. Forced to output what it cannot infer, the action head memorizes; the vision head, whose target it can infer, generalizes. Below, that problem becomes five claims, each tested: four on a minimal simulated rig, the fifth against the cleanest real-robot data-scaling study on record. Second, the real-robot record at scale agrees: more demonstrations of the same conditions saturate or overfit, gains track condition diversity instead, human video transfers to robots at a measured discount, and a small per-task "anchor" of on-robot data survives every scaling recipe. Third, a *measurement* problem: the metrics that scale cleanly are open-loop proxies scored against recordings, while the evaluation that counts — closed-loop success — is expensive, noisy, and provably harder. Beneath the first problem lies a single driver: missing input information — the demonstrator's intent, the forces at the fingertips, the object's weight and friction, what the instruction leaves unsaid. A model required to answer anyway fills the gap from memory, the same arithmetic that makes language models hallucinate. The three problems compound worst where the most information is missing: manipulation of arbitrary objects.
 
 **Outline**
 
@@ -20,8 +20,8 @@ locale: en
   - [Claim 3: the visual loss hides the same ignorance under an average](#claim-3-the-visual-loss-hides-the-same-ignorance-under-an-average)
   - [Claim 4: the action head can cheat, and cheats do not survive the loop](#claim-4-the-action-head-can-cheat-and-cheats-do-not-survive-the-loop)
   - [Claim 5: action data holds fewer real samples than it appears](#claim-5-action-data-holds-fewer-real-samples-than-it-appears)
-  - [What the field already does about it](#what-the-field-already-does-about-it)
-- [The field-scale check: what more data actually buys](#the-field-scale-check-what-more-data-actually-buys)
+  - [What the labs already do about it](#what-the-labs-already-do-about-it)
+- [Beyond the rig: what more data actually buys](#beyond-the-rig-what-more-data-actually-buys)
   - [More of the same data does not help](#more-of-the-same-data-does-not-help)
   - [Diversity helps, for the reason the claims predict](#diversity-helps-for-the-reason-the-claims-predict)
   - [The biggest corpus swap hits the embodiment gap](#the-biggest-corpus-swap-hits-the-embodiment-gap)
@@ -118,7 +118,7 @@ pos = pos + exec_v                        # OBSERVATION: filtered response
 
 ## Why the action head overfits: five claims
 
-The statistical problem — the first of the three — resolves into five claims: each a property of the action target, each tested — four on this rig, the fifth against field-scale data.
+The statistical problem — the first of the three — resolves into five claims: each a property of the action target, each tested — four on this rig, the fifth against real-robot data at scale.
 
 Two ground rules for the rig first. Its hidden variables are put in by hand — that is what a rig is — but they are the field-verified part of the story: demonstrator style is a measured training hazard at industrial scale<sup><a href="#ref-20">[20]</a></sup>, and the overfitting itself is documented at a million hours<sup><a href="#ref-14">[14]</a></sup>; the rig exists to isolate the mechanism, not to prove the phenomenon. And its knobs set its multipliers — export the shape of each result, not the constants.
 
@@ -221,7 +221,7 @@ The last claim moves from the quality of each sample to the count of them. Every
 
 — read: the effective sample count for the action head is the number of independent *choices* in the dataset, not the number of recorded timesteps. A 200-step trajectory might contain five genuinely independent choices — a fortyfold shrinkage already, and real trajectories logged at 30–50 Hz stretch the ratio into the hundreds — which means the action head sits much further left on any scaling curve than the raw dataset size suggests.
 
-**Test.** This is the one claim our one-room rig cannot test: its content is about diversity across *conditions*, and a single-obstacle toy has a single condition. But the field-scale test exists — the cleanest real-robot data-scaling study on record, 40,000+ demonstrations, 15,000+ evaluation rollouts: demonstrations *per environment* saturate at around fifty, while generalization follows a power law in the number of environments and objects<sup><a href="#ref-34">[34]</a></sup>. Counted the way that matters, a dataset's size is its number of conditions, not its number of frames.
+**Test.** This is the one claim our one-room rig cannot test: its content is about diversity across *conditions*, and a single-obstacle toy has a single condition. But the test at real scale exists — the cleanest real-robot data-scaling study on record, 40,000+ demonstrations, 15,000+ evaluation rollouts: demonstrations *per environment* saturate at around fifty, while generalization follows a power law in the number of environments and objects<sup><a href="#ref-34">[34]</a></sup>. Counted the way that matters, a dataset's size is its number of conditions, not its number of frames.
 
 The five claims at a glance:
 
@@ -233,7 +233,7 @@ The five claims at a glance:
 | 4 | The action head can cheat, and cheats do not survive the loop | Copying inertia or episode cues beats the open-loop metric without adding capability | Give one network the previous command; then let both drive | Open-loop error −31%; closed-loop 70% vs 73% |
 | 5 | Action data holds fewer real samples than it appears | Only decision points carry new information; the rest is autocorrelated filler | Field-scale study, 40,000+ demonstrations<sup><a href="#ref-34">[34]</a></sup> | Demos per environment saturate at ~50; generalization is a power law in environments |
 
-### What the field already does about it
+### What the labs already do about it
 
 Nobody trains an action head alone anymore. The field's own habits concede the diagnosis. Dyna-2 stabilizes its action learning with video co-training<sup><a href="#ref-14">[14]</a></sup>; Physical Intelligence goes further and *blocks the action head's gradients* from touching the language backbone, co-training the backbone on web data instead, because raw action gradients measurably degrade it<sup><a href="#ref-35">[35]</a></sup>. The vision and language objectives act as ballast for a target too thin and too noisy to sail on its own.
 
@@ -243,7 +243,7 @@ And the rig's hidden-style variable is the one AgiBot measured: *operator divers
 
 That is the statistical problem: each action sample teaches less and misleads more. Everything so far, though, is a rig and a claims list. The natural question is whether the field's own record at scale agrees — it does, and the next section walks through it; the one after asks what our instruments can even see.
 
-## The field-scale check: what more data actually buys
+## Beyond the rig: what more data actually buys
 
 "Then collect more." The field has — the past three years were the best-funded data race in robotics history — and the record of what happened is the claims replayed at scale. Walk through it and the location of the bottleneck is unambiguous: the learning, not the logistics.
 
@@ -273,7 +273,7 @@ And is the embodiment gap at least *closing* with scale? Unknown. The published 
 
 ## The measurement problem: proxies lie and trials cost
 
-The statistical problem says the signal is bad; the field-scale record says more of the same signal does not fix it. The third problem is quieter: in robotics, even *knowing whether you improved* costs money — and the cheap substitutes mislead.
+The statistical problem says the signal is bad; the record at scale says more of the same signal does not fix it. The third problem is quieter: in robotics, even *knowing whether you improved* costs money — and the cheap substitutes mislead.
 
 ### Clean curves on the wrong metric
 
