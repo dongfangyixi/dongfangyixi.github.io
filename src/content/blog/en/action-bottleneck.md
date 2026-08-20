@@ -6,8 +6,6 @@ tags: [embodied-ai, robotics, VLA, scaling, world-models]
 locale: en
 ---
 
-**Abstract.** Vision and language models scaled; robot action models did not. This essay traces that failure to three stacked problems. First, a *statistical* problem: both heads read the identical input, but their targets differ in how much of them that input determines. The next frame is almost fully determined — physics and momentum — while the recorded action is largely made of what the input does not carry: the demonstrator's hidden decisions. Forced to output what it cannot infer, the action head memorizes; the vision head, whose target it can infer, generalizes. Below, that problem becomes five claims, each tested: four on a minimal simulated rig, the fifth against the cleanest real-robot data-scaling study on record. Second, the real-robot record at scale agrees: more demonstrations of the same conditions saturate or overfit, gains track condition diversity instead, human video transfers to robots at a measured discount, and a small per-task "anchor" of on-robot data survives every scaling recipe. Third, a *measurement* problem: the metrics that scale cleanly are open-loop proxies scored against recordings, while the evaluation that counts — closed-loop success — is expensive, noisy, and provably harder. Beneath the first problem lies a single driver: missing input information — the demonstrator's intent, the forces at the fingertips, the object's weight and friction, what the instruction leaves unsaid. A model required to answer anyway fills the gap from memory, the same arithmetic that makes language models hallucinate. The three problems compound worst where the most information is missing: manipulation of arbitrary objects.
-
 **Outline**
 
 - Background
@@ -115,6 +113,8 @@ pos = pos + exec_v                        # OBSERVATION: filtered response
 ```
 
 </details>
+
+The answer to that question has three parts: a statistical problem inside the action target itself, a check that the diagnosis survives at real scale, and a measurement problem that keeps the whole thing hard to see. The rest of this essay walks them in order.
 
 ## Why the action head overfits: five claims
 
