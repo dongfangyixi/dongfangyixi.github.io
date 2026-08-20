@@ -1,12 +1,12 @@
 ---
 title: 'The Action Bottleneck'
-description: "Why the action head memorizes where the vision head generalizes, why every hour of action data must be bought, and why the metrics that scale are the ones that can lie. Three stacked problems, five tested claims, one wall: contact."
+description: "Why the action head memorizes where the vision head generalizes, why more data of the same shape cannot fix it, and why the metrics that scale are the ones that can lie. Three stacked problems, five tested claims — all at their worst where a robot touches the world."
 pubDate: 2026-08-16
 tags: [embodied-ai, robotics, VLA, scaling, world-models]
 locale: en
 ---
 
-**Abstract.** Vision and language models scaled; robot action models did not. This essay traces that failure to three stacked problems. First, a *statistical* problem: on identical training data, the action-prediction target carries hidden demonstrator decisions that no observation determines, so the action head memorizes where the vision head generalizes. Below, that problem becomes five claims, each tested: four on a minimal simulated rig, the fifth against the cleanest real-robot data-scaling study on record. Second, the field-scale record agrees: more demonstrations of the same conditions saturate or overfit, gains track condition diversity instead, human video transfers to robots at a measured discount, and a small per-task "anchor" of on-robot data survives every scaling recipe. Third, a *measurement* problem: the metrics that scale cleanly are open-loop proxies scored against recordings, while the evaluation that counts — closed-loop success — is expensive, noisy, and provably harder. All three problems peak at the same address: contact.
+**Abstract.** Vision and language models scaled; robot action models did not. This essay traces that failure to three stacked problems. First, a *statistical* problem: on identical training data, the action-prediction target carries hidden demonstrator decisions that no observation determines, so the action head memorizes where the vision head generalizes. Below, that problem becomes five claims, each tested: four on a minimal simulated rig, the fifth against the cleanest real-robot data-scaling study on record. Second, the field-scale record agrees: more demonstrations of the same conditions saturate or overfit, gains track condition diversity instead, human video transfers to robots at a measured discount, and a small per-task "anchor" of on-robot data survives every scaling recipe. Third, a *measurement* problem: the metrics that scale cleanly are open-loop proxies scored against recordings, while the evaluation that counts — closed-loop success — is expensive, noisy, and provably harder. The three problems are distinct — none of them is born at contact — but all three are at their worst in one setting, contact with arbitrary objects, where cameras cannot see the forces, simulators cannot be trusted, and single trials mean nothing.
 
 **Outline**
 
@@ -26,7 +26,7 @@ locale: en
 - [The measurement problem: proxies lie and trials cost](#the-measurement-problem-proxies-lie-and-trials-cost)
   - [Clean curves on the wrong metric](#clean-curves-on-the-wrong-metric)
   - [Testing is the hidden tax](#testing-is-the-hidden-tax)
-- [The wall has an address: contact](#the-wall-has-an-address-contact)
+- [Where every problem is worst: contact with objects](#where-every-problem-is-worst-contact-with-objects)
 - [So why is action the exception?](#so-why-is-action-the-exception)
 - [If you train these models](#if-you-train-these-models)
 - [What to watch](#what-to-watch)
@@ -281,9 +281,9 @@ How many closed-loop trials does a trustworthy verdict need? The statistics are 
 
 **Conclusion.** At the field's typical sample sizes, a claimed 5-point improvement is close to a coin flip. Doing it properly costs a day of robot time *per comparison*, versus seconds for an LLM benchmark. Scaling ran on fast iteration; robotics pays a toll at every lap.
 
-Simulation partially works: the SIMPLER benchmark reproduces real policy *rankings* at correlation r=0.924<sup><a href="#ref-41">[41]</a></sup>, and automated cells now run real-robot evaluations without a human<sup><a href="#ref-42">[42]</a></sup>. But SIMPLER's own scope statement limits it to "rigid-object manipulation tasks, as their physics are most straight-forward to simulate"<sup><a href="#ref-41">[41]</a></sup>. Rigid objects. Which brings everything to a single address.
+Simulation partially works: the SIMPLER benchmark reproduces real policy *rankings* at correlation r=0.924<sup><a href="#ref-41">[41]</a></sup>, and automated cells now run real-robot evaluations without a human<sup><a href="#ref-42">[42]</a></sup>. But SIMPLER's own scope statement limits it to "rigid-object manipulation tasks, as their physics are most straight-forward to simulate"<sup><a href="#ref-41">[41]</a></sup>. Rigid objects. Which points every problem's worst case at the same setting.
 
-## The wall has an address: contact
+## Where every problem is worst: contact with objects
 
 Rigid-body tasks — move the block, pick the bottle — are where robot data is most plentiful, simulators most faithful, evaluation cheapest. **Contact-rich** tasks — snug insertion, cloth, anything soft or slippery — are where all three break at once. Two properties of contact do the breaking.
 
@@ -295,11 +295,11 @@ Rigid-body tasks — move the block, pick the bottle — are where robot data is
 
 **Result.** The smooth system's outcomes vary by about 1% — noise in, noise out. The stick-slip system near its threshold spreads **83x wider**; some trials never break free at all, others slide several times as far as the typical one. Far from the threshold, the effect nearly vanishes.
 
-**Conclusion.** Near contact transitions, visually identical situations produce wildly different outcomes — and real-hardware measurements show the same: repeated identical pushes of one object yield a whole distribution of results<sup><a href="#ref-45">[45]</a></sup>. That's why contact tasks need many demonstrations (each lands differently), why simulators disagree with reality precisely here (a 1% modeling error explodes), and why evaluation needs many trials (single runs mean nothing). One phenomenon, three bills. And it is the hidden-decision problem from Claim 1 wearing different clothes: contact is where the world itself injects the coin flips into the action channel — where *H(a|o)* is at its highest and the floor *B<sub>A</sub>* at its tallest.
+**Conclusion.** Near contact transitions, visually identical situations produce wildly different outcomes — and real-hardware measurements show the same: repeated identical pushes of one object yield a whole distribution of results<sup><a href="#ref-45">[45]</a></sup>. That's why contact tasks need many demonstrations (each lands differently), why simulators disagree with reality precisely here (a 1% modeling error explodes), and why evaluation needs many trials (single runs mean nothing). One phenomenon, three bills. And it is the hidden-decision problem from Claim 1 wearing different clothes: at contact, the world adds its own coin flips on top of the demonstrator's, pushing *H(a|o)* and the floor *B<sub>A</sub>* higher still.
 
 The same amplification answers the obvious counterexample — "just train in simulation, the way locomotion did." Locomotion's sim-to-real success is real, and it maps the boundary rather than crossing it: a robot balancing its own well-modeled body is the simulable case; manipulation stakes success on the state of arbitrary objects — every geometry, mass, friction, softness — at exactly the transitions where a 1% error becomes an 83x spread.
 
-Stack it up: touch data is scarcest where contact matters, simulation weakest where contact matters, evaluation dearest where contact matters — and the action channel's inherent noisiness peaks where contact matters. The walls are one wall, standing exactly where a robot's fingers meet the world.
+Stack it up: touch data is scarcest where contact matters, simulation is weakest there, evaluation is dearest there, and the action channel gets noisier there. To be precise about what this does and does not claim: none of the three problems is *born* at contact — the rig's floor needed no contact at all, and the trial arithmetic applies to every task. But contact with arbitrary objects is where all three are at their worst at once, and where every known workaround — simulation, human video, cheap proxies — fails at the same time. Three problems, one shared worst case, sitting exactly where a robot's fingers meet the world.
 
 ## So why is action the exception?
 
@@ -311,7 +311,7 @@ Because three problems stack, and each would be survivable alone.
 
 **The measurement is blind or expensive.** The metrics that scale cleanly are open-loop proxies averaging over the wrong distribution; the evaluation that counts is physical, slow, and statistically hungry — and the compounding-error arithmetic (*δT²*) means small per-step differences matter enormously, precisely where measurements are noisiest.
 
-And all three maximize at the same coordinates: contact. Notice what's absent: no impossibility, no paradox, no missing genius. Just a signal-quality problem, a price list, and a measurement gap. That is the optimistic reading. Paradoxes don't yield to engineering; problems do — noise can be modeled, shortcuts regularized away, prices fall on published curves, and better evaluators are an engineering project already underway.
+And all three are at their worst in the same place: contact with arbitrary objects. Notice what's absent: no impossibility, no paradox, no missing genius. Just a signal-quality problem, a price list, and a measurement gap. That is the optimistic reading. Paradoxes don't yield to engineering; problems do — noise can be modeled, shortcuts regularized away, prices fall on published curves, and better evaluators are an engineering project already underway.
 
 ## If you train these models
 
