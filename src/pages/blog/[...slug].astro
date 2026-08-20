@@ -17,7 +17,10 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const locale = (post.data.locale ?? 'en') as 'en' | 'zh';
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const hasToc = toc.length > 2;
+const tocTitle = locale === 'zh' ? '目录' : 'Contents';
 const base = import.meta.env.BASE_URL;
 const lBase = locale === "zh" ? "/zh" : "";
 ---
@@ -30,8 +33,67 @@ const lBase = locale === "zh" ? "/zh" : "";
       <div class="tags">{post.data.tags.map((t) => <span class="tag">{t}</span>)}</div>
     )}
   </article>
-  <div class="prose">
-    <Content />
-  </div>
-  <a class="back-link" href={`${lBase}${base}blog`}>{t(locale, 'section.backBlog')}</a>
+  {hasToc ? (
+    <div class="post-grid">
+      <aside class="toc" aria-label={tocTitle}>
+        <div class="toc-title">{tocTitle}</div>
+        <nav>
+          <ul>
+            {toc.map((h) => (
+              <li class={`d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+      <div class="post-main">
+        <details class="toc-mobile">
+          <summary>{tocTitle}</summary>
+          <ul>
+            {toc.map((h) => (
+              <li class={`d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
+            ))}
+          </ul>
+        </details>
+        <div class="prose">
+          <Content />
+        </div>
+        <a class="back-link" href={`${lBase}${base}blog`}>{t(locale, 'section.backBlog')}</a>
+      </div>
+    </div>
+  ) : (
+    <>
+      <div class="prose">
+        <Content />
+      </div>
+      <a class="back-link" href={`${lBase}${base}blog`}>{t(locale, 'section.backBlog')}</a>
+    </>
+  )}
 </Base>
+
+<script>
+  const links = document.querySelectorAll('.toc a');
+  if (links.length > 0) {
+    const byHeading = new Map();
+    links.forEach((a) => {
+      const id = decodeURIComponent((a.getAttribute('href') || '').slice(1));
+      const el = document.getElementById(id);
+      if (el) byHeading.set(el, a);
+    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            links.forEach((l) => l.classList.remove('active'));
+            const link = byHeading.get(entry.target);
+            if (link) {
+              link.classList.add('active');
+              link.scrollIntoView({ block: 'nearest' });
+            }
+          }
+        }
+      },
+      { rootMargin: '-80px 0px -70% 0px' }
+    );
+    byHeading.forEach((_, el) => observer.observe(el));
+  }
+</script>

@@ -6,31 +6,6 @@ tags: [embodied-ai, robotics, VLA, scaling, world-models]
 locale: en
 ---
 
-**Outline**
-
-- Background
-  - [The models and the symptom](#background-the-models-and-the-symptom)
-  - [What a "scaling moment" is made of](#background-what-a-scaling-moment-is-made-of)
-- [The problem, stated precisely](#the-problem-stated-precisely)
-- [Why the action head overfits: five claims](#why-the-action-head-overfits-five-claims)
-  - [Claim 1: the action label records decisions; the observation records their consequences](#claim-1-the-action-label-records-decisions-the-observation-records-their-consequences)
-  - [Claim 2: what the model cannot predict, it memorizes](#claim-2-what-the-model-cannot-predict-it-memorizes)
-  - [Claim 3: the visual loss hides the same ignorance under an average](#claim-3-the-visual-loss-hides-the-same-ignorance-under-an-average)
-  - [Claim 4: the action head can cheat, and cheats do not survive the loop](#claim-4-the-action-head-can-cheat-and-cheats-do-not-survive-the-loop)
-  - [Claim 5: action data holds fewer real samples than it appears](#claim-5-action-data-holds-fewer-real-samples-than-it-appears)
-  - [What the labs already do about it](#what-the-labs-already-do-about-it)
-- [Beyond the rig: what more data actually buys](#beyond-the-rig-what-more-data-actually-buys)
-  - [More of the same data does not help](#more-of-the-same-data-does-not-help)
-  - [Diversity helps, for the reason the claims predict](#diversity-helps-for-the-reason-the-claims-predict)
-  - [The biggest corpus swap hits the embodiment gap](#the-biggest-corpus-swap-hits-the-embodiment-gap)
-  - [Every skill still needs an anchor](#every-skill-still-needs-an-anchor)
-- [The measurement problem: proxies lie and trials cost](#the-measurement-problem-proxies-lie-and-trials-cost)
-  - [Clean curves on the wrong metric](#clean-curves-on-the-wrong-metric)
-  - [Testing is the hidden tax](#testing-is-the-hidden-tax)
-- [So why is action the exception?](#so-why-is-action-the-exception)
-- [If you train these models](#if-you-train-these-models)
-- [What to watch](#what-to-watch)
-
 ## Background: the models and the symptom
 
 A language model can pass the bar exam. An image model can paint anything you describe. The robot arm that was supposed to be loading your dishwasher still fails often enough that nobody will ship one.
