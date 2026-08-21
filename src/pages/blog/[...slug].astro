@@ -182,6 +182,25 @@ const lBase = locale === "zh" ? "/zh" : "";
       backBtn.hidden = false;
     });
 
+    // navigator.clipboard only exists on secure origins (https / localhost);
+    // fall back to a hidden textarea + execCommand elsewhere (e.g. LAN preview).
+    const copyText = async (text) => {
+      if (window.isSecureContext && navigator.clipboard) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      ta.remove();
+      if (!ok) throw new Error('execCommand copy failed');
+    };
+
     copyBtn.addEventListener('click', async () => {
       if (!currentLi) return;
       const n = currentLi.id.replace('ref-', '');
@@ -189,9 +208,11 @@ const lBase = locale === "zh" ? "/zh" : "";
       const srcLink = currentLi.querySelector('a[href]');
       if (srcLink) text += ' — ' + srcLink.href;
       try {
-        await navigator.clipboard.writeText(text);
+        await copyText(text);
         copyBtn.textContent = copyBtn.dataset.copied;
-      } catch (e) { /* clipboard unavailable; leave label unchanged */ }
+      } catch (e) {
+        copyBtn.textContent = '✗';
+      }
     });
 
     closeBtn.addEventListener('click', hidePopup);
