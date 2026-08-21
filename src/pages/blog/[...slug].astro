@@ -203,8 +203,7 @@ const lBase = locale === "zh" ? "/zh" : "";
 
     copyBtn.addEventListener('click', async () => {
       if (!currentLi) return;
-      const n = currentLi.id.replace('ref-', '');
-      let text = '[' + n + '] ' + currentLi.textContent.trim().replace(/\s+/g, ' ');
+      let text = currentLi.textContent.trim().replace(/\s+/g, ' ');
       const srcLink = currentLi.querySelector('a[href]');
       if (srcLink) text += ' — ' + srcLink.href;
       try {
