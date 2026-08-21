@@ -438,3 +438,45 @@ html { scroll-behavior: smooth; }
   .toc-mobile ul { margin-top: 0.6rem; }
   .toc-mobile a { color: var(--muted); text-decoration: none; }
 }
+
+/* ---------- Citation popup, reference anchors, back-to-reading ---------- */
+/* Anchor targets inside the reference list must clear the sticky header,
+   same as headings do. */
+.prose li[id^="ref-"], #references { scroll-margin-top: 5.5rem; }
+
+.ref-popup {
+  position: fixed; z-index: 40;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  padding: 0.9rem 1rem 0.75rem;
+  font-size: 0.85rem; line-height: 1.55;
+}
+.ref-popup-body { color: var(--text); }
+.ref-popup-body a { color: var(--seal); }
+.ref-popup-actions { display: flex; gap: 0.5rem; margin-top: 0.7rem; align-items: center; }
+.ref-popup-actions button {
+  font-size: 0.78rem; padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: transparent; color: var(--muted); cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.ref-popup-actions button:hover { border-color: var(--seal); color: var(--seal); }
+.ref-popup-close { margin-left: auto; }
+
+.ref-flash { animation: ref-flash 1.6s ease-out 1; border-radius: 4px; }
+@keyframes ref-flash {
+  0% { background: color-mix(in srgb, var(--seal) 25%, transparent); }
+  100% { background: transparent; }
+}
+
+.back-to-reading {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 30;
+  font-size: 0.82rem; padding: 0.5rem 0.85rem;
+  border: 1px solid var(--line); border-radius: 6px;
+  background: var(--surface); color: var(--muted); cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: border-color .15s, color .15s;
+}
+.back-to-reading:hover { border-color: var(--seal); color: var(--seal); }

@@ -18,9 +18,22 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const locale = (post.data.locale ?? 'en') as 'en' | 'zh';
 const { Content, headings } = await post.render();
-const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
-const hasToc = toc.length > 2;
+const hasRefs = post.body.includes('<li id="ref-1"');
+const tocItems = headings
+  .filter((h) => h.depth === 2 || h.depth === 3)
+  .map((h) => ({ depth: h.depth, slug: h.slug, text: h.text }));
+if (hasRefs) {
+  tocItems.push({ depth: 2, slug: 'references', text: locale === 'zh' ? '参考文献' : 'References' });
+}
+const hasToc = tocItems.length > 2;
 const tocTitle = locale === 'zh' ? '目录' : 'Contents';
+const labels = {
+  view: locale === 'zh' ? '在列表中查看' : 'View in list',
+  copy: locale === 'zh' ? '复制' : 'Copy',
+  copied: locale === 'zh' ? '已复制' : 'Copied',
+  back: locale === 'zh' ? '↩ 返回阅读位置' : '↩ Back to reading',
+  close: locale === 'zh' ? '关闭' : 'Close',
+};
 const base = import.meta.env.BASE_URL;
 const lBase = locale === "zh" ? "/zh" : "";
 ---
@@ -39,7 +52,7 @@ const lBase = locale === "zh" ? "/zh" : "";
         <div class="toc-title">{tocTitle}</div>
         <nav>
           <ul>
-            {toc.map((h) => (
+            {tocItems.map((h) => (
               <li class={`d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
             ))}
           </ul>
@@ -49,7 +62,7 @@ const lBase = locale === "zh" ? "/zh" : "";
         <details class="toc-mobile">
           <summary>{tocTitle}</summary>
           <ul>
-            {toc.map((h) => (
+            {tocItems.map((h) => (
               <li class={`d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
             ))}
           </ul>
@@ -68,9 +81,35 @@ const lBase = locale === "zh" ? "/zh" : "";
       <a class="back-link" href={`${lBase}${base}blog`}>{t(locale, 'section.backBlog')}</a>
     </>
   )}
+  {hasRefs && (
+    <>
+      <div class="ref-popup" id="ref-popup" hidden>
+        <div class="ref-popup-body"></div>
+        <div class="ref-popup-actions">
+          <button type="button" class="ref-popup-view">{labels.view}</button>
+          <button type="button" class="ref-popup-copy" data-label={labels.copy} data-copied={labels.copied}>{labels.copy}</button>
+          <button type="button" class="ref-popup-close" aria-label={labels.close}>×</button>
+        </div>
+      </div>
+      <button type="button" class="back-to-reading" id="back-to-reading" hidden>{labels.back}</button>
+    </>
+  )}
 </Base>
 
 <script>
+  const prose = document.querySelector('.prose');
+
+  // Locate the references list (a <details> holding li[id^=ref-]) and give it
+  // an anchor id so the TOC's "References" entry has somewhere to point.
+  let refsDetails = null;
+  if (prose) {
+    for (const d of prose.querySelectorAll('details')) {
+      if (d.querySelector('li[id^="ref-"]')) { refsDetails = d; break; }
+    }
+    if (refsDetails) refsDetails.id = 'references';
+  }
+
+  // Sidebar scrollspy
   const links = document.querySelectorAll('.toc a');
   if (links.length > 0) {
     const byHeading = new Map();
@@ -95,5 +134,81 @@ const lBase = locale === "zh" ? "/zh" : "";
       { rootMargin: '-80px 0px -70% 0px' }
     );
     byHeading.forEach((_, el) => observer.observe(el));
+  }
+
+  // Citation popup + back-to-reading
+  const popup = document.getElementById('ref-popup');
+  if (prose && popup && refsDetails) {
+    const popupBody = popup.querySelector('.ref-popup-body');
+    const viewBtn = popup.querySelector('.ref-popup-view');
+    const copyBtn = popup.querySelector('.ref-popup-copy');
+    const closeBtn = popup.querySelector('.ref-popup-close');
+    const backBtn = document.getElementById('back-to-reading');
+    let currentLi = null;
+    let returnY = null;
+
+    const hidePopup = () => { popup.hidden = true; };
+
+    // A citation click opens the popup instead of jumping to the list.
+    prose.querySelectorAll('a[href^="#ref-"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const li = document.getElementById((a.getAttribute('href') || '').slice(1));
+        if (!li) return;
+        e.preventDefault();
+        currentLi = li;
+        popupBody.innerHTML = li.innerHTML;
+        copyBtn.textContent = copyBtn.dataset.label;
+        popup.hidden = false;
+        const r = a.getBoundingClientRect();
+        const pw = Math.min(430, window.innerWidth - 24);
+        popup.style.width = pw + 'px';
+        popup.style.left = Math.min(Math.max(12, r.left), window.innerWidth - pw - 12) + 'px';
+        const ph = popup.offsetHeight;
+        let top = r.bottom + 10;
+        if (top + ph > window.innerHeight - 12) top = Math.max(12, r.top - ph - 10);
+        popup.style.top = top + 'px';
+      });
+    });
+
+    viewBtn.addEventListener('click', () => {
+      if (!currentLi) return;
+      hidePopup();
+      returnY = window.scrollY;
+      refsDetails.open = true;
+      currentLi.scrollIntoView();
+      currentLi.classList.remove('ref-flash');
+      void currentLi.offsetWidth;
+      currentLi.classList.add('ref-flash');
+      backBtn.hidden = false;
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      if (!currentLi) return;
+      const n = currentLi.id.replace('ref-', '');
+      let text = '[' + n + '] ' + currentLi.innerText.trim().replace(/\s+/g, ' ');
+      const srcLink = currentLi.querySelector('a[href]');
+      if (srcLink) text += ' — ' + srcLink.href;
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = copyBtn.dataset.copied;
+      } catch (e) { /* clipboard unavailable; leave label unchanged */ }
+    });
+
+    closeBtn.addEventListener('click', hidePopup);
+    document.addEventListener('click', (e) => {
+      const t = e.target;
+      if (!popup.hidden && t instanceof Element && !popup.contains(t) && !t.closest('a[href^="#ref-"]')) hidePopup();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hidePopup(); });
+
+    backBtn.addEventListener('click', () => {
+      if (returnY !== null) window.scrollTo({ top: returnY });
+      backBtn.hidden = true;
+    });
+
+    // TOC "References" links must unfold the list before the browser scrolls to it.
+    document.querySelectorAll('a[href="#references"]').forEach((a) => {
+      a.addEventListener('click', () => { refsDetails.open = true; });
+    });
   }
 </script>
