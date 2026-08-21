@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="500" viewBox="0 0 1180 500" font-family="system-ui, -apple-system, sans-serif">
+<rect width="1180" height="500" fill="#ffffff"/>
+<text x="100" y="34" font-size="17" font-weight="700" fill="#1c1b1a">Hours collected, 2024–2026 (log scale)</text>
+<line x1="100" y1="420" x2="1120" y2="420" stroke="#eceae4" stroke-width="1"/>
+<text x="92" y="424" font-size="12" fill="#8a857a" text-anchor="end">100 h</text>
+<line x1="100" y1="340" x2="1120" y2="340" stroke="#eceae4" stroke-width="1"/>
+<text x="92" y="344" font-size="12" fill="#8a857a" text-anchor="end">1,000 h</text>
+<line x1="100" y1="259" x2="1120" y2="259" stroke="#eceae4" stroke-width="1"/>
+<text x="92" y="263" font-size="12" fill="#8a857a" text-anchor="end">10,000 h</text>
+<line x1="100" y1="179" x2="1120" y2="179" stroke="#eceae4" stroke-width="1"/>
+<text x="92" y="183" font-size="12" fill="#8a857a" text-anchor="end">100,000 h</text>
+<line x1="100" y1="98" x2="1120" y2="98" stroke="#eceae4" stroke-width="1"/>
+<text x="92" y="102" font-size="12" fill="#8a857a" text-anchor="end">1M h</text>
+<line x1="100" y1="420" x2="100" y2="426" stroke="#b7b1a4" stroke-width="1.2"/>
+<text x="100" y="444" font-size="13" fill="#6b6558" text-anchor="middle">2024</text>
+<line x1="458" y1="420" x2="458" y2="426" stroke="#b7b1a4" stroke-width="1.2"/>
+<text x="458" y="444" font-size="13" fill="#6b6558" text-anchor="middle">2025</text>
+<line x1="816" y1="420" x2="816" y2="426" stroke="#b7b1a4" stroke-width="1.2"/>
+<text x="816" y="444" font-size="13" fill="#6b6558" text-anchor="middle">2026</text>
+<line x1="100" y1="420" x2="1120" y2="420" stroke="#b7b1a4" stroke-width="1.2"/>
+<line x1="100" y1="70" x2="100" y2="420" stroke="#b7b1a4" stroke-width="1.2"/>
+<line x1="1106" y1="98" x2="1106" y2="256" stroke="#1c1b1a" stroke-width="1.2" opacity="0.55" stroke-dasharray="3 3"/>
+<line x1="1102" y1="98" x2="1110" y2="98" stroke="#1c1b1a" stroke-width="1.2" opacity="0.55"/>
+<line x1="1102" y1="256" x2="1110" y2="256" stroke="#1c1b1a" stroke-width="1.2" opacity="0.55"/>
+<text x="1098" y="138" font-size="12.5" fill="#1c1b1a" text-anchor="end">~90x — and none of it</text>
+<text x="1098" y="154" font-size="12.5" fill="#1c1b1a" text-anchor="end">contains robot actions</text>
+<circle cx="171.6" cy="376.2" r="6" fill="#e07b39"/>
+<text x="183.6" y="380.2" font-size="12.5" fill="#1c1b1a" text-anchor="start">DROID (open) · <tspan font-weight="700">350 h</tspan></text>
+<circle cx="529.5" cy="301.4" r="6" fill="#e07b39"/>
+<text x="541.5" y="305.4" font-size="12.5" fill="#1c1b1a" text-anchor="start">AgiBot World (open) · <tspan font-weight="700">2,976 h</tspan></text>
+<circle cx="976.8" cy="255.8" r="6" fill="#e07b39"/>
+<text x="964.8" y="273.8" font-size="12.5" fill="#1c1b1a" text-anchor="end">all major open datasets · <tspan font-weight="700">11,000 h</tspan></text>
+<circle cx="994.7" cy="178.6" r="6" fill="#3b7dd8"/>
+<text x="982.7" y="196.6" font-size="12.5" fill="#1c1b1a" text-anchor="end">Xiaomi, handheld grippers · <tspan font-weight="700">100,000 h</tspan></text>
+<circle cx="762.1" cy="143.9" r="6" fill="#3b7dd8"/>
+<text x="774.1" y="135.9" font-size="12.5" fill="#1c1b1a" text-anchor="start">GEN-0, wearables · <tspan font-weight="700">270,000 h</tspan></text>
+<circle cx="905.3" cy="122.4" r="6" fill="#3b7dd8"/>
+<text x="893.3" y="114.4" font-size="12.5" fill="#1c1b1a" text-anchor="end">GEN-1, wearables · <tspan font-weight="700">500,000 h</tspan></text>
+<circle cx="1030.5" cy="98.2" r="6" fill="#3b7dd8"/>
+<text x="1018.5" y="90.2" font-size="12.5" fill="#1c1b1a" text-anchor="end">Dyna-2, human video · <tspan font-weight="700">1,000,000 h</tspan></text>
+<circle cx="114" cy="80" r="6" fill="#3b7dd8"/>
+<text x="128" y="84" font-size="13" fill="#1c1b1a">collected from humans — wearable cameras or handheld grippers, no robot in the loop</text>
+<circle cx="114" cy="104" r="6" fill="#e07b39"/>
+<text x="128" y="108" font-size="13" fill="#1c1b1a">recorded robot actions (teleoperated demonstrations, open datasets)</text>
+</svg>
