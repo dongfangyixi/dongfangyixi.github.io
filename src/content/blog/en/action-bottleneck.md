@@ -28,7 +28,7 @@ Robot data splits into two streams, and they scaled very differently. Nobody log
 
 *The collection race, log scale, trends fitted by least squares. Orange: recorded robot actions<sup><a href="#ref-21">[21]</a>,<a href="#ref-22">[22]</a>,<a href="#ref-23">[23]</a>,<a href="#ref-16">[16]</a></sup>. Blue: collected from humans, no robot in the loop<sup><a href="#ref-24">[24]</a>,<a href="#ref-25">[25]</a>,<a href="#ref-26">[26]</a>,<a href="#ref-20">[20]</a>,<a href="#ref-18">[18]</a>,<a href="#ref-19">[19]</a>,<a href="#ref-4">[4]</a></sup>. Only corpora with published hour counts are shown. The ~90x gap holds observations, not robot actions.*
 
-Scarcity, then, is the setting, not the explanation. A demonstration carries observations and actions in the same file — both targets get the same data — yet the model learns the video half and fails on the action half. Even the collection race repeats the pattern: when the field wanted a million hours, what it could scale was the observation stream, not the action stream.
+This gap invites a wrong conclusion — that action lags simply because action data is scarce. Scarcity is real, but it cannot be the cause of the failure this essay studies, because that failure shows up on data the model already has: a demonstration stores observations and actions in the same file, so both targets get exactly the same data — yet the model learns the video half and fails on the action half.
 
 That failure to learn the action half — not the size of any archive — is this essay's subject. Robotics has curves too, but along an unexpected axis, measured on proxies that can lie; we'll get there. The learning failure comes first, and it needs stating precisely.
 
