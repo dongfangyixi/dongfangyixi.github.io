@@ -45,6 +45,7 @@
 <path d="M 770.0 253.2 L 785.4 270.0 L 800.8 264.4 L 816.2 243.2 L 831.7 243.5 L 847.1 268.3 L 862.5 267.2 L 877.9 192.9 L 893.3 166.6 L 908.8 149.6 L 924.2 139.3 L 939.6 139.8 L 955.0 117.7 L 970.4 127.9 L 985.8 149.3 L 1001.2 214.0 L 1016.7 263.8 L 1032.1 267.0 L 1047.5 303.6 L 1062.9 322.8 L 1078.3 335.4 L 1093.8 328.1 L 1109.2 344.3 L 1124.6 332.2 L 1140.0 329.8" fill="none" stroke="#2563EB" stroke-width="2.4"/>
 <text x="776" y="88" font-size="13" paint-order="stroke" stroke="#ffffff" stroke-width="3.5" stroke-linejoin="round" fill="#C2410C" font-weight="600">action label: raw command (intent + jitter)</text>
 <text x="776" y="110" font-size="13" paint-order="stroke" stroke="#ffffff" stroke-width="3.5" stroke-linejoin="round" fill="#2563EB" font-weight="600">observation: inertia-filtered response (what a camera sees)</text>
-<text x="770" y="420" font-size="13.5" fill="#6b6558">Both heads get the same input (last two positions). The vision head predicts the</text>
-<text x="770" y="438" font-size="13.5" fill="#6b6558">blue curve&#8217;s next point; the action head must predict the orange one.</text>
+<text x="770" y="404" font-size="13.5" fill="#6b6558">Both heads get the same input (last two positions).</text>
+<text x="770" y="422" font-size="13.5" fill="#6b6558">The vision head predicts the blue curve&#8217;s next point;</text>
+<text x="770" y="440" font-size="13.5" fill="#6b6558">the action head must predict the orange one.</text>
 </svg>

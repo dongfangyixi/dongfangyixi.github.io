@@ -27,8 +27,8 @@
 <text x="998" y="444" font-size="13" fill="#6b6558" text-anchor="middle">2026</text>
 <line x1="100" y1="420" x2="1120" y2="420" stroke="#b7b1a4" stroke-width="1.2"/>
 <line x1="100" y1="70" x2="100" y2="420" stroke="#b7b1a4" stroke-width="1.2"/>
-<line x1="127.2" y1="420.0" x2="1113.2" y2="261.9" stroke="#e07b39" stroke-width="1.6" stroke-dasharray="6 5" opacity="0.55"/>
-<text x="535" y="345" font-size="12.5" fill="#e07b39" transform="rotate(-9.1 535 345)">trend ≈ 1.9x per year</text>
+<line x1="127.2" y1="411.0" x2="1113.2" y2="287.6" stroke="#e07b39" stroke-width="1.6" stroke-dasharray="6 5" opacity="0.55"/>
+<text x="535" y="350" font-size="12.5" fill="#e07b39" transform="rotate(-7.1 535 350)">trend ≈ 1.7x per year</text>
 <line x1="412.8" y1="353.3" x2="1113.2" y2="143.1" stroke="#3b7dd8" stroke-width="1.6" stroke-dasharray="6 5" opacity="0.55"/>
 <text x="807" y="225" font-size="12.5" fill="#3b7dd8" transform="rotate(-16.7 807 225)">trend ≈ 3.4x per year</text>
 <line x1="1106" y1="97" x2="1106" y2="248" stroke="#1c1b1a" stroke-width="1.2" opacity="0.55" stroke-dasharray="3 3"/>
