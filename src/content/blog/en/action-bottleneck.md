@@ -28,9 +28,7 @@ Robot data splits into two streams, and they scaled very differently. Nobody log
 
 *The collection race, log scale, trends fitted by least squares. Orange: recorded robot actions<sup><a href="#ref-21">[21]</a>,<a href="#ref-22">[22]</a>,<a href="#ref-23">[23]</a>,<a href="#ref-16">[16]</a></sup>. Blue: collected from humans, no robot in the loop<sup><a href="#ref-24">[24]</a>,<a href="#ref-25">[25]</a>,<a href="#ref-26">[26]</a>,<a href="#ref-20">[20]</a>,<a href="#ref-18">[18]</a>,<a href="#ref-19">[19]</a>,<a href="#ref-4">[4]</a></sup>. Only corpora with published hour counts are shown. The ~90x gap holds observations, not robot actions.*
 
-It is tempting to read this gap as the whole story: action lags because action data is scarce. But scarcity cannot explain the failure this essay is about, because the failure appears on data the model already has. A demonstration records observations and actions in the same file, so the model gets exactly as much of one as of the other. It still learns to predict the video and fails to predict the actions.
-
-That learning failure, not the size of any dataset, is the subject of this essay. Robotics has scaling curves of its own, and later sections look at what those curves actually measure and what more data actually buys. The failure itself comes first, and the first step is to state it precisely.
+Despite the extremely rapid growth of robot data, in the action dimension one still cannot observe the kind of generalization ability seen in language and video. This failure at the level of paradigm or model architecture — a failure independent of dataset scale — is the subject of this essay.
 
 ## The problem, stated precisely
 
