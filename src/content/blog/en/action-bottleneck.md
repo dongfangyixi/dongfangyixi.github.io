@@ -38,7 +38,7 @@ Now formally. A demonstration dataset is a set of trajectories
 
 <p style="text-align:center;"><em>τ = (o<sub>1</sub>, a<sub>1</sub>, o<sub>2</sub>, a<sub>2</sub>, …, o<sub>T</sub>)</em></p>
 
-where *o<sub>t</sub>* is the observation at step *t* (camera frames, positions) and *a<sub>t</sub>* is the recorded action at step *t* (the motor command). Two different processes wrote the two halves of this sequence, and everything in this essay grows out of the difference between them.
+where *o<sub>t</sub>* is the observation at step *t* — everything the sensors recorded: camera frames, joint angles, gripper state, and, on the rare rigs that have them, wrist force or tactile readings — and *a<sub>t</sub>* is the recorded action at step *t* (the motor command). Two different processes wrote the two halves of this sequence, and everything in this essay grows out of the difference between them.
 
 The actions were chosen by the demonstrator:
 
