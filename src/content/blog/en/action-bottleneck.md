@@ -40,27 +40,37 @@ Now formally. A demonstration dataset is a set of trajectories
 
 <p style="text-align:center;"><em>τ = (o<sub>1</sub>, a<sub>1</sub>, o<sub>2</sub>, a<sub>2</sub>, …, o<sub>T</sub>)</em></p>
 
-where *o<sub>t</sub>* is the observation at step *t* (camera frames, positions) and *a<sub>t</sub>* is the recorded action (the motor command). Two processes generated this data. The demonstrator chose the actions:
+where *o<sub>t</sub>* is the observation at step *t* (camera frames, positions) and *a<sub>t</sub>* is the recorded action at step *t* (the motor command). Two different processes wrote the two halves of this sequence, and everything in this essay grows out of the difference between them.
+
+The actions were chosen by the demonstrator:
 
 <p style="text-align:center;"><em>a<sub>t</sub> = π(o<sub>t</sub>, z) + ε<sub>t</sub></em></p>
 
-— read: the action is some policy *π* of what the demonstrator sees (*o<sub>t</sub>*) *and* of private state *z* that never appears in the recording (their intent, their habits), plus execution noise *ε<sub>t</sub>* (tremor, jitter). And the world produced the next observation:
+where *π* is the demonstrator's decision rule — their *policy*: it turns what they currently see, *o<sub>t</sub>*, into a motor command. The other two symbols are the trouble. *z* is the demonstrator's private state — their intent, their habits, which side they decided to pass on — which drives their choices but never appears in the recording. And *ε<sub>t</sub>* is execution noise: tremor and jitter added on top of the intended command.
+
+The observations were produced by the world:
 
 <p style="text-align:center;"><em>o<sub>t+1</sub> = f(o<sub>t</sub>, a<sub>t</sub>)</em></p>
 
-— read: physics *f* takes the current state and the executed action and returns the next state, essentially deterministically.
+where *f* is physics: it takes the current state *o<sub>t</sub>* and the executed action *a<sub>t</sub>* and returns the next state. Unlike the demonstrator, physics hides nothing and, away from contact, adds almost no randomness: the same state and the same action give essentially the same next state.
 
-Both heads get the identical input <em>x<sub>t</sub> = (o<sub>t−1</sub>, o<sub>t</sub>)</em>. The **vision head** learns to predict *o<sub>t+1</sub>* — approximating *f*, with the executed action largely readable off the visible motion (how largely, Claim 3 quantifies); the **action head** learns to predict *a<sub>t</sub>* — approximating *π*, with *z* missing outright. We score both with normalized mean squared error,
+Training on this dataset means learning to predict one of the two halves, so each head has a function it is trying to become. The **vision head** predicts the next observation *o<sub>t+1</sub>*; a perfect vision head is a copy of physics *f*, and everything *f* depends on is visible in the data. The **action head** predicts the recorded action *a<sub>t</sub>*; a perfect action head would be a copy of the policy *π* — but *π* reads *z*, and *z* is not in the data.
+
+Both heads receive the same input *x<sub>t</sub>*: the observations available at step *t*. In the toy experiment below, *x<sub>t</sub>* is simply the last two positions, <em>x<sub>t</sub> = (o<sub>t−1</sub>, o<sub>t</sub>)</em> — two, because two positions show where the arm is *and* how it is moving. That is a choice made to keep the experiment small, not a hidden assumption: real models read longer histories and a language instruction, and Claim 1 explains why neither recovers *z*.
+
+To compare the two heads on one scale, score any prediction with normalized mean squared error:
 
 <p style="text-align:center;"><em>NMSE = E‖ŷ − y‖² / Var(y)</em></p>
 
-— read: average squared miss, divided by the target's natural spread (its variance, summed over the target's dimensions), so 0 means perfect and 1 means "no better than always guessing the average." One more definition does most of the work in this essay. Call
+where *y* is the true value being predicted — *o<sub>t+1</sub>* for the vision head, *a<sub>t</sub>* for the action head — and *ŷ* is the model's prediction of it. The numerator is the average squared miss; dividing by Var(*y*), the target's natural spread, puts different targets on one scale: 0 is perfect, and 1 means no better than always guessing the average.
+
+One more definition does the most work in this essay:
 
 <p style="text-align:center;"><em>B = E[Var(y | x)] / Var(y)</em></p>
 
-the **floor**: the share of the target that remains undetermined *even with the best possible use of the input*. No predictor, however large or well-trained, can average below *B* on fresh data. (We'll write *B<sub>A</sub>* and *B<sub>V</sub>* for the action and vision heads' floors.)
+where Var(*y* | *x*) is the spread of the true values across cases whose input *x* looks identical. Call *B* the **floor**: the share of the target that stays undetermined even when the input is used perfectly. If identical inputs can be followed by different true values, no model — however large, however well trained — can tell which one is coming, so no model's validation NMSE can average below *B*. Write *B<sub>A</sub>* for the action head's floor and *B<sub>V</sub>* for the vision head's.
 
-The problem this essay answers, in one line: **why is the generalization gap — validation NMSE minus training NMSE — near zero for the vision head and large and *growing* for the action head, on the same data, the same inputs, and the same network?** Equivalently: why is *B* tiny for *f* and huge for *π*, and why does training behave so pathologically when *B* is large?
+The problem this essay answers, in one line: **why, on the same data, the same inputs, and the same network, is the gap between validation and training NMSE near zero for the vision head, and large and *growing* for the action head?** Equivalently: why is the floor tiny for *f* and large for *π* — and why does training misbehave so badly when the floor is large?
 
 To answer it, I built the smallest rig that reproduces the phenomenon<sup><a href="#ref-28">[28]</a></sup>. A simulated 2D robot crosses a table to a goal, detouring around an obstacle. Each demonstration carries hidden state — the *z* and *ε* above — that the observations never show: which side the demonstrator chose (a coin flip), their turn-early-or-late style, and jitter on their command signal. The "arm" has inertia, so observed positions are a smoothed version of the raw commands — a camera sees the filtered arm; the teleop log stores the raw signal. The vision head predicts the next position; the action head predicts the raw command.
 
