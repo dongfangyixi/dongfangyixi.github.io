@@ -40,7 +40,7 @@
 <line x1="1032" y1="161" x2="1032" y2="176" stroke="#2563EB" stroke-width="2"/>
 <text x="1032" y="192" font-size="14" fill="#2563EB" text-anchor="middle" font-weight="700">VISION HEAD predicts here</text>
 <text x="1032" y="212" font-size="12.5" fill="#1c1b1a" text-anchor="middle">downstream — behind the momentum cushion</text>
-<text x="1032" y="231" font-size="13.5" fill="#2563EB" text-anchor="middle" font-weight="700">floor <tspan font-style="italic">B</tspan><tspan font-size="10" dy="3">V</tspan><tspan dy="-3"> ≈ 0.0025</tspan></text>
+<text x="1032" y="231" font-size="13.5" fill="#2563EB" text-anchor="middle" font-weight="700">floor <tspan font-style="italic">B</tspan><tspan font-size="10" dy="3">V</tspan><tspan dy="-3"> ≤ 0.0025</tspan></text>
 <text x="1032" y="250" font-size="12" fill="#8a857a" text-anchor="middle">a quarter of one percent — Claim 3</text>
 <text x="50" y="278" font-size="13.5" fill="#6b6558">Both heads read the identical input — the last two observations. It contains neither <tspan font-style="italic">z</tspan> nor <tspan font-style="italic">ε</tspan>; the two targets differ only in how much of them they still carry.</text>
 </svg>
