@@ -28,9 +28,9 @@ Robot data splits into two streams, and they scaled very differently. Nobody log
 
 *The collection race, log scale, trends fitted by least squares. Orange: recorded robot actions<sup><a href="#ref-21">[21]</a>,<a href="#ref-22">[22]</a>,<a href="#ref-23">[23]</a>,<a href="#ref-16">[16]</a></sup>. Blue: collected from humans, no robot in the loop<sup><a href="#ref-24">[24]</a>,<a href="#ref-25">[25]</a>,<a href="#ref-26">[26]</a>,<a href="#ref-20">[20]</a>,<a href="#ref-18">[18]</a>,<a href="#ref-19">[19]</a>,<a href="#ref-4">[4]</a></sup>. Only corpora with published hour counts are shown. The ~90x gap holds observations, not robot actions.*
 
-This gap invites a wrong conclusion — that action lags simply because action data is scarce. Scarcity is real, but it cannot be the cause of the failure this essay studies, because that failure shows up on data the model already has: a demonstration stores observations and actions in the same file, so both targets get exactly the same data — yet the model learns the video half and fails on the action half.
+It is tempting to read this gap as the whole story: action lags because action data is scarce. But scarcity cannot explain the failure this essay is about, because the failure appears on data the model already has. A demonstration records observations and actions in the same file, so the model gets exactly as much of one as of the other. It still learns to predict the video and fails to predict the actions.
 
-That failure to learn the action half — not the size of any archive — is this essay's subject. Robotics has curves too, but along an unexpected axis, measured on proxies that can lie; we'll get there. The learning failure comes first, and it needs stating precisely.
+That learning failure, not the size of any dataset, is the subject of this essay. Robotics has scaling curves of its own, and later sections look at what those curves actually measure and what more data actually buys. The failure itself comes first, and the first step is to state it precisely.
 
 ## The problem, stated precisely
 
