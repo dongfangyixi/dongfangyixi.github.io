@@ -6,7 +6,9 @@ tags: [embodied-ai, robotics, VLA, scaling, world-models]
 locale: en
 ---
 
-## Background: the models and the symptom
+## Background
+
+### The models and the symptom
 
 A language model can pass the bar exam. An image model can paint anything you describe. The robot arm that was supposed to be loading your dishwasher still fails often enough that you cannot buy one.
 
@@ -14,7 +16,7 @@ The strange part: the machinery is shared now. Robot AI's most visible family is
 
 The architectures differ; the symptom doesn't. In every family, **the vision and language components generalize well, and the action component is where generalization stops**<sup><a href="#ref-4">[4]</a>,<a href="#ref-5">[5]</a>,<a href="#ref-6">[6]</a></sup>. And **where generalization stops, scaling stops**: a scaling curve tracks error on data the model has never seen<sup><a href="#ref-7">[7]</a></sup>, so more data improves a model only through what it generalizes from that data — improvement without generalization is memorization, and buys nothing<sup><a href="#ref-8">[8]</a></sup>. The component that cannot generalize is the component that cannot scale. The classic hand-wave for this is Moravec's paradox — the observation, roughly, that hard things are easy and easy things are hard<sup><a href="#ref-9">[9]</a></sup> — which names the pattern and explains nothing. This essay tries to do better, starting with what "scaled" actually meant for vision and language.
 
-## Background: what a "scaling moment" is
+### What a "scaling moment" is
 
 When people say language and vision "scaled," they mean something specific: a predictable curve. In 2020, Kaplan and colleagues measured that a language model's test error falls along a smooth power law as data and compute grow<sup><a href="#ref-7">[7]</a></sup>:
 
