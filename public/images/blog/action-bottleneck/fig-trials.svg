@@ -31,7 +31,7 @@
 <text x="414.0" y="117.1" font-size="13.5" fill="#1c1b1a" font-weight="700">42%</text>
 <circle cx="1080.0" cy="220.0" r="6.5" fill="#C2410C"/>
 <text x="1092.0" y="208.0" font-size="13.5" fill="#1c1b1a" font-weight="700">22%</text>
-<rect x="52" y="76" width="270" height="42" rx="8" fill="none" stroke="#8a857a" stroke-width="1.2"/>
-<text x="66" y="94" font-size="12.5" fill="#1c1b1a">N=10 — inside the field&#8217;s typical N &#8804; 25 —</text>
-<text x="66" y="112" font-size="12.5" fill="#1c1b1a">the verdict is a coin flip</text>
+<rect x="380" y="196" width="360" height="46" rx="8" fill="none" stroke="#8a857a" stroke-width="1.2"/>
+<text x="396" y="215" font-size="12.5" fill="#1c1b1a">at N=10 — inside the field&#8217;s typical N &#8804; 25 —</text>
+<text x="396" y="233" font-size="12.5" fill="#1c1b1a">the ranking verdict is a coin flip</text>
 </svg>
