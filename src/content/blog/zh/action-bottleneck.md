@@ -444,5 +444,3 @@ pos = pos + exec_v                        # 观测：被滤波后的响应
 <li id="ref-59">Zhou 等，"AutoEval: Autonomous Evaluation of Generalist Robot Manipulation Policies in the Real World"，2025。<a href="https://arxiv.org/abs/2503.24278">arXiv:2503.24278</a></li>
 </ol>
 </details>
-
-*原文 [The Action Bottleneck](/blog/action-bottleneck/) · 发布于 2026 年 8 月 16 日 · 译于 2026 年 9 月*
