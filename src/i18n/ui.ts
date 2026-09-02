@@ -121,12 +121,16 @@ const ui = {
   'about.title':        { en: 'About',              zh: '关于本站' },
   'about.description':  { en: 'About this site.',   zh: '关于本站。' },
   'about.lede': {
-    en: 'This is where I collect my writing, updates, and videos.',
-    zh: '这里汇集了我的文章、动态和视频。',
+    en: 'This is where I collect my writing and updates.',
+    zh: '这里汇集了我的文章与动态。',
   },
   'about.intro': {
     en: 'Welcome. This site brings together my <a href="{blog}">blog</a> and the <a href="{news}">latest news I\'m following</a>.',
     zh: '欢迎。本站收录了我的<a href="{blog}">博客</a>和<a href="{news}">近期关注的动态</a>。',
+  },
+  'about.chat': {
+    en: 'Want to chat? I\'m happy to talk about anything on this site — reach me at <a href="mailto:xuluthebest@gmail.com">xuluthebest@gmail.com</a>.',
+    zh: '想聊聊？欢迎就本站的任何内容与我交流：<a href="mailto:xuluthebest@gmail.com">xuluthebest@gmail.com</a>。',
   },
 
   // ── Blog page ──
