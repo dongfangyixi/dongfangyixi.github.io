@@ -6,8 +6,6 @@ tags: [embodied-ai, robotics, VLA, scaling, world-models]
 locale: zh
 ---
 
-> 本文是对原文 [The Action Bottleneck](/blog/action-bottleneck/) 的中文重写。译文在理解原文的基础上重新组织语言，力求读起来像以中文写就，而非逐句翻译。
-
 ## 背景
 
 ### 模型与病症
