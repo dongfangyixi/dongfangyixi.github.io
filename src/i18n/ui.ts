@@ -157,7 +157,7 @@ const ui = {
     zh: '产品',
   },
   'products.description': {
-    en: 'Small tools and products I build.',
+    en: 'tools and products I build.',
     zh: '我做的一些小工具和产品。',
   },
 
