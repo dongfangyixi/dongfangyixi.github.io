@@ -12,12 +12,17 @@ const lBase = locale === 'zh' ? '/zh' : '';
 const {
   title = t(locale, 'meta.defaultTitle'),
   description = t(locale, 'meta.defaultDescription'),
+  ogImage,
+  ogType = 'website',
+  showLanguageSwitcher = true,
+  showAlternates = true,
 } = Astro.props;
 
 // ── Nav ──
 const nav = [
   { href: `${lBase}${base}`,     label: t(locale, 'nav.home') },
   { href: `${lBase}${base}blog`,   label: t(locale, 'nav.blog') },
+  { href: `${lBase}${base}products`, label: t(locale, 'nav.products') },
   { href: `${lBase}${base}news`,   label: t(locale, 'nav.news') },
   { href: `${lBase}${base}about`,  label: t(locale, 'nav.about') },
 ];
@@ -37,6 +42,7 @@ const canonicalUrl = new URL(cleanPath, Astro.site).href;
 const enUrl = new URL(cleanPath, Astro.site).href;
 const zhUrl = new URL(`/zh${cleanPath}`, Astro.site).href;
 const isZh = locale === 'zh';
+const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : undefined;
 ---
 
 <!doctype html>
@@ -60,11 +66,16 @@ const isZh = locale === 'zh';
     <link rel="apple-touch-icon" href={`${base}favicon.png`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:locale" content={isZh ? 'zh_CN' : 'en_US'} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="alternate" hreflang="en" href={enUrl} />
-    <link rel="alternate" hreflang="zh" href={zhUrl} />
+    {showAlternates && <link rel="alternate" hreflang="en" href={enUrl} />}
+    {showAlternates && <link rel="alternate" hreflang="zh" href={zhUrl} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -83,7 +94,7 @@ const isZh = locale === 'zh';
           {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
         </ul>
         <div class="nav-tools">
-          <LanguageSwitcher locale={locale} />
+          {showLanguageSwitcher && <LanguageSwitcher locale={locale} />}
           <button class="theme-toggle" type="button" aria-label={isZh ? '切换明暗主题' : 'Toggle light/dark theme'}>
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
               <circle cx="12" cy="12" r="4.5" />

@@ -20,6 +20,32 @@ function cleanSlug(slug: string): string {
   const i = slug.indexOf('/');
   return i >= 0 ? slug.slice(i + 1) : slug;
 }
+
+const products = locale === 'zh'
+  ? [
+      {
+        title: 'Pinaday',
+        description: '一款安静的 macOS 日记便签。每天一张笔记，用可旋转的日期拨盘在时间里移动。',
+        href: `${base}pinaday`,
+      },
+      {
+        title: 'terminalboard',
+        description: '在终端里查看 TensorBoard 训练曲线，并用内置助手分析实验。',
+        href: `${lBase}${base}terminalboard`,
+      },
+    ]
+  : [
+      {
+        title: 'Pinaday',
+        description: 'A calm, local-first daily notes app for macOS, built around one note for every day.',
+        href: `${base}pinaday`,
+      },
+      {
+        title: 'terminalboard',
+        description: 'TensorBoard in your terminal, with a small AI assistant for training runs.',
+        href: `${base}terminalboard`,
+      },
+    ];
 ---
 <Base title={`${t(locale, 'site.brand')} · ${t(locale, 'site.title')}`}>
   <section class="hero">
@@ -52,7 +78,20 @@ function cleanSlug(slug: string): string {
 
   <section>
     <div class="section-title">
-      <div><span class="eyebrow">{locale === 'zh' ? <span class="cjk">近况</span> : 'Now'}</span><h2>{t(locale, 'section.focusingOn')}</h2></div>
+      <div><span class="eyebrow">{locale === 'zh' ? <span class="cjk">产品</span> : 'Built'}</span><h2>{t(locale, 'section.products')}</h2></div>
+      <a href={`${lBase}${base}products`}>{t(locale, 'section.allProducts')}</a>
+    </div>
+    {products.map((product) => (
+      <a class="card" href={product.href}>
+        <h3>{product.title}</h3>
+        <p>{product.description}</p>
+      </a>
+    ))}
+  </section>
+
+  <section>
+    <div class="section-title">
+      <div><span class="eyebrow">{locale === 'zh' ? <span class="cjk">随笔</span> : 'Notes'}</span><h2>{t(locale, 'section.focusingOn')}</h2></div>
       <a href={`${lBase}${base}news`}>{t(locale, 'section.allUpdates')}</a>
     </div>
     {news.map((item) => (

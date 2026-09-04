@@ -85,15 +85,16 @@ const ui = {
     zh: '首页',
   },
   'site.description': {
-    en: 'Personal homepage — tech blog, updates, and videos.',
-    zh: '个人主页 — 技术博客、动态与视频。',
+    en: 'Personal homepage — tech blog, products, notes, and videos.',
+    zh: '个人主页 — 技术博客、产品、随笔与视频。',
   },
 
   // ── Nav ──
   'nav.home':    { en: 'Home',    zh: '首页' },
   'nav.blog':    { en: 'Blog',    zh: '博客' },
+  'nav.products': { en: 'Products', zh: '产品' },
   'nav.videos':  { en: 'Videos',  zh: '视频' },
-  'nav.news':    { en: 'News',    zh: '近况' },
+  'nav.news':    { en: 'Notes',   zh: '随笔' },
   'nav.about':   { en: 'About',   zh: '关于' },
 
   // ── Home hero ──
@@ -102,20 +103,23 @@ const ui = {
     zh: '凌一而㬢 — 凌云而上总能看到一㬢晨光。',
   },
   'hero.lede': {
-    en: 'Engineer & builder. I write about technology and track what\'s moving in AI. Pull up a chair.',
-    zh: '工程师 & 建造者。写技术文章，追踪 AI 前沿动态。来，坐下聊聊。',
+    en: 'Engineer & builder. I write about technology, build small products, and track what\'s moving in AI. Pull up a chair.',
+    zh: '工程师 & 建造者。写技术文章，做一些小产品，也记录 AI 前沿里正在变化的事。来，坐下聊聊。',
   },
 
   // ── Sections ──
   'section.latestPosts':  { en: 'Latest posts',       zh: '最新文章' },
   'section.allPosts':     { en: 'All posts →',         zh: '全部文章 →' },
-  'section.focusingOn':   { en: 'What I\'m focusing on', zh: '近期关注' },
-  'section.allUpdates':   { en: 'All updates →',       zh: '全部动态 →' },
+  'section.products':     { en: 'Products',            zh: '产品' },
+  'section.allProducts':  { en: 'All products →',      zh: '全部产品 →' },
+  'section.focusingOn':   { en: 'Recent notes',        zh: '近期随笔' },
+  'section.allUpdates':   { en: 'All notes →',         zh: '全部随笔 →' },
   'section.videos':       { en: 'Videos',              zh: '视频' },
   'section.allVideos':    { en: 'All videos →',        zh: '全部视频 →' },
   'section.source':       { en: 'Source ↗',            zh: '来源 ↗' },
-  'section.backNews':     { en: '← Back to all news',  zh: '← 返回近况列表' },
+  'section.backNews':     { en: '← Back to all notes', zh: '← 返回随笔列表' },
   'section.backBlog':     { en: '← Back to all posts', zh: '← 返回文章列表' },
+  'section.backProducts': { en: '← Back to products',  zh: '← 返回产品列表' },
 
   // ── About page ──
   'about.title':        { en: 'About',              zh: '关于本站' },
@@ -125,8 +129,8 @@ const ui = {
     zh: '这里汇集了我的文章与动态。',
   },
   'about.intro': {
-    en: 'Welcome. This site brings together my <a href="{blog}">blog</a> and the <a href="{news}">latest news I\'m following</a>.',
-    zh: '欢迎。本站收录了我的<a href="{blog}">博客</a>和<a href="{news}">近期关注的动态</a>。',
+    en: 'Welcome. This site brings together my <a href="{blog}">blog</a>, <a href="{products}">products</a>, and <a href="{news}">recent notes</a>.',
+    zh: '欢迎。本站收录了我的<a href="{blog}">博客</a>、<a href="{products}">产品</a>和<a href="{news}">近期随笔</a>。',
   },
   'about.chat': {
     en: 'Want to chat? I\'m happy to talk about anything on this site — reach me at <a href="mailto:xuluthebest@gmail.com">xuluthebest@gmail.com</a>.',
@@ -147,18 +151,28 @@ const ui = {
     zh: '暂无文章 — 在 <code>src/content/blog/</code> 中添加 markdown 文件。',
   },
 
-  // ── News page ──
+  // ── Products page ──
+  'products.title': {
+    en: 'Products',
+    zh: '产品',
+  },
+  'products.description': {
+    en: 'Small tools and products I build.',
+    zh: '我做的一些小工具和产品。',
+  },
+
+  // ── Notes page ──
   'news.title': {
-    en: 'What I\'m focusing on',
-    zh: '近期关注',
+    en: 'Notes',
+    zh: '随笔',
   },
   'news.description': {
-    en: 'Short notes on what I\'m reading and exploring lately.',
-    zh: '我近期阅读和探索的简短笔记。',
+    en: 'Short notes on what I\'m reading, building, and exploring lately.',
+    zh: '一些关于阅读、建造和探索的简短记录。',
   },
   'news.empty': {
-    en: 'No updates yet — add markdown files in <code>src/content/news/</code>.',
-    zh: '暂无动态 — 在 <code>src/content/news/</code> 中添加 markdown 文件。',
+    en: 'No notes yet — add markdown files in <code>src/content/news/</code>.',
+    zh: '暂无随笔 — 在 <code>src/content/news/</code> 中添加 markdown 文件。',
   },
 
   // ── Videos page ──
@@ -187,7 +201,7 @@ const ui = {
     zh: '凌一而㬢',
   },
   'meta.defaultDescription': {
-    en: 'Personal homepage — tech blog, updates, and videos.',
-    zh: '个人主页 — 技术博客、动态与视频。',
+    en: 'Personal homepage — tech blog, products, notes, and videos.',
+    zh: '个人主页 — 技术博客、产品、随笔与视频。',
   },
 };

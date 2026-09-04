@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 
-// Tech blog posts — markdown files in src/content/blog/
+// Tech blog posts - markdown files in src/content/blog/
 const blog = defineCollection({
   type: 'content',
   schema: z.object({
@@ -13,7 +13,7 @@ const blog = defineCollection({
   }),
 });
 
-// "Latest news / what I'm focusing on" — short markdown updates
+// Notes / what I'm focusing on - short markdown updates
 const news = defineCollection({
   type: 'content',
   schema: z.object({

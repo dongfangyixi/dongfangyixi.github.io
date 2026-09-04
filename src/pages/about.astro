@@ -13,7 +13,7 @@ const lBase = locale === 'zh' ? '/zh' : '';
     <p class="lede">{t(locale, 'about.lede')}</p>
   </section>
   <section class="prose">
-    <p set:html={tHtml(locale, 'about.intro', { blog: `${lBase}${base}blog`, news: `${lBase}${base}news` })} />
+    <p set:html={tHtml(locale, 'about.intro', { blog: `${lBase}${base}blog`, products: `${lBase}${base}products`, news: `${lBase}${base}news` })} />
     <p set:html={tHtml(locale, 'about.chat')} />
   </section>
 </Base>

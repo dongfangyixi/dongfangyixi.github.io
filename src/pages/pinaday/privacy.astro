@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const email = 'xuluthebest@gmail.com';
+---
+
+<Base
+  title="Pinaday Privacy Policy"
+  description="Privacy policy for Pinaday."
+  showLanguageSwitcher={false}
+  showAlternates={false}
+>
+  <section class="hero support-hero">
+    <span class="eyebrow">Privacy</span>
+    <h1>Pinaday Privacy Policy</h1>
+    <p class="lede">Last updated September 4, 2026.</p>
+  </section>
+
+  <section class="policy-page">
+    <h2>Overview</h2>
+    <p>Pinaday is a local-first daily notes app for macOS. It is designed around one note for every day, with optional iCloud synchronization for people who want their notes available across Macs using the same Apple Account.</p>
+
+    <h2>Local storage</h2>
+    <p>In Local only mode, Pinaday stores notes and pasted images on your Mac in the app data directory. Nothing is uploaded to iCloud in this mode.</p>
+
+    <h2>Optional iCloud synchronization</h2>
+    <p>If you turn on iCloud sync, Pinaday keeps the same local files as the offline source of truth and mirrors note pages and pasted images into your private CloudKit database. Sync requires an Apple Account with iCloud available on the Mac.</p>
+
+    <h2>Image text recognition</h2>
+    <p>Pinaday can recognize text in pasted images so that image text can be selected and found by search. The current macOS app uses Apple Vision and VisionKit frameworks on the Mac for this processing. Recognized text is cached in local app data for search.</p>
+
+    <h2>Device-local settings</h2>
+    <p>Search indexes, window position, theme, language, pinning, window opacity, and login behavior are device-local settings.</p>
+
+    <h2>Accounts, analytics, and crash reporting</h2>
+    <p>Pinaday does not create a Pinaday account. The current app implementation reviewed for this policy does not include third-party analytics, advertising SDKs, or third-party crash-reporting SDKs. Apple may provide diagnostics separately depending on your macOS and App Store settings.</p>
+
+    <h2>Support email</h2>
+    <p>If you contact support, the email address and information you choose to include are received as part of that support conversation.</p>
+
+    <h2>Contact</h2>
+    <p>For privacy or support questions, email <a href={`mailto:${email}`}>{email}</a>.</p>
+    <p><a href="/pinaday">Back to Pinaday</a></p>
+  </section>
+</Base>
