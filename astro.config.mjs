@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 // root, so `base` stays "/". If you later move this to a project repo
 // (e.g. github.com/dongfangyixi/blog), set base: '/blog'.
 export default defineConfig({
-  site: 'https://dongfangyixi.github.io',
+  site: 'https://xuluthebest.com',
   base: '/',
   i18n: {
     defaultLocale: 'en',
