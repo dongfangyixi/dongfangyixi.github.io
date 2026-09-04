@@ -12,13 +12,15 @@ const products = locale === 'zh'
         name: 'Pinaday',
         href: `${base}pinaday`,
         image: '/images/products/pinaday/icon.png',
-        kicker: 'macOS daily notes',
+        media: 'icon',
+        kicker: 'Daily notes',
         description: '一款安静的 macOS 日记便签。每天一张笔记，用可旋转日期拨盘在时间里移动。',
       },
       {
         name: 'terminalboard',
         href: `${lBase}${base}terminalboard`,
         image: '/images/products/terminalboard/demo.gif',
+        media: 'screenshot',
         kicker: 'TensorBoard in your terminal',
         description: '在终端里查看 TensorBoard 训练曲线，并用内置助手分析实验。',
       },
@@ -28,13 +30,15 @@ const products = locale === 'zh'
         name: 'Pinaday',
         href: `${base}pinaday`,
         image: '/images/products/pinaday/icon.png',
-        kicker: 'macOS daily notes',
+        media: 'icon',
+        kicker: 'Daily notes',
         description: 'A calm, local-first daily notes app for macOS, built around one note for every day.',
       },
       {
         name: 'terminalboard',
         href: `${base}terminalboard`,
         image: '/images/products/terminalboard/demo.gif',
+        media: 'screenshot',
         kicker: 'TensorBoard in your terminal',
         description: 'A terminal-native TensorBoard viewer with a small AI assistant for training runs.',
       },
@@ -51,7 +55,7 @@ const products = locale === 'zh'
   <section class="product-index-grid" aria-label={t(locale, 'products.title')}>
     {products.map((product) => (
       <a class="product-index-card" href={product.href}>
-        <div class="product-index-media">
+        <div class={`product-index-media product-index-media-${product.media}`}>
           <img src={product.image} alt="" loading="lazy" />
         </div>
         <div>

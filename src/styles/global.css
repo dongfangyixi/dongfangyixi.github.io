@@ -399,6 +399,15 @@ section { margin: 3.25rem 0; }
   object-fit: cover;
 }
 
+.product-index-media-icon {
+  overflow: visible;
+  background: transparent;
+}
+
+.product-index-media-icon img {
+  object-fit: contain;
+}
+
 .product-index-card h2 {
   margin: 0 0 0.35rem;
   font-size: 1.42rem;
