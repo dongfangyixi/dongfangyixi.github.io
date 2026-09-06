@@ -109,8 +109,9 @@ const lBase = locale === "zh" ? "/zh" : "";
   }
 
   // Sidebar scrollspy
+  const toc = document.querySelector('.toc');
   const links = document.querySelectorAll('.toc a');
-  if (links.length > 0) {
+  if (toc && links.length > 0) {
     const byHeading = new Map();
     links.forEach((a) => {
       const id = decodeURIComponent((a.getAttribute('href') || '').slice(1));
@@ -125,7 +126,18 @@ const lBase = locale === "zh" ? "/zh" : "";
             const link = byHeading.get(entry.target);
             if (link) {
               link.classList.add('active');
-              link.scrollIntoView({ block: 'nearest' });
+              if (!toc.clientHeight) continue;
+
+              // scrollIntoView can pan the pinch-zoomed viewport and interrupt
+              // an anchor jump. Keep automatic scrolling inside the sidebar.
+              const top = toc.getBoundingClientRect().top + toc.clientTop;
+              const bottom = top + toc.clientHeight;
+              const rect = link.getBoundingClientRect();
+              if (rect.top < top) {
+                toc.scrollTop += rect.top - top;
+              } else if (rect.bottom > bottom) {
+                toc.scrollTop += rect.bottom - bottom;
+              }
             }
           }
         }
